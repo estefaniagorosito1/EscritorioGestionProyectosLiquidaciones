@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.volverBtn = new System.Windows.Forms.Button();
             this.crearClienteBtn = new System.Windows.Forms.Button();
+            this.volverBtn = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.clientesDataView = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesDataView)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -45,19 +45,42 @@
             this.panel1.Controls.Add(this.volverBtn);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.dataGridView1);
-            this.panel1.Location = new System.Drawing.Point(51, 43);
+            this.panel1.Controls.Add(this.clientesDataView);
+            this.panel1.Location = new System.Drawing.Point(26, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(688, 354);
+            this.panel1.Size = new System.Drawing.Size(741, 389);
             this.panel1.TabIndex = 0;
             // 
-            // dataGridView1
+            // crearClienteBtn
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(21, 70);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(647, 225);
-            this.dataGridView1.TabIndex = 0;
+            this.crearClienteBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.crearClienteBtn.Location = new System.Drawing.Point(102, 349);
+            this.crearClienteBtn.Name = "crearClienteBtn";
+            this.crearClienteBtn.Size = new System.Drawing.Size(122, 23);
+            this.crearClienteBtn.TabIndex = 4;
+            this.crearClienteBtn.Text = "Crear nuevo cliente";
+            this.crearClienteBtn.UseVisualStyleBackColor = true;
+            // 
+            // volverBtn
+            // 
+            this.volverBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.volverBtn.Location = new System.Drawing.Point(21, 349);
+            this.volverBtn.Name = "volverBtn";
+            this.volverBtn.Size = new System.Drawing.Size(75, 23);
+            this.volverBtn.TabIndex = 3;
+            this.volverBtn.Text = "Volver";
+            this.volverBtn.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label2.Location = new System.Drawing.Point(18, 45);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(144, 15);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Cree y modifique clientes";
             // 
             // label1
             // 
@@ -69,33 +92,13 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Lista de clientes";
             // 
-            // label2
+            // clientesDataView
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(18, 45);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(158, 16);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Cree y modifique clientes";
-            // 
-            // volverBtn
-            // 
-            this.volverBtn.Location = new System.Drawing.Point(22, 310);
-            this.volverBtn.Name = "volverBtn";
-            this.volverBtn.Size = new System.Drawing.Size(75, 23);
-            this.volverBtn.TabIndex = 3;
-            this.volverBtn.Text = "Volver";
-            this.volverBtn.UseVisualStyleBackColor = true;
-            // 
-            // crearClienteBtn
-            // 
-            this.crearClienteBtn.Location = new System.Drawing.Point(103, 310);
-            this.crearClienteBtn.Name = "crearClienteBtn";
-            this.crearClienteBtn.Size = new System.Drawing.Size(122, 23);
-            this.crearClienteBtn.TabIndex = 4;
-            this.crearClienteBtn.Text = "Crear nuevo cliente";
-            this.crearClienteBtn.UseVisualStyleBackColor = true;
+            this.clientesDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.clientesDataView.Location = new System.Drawing.Point(21, 70);
+            this.clientesDataView.Name = "clientesDataView";
+            this.clientesDataView.Size = new System.Drawing.Size(698, 263);
+            this.clientesDataView.TabIndex = 0;
             // 
             // gestionarClientesForm
             // 
@@ -108,7 +111,7 @@
             this.Text = "Gestionar clientes";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientesDataView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -120,6 +123,6 @@
         private System.Windows.Forms.Button volverBtn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView clientesDataView;
     }
 }
