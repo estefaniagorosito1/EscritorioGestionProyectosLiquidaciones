@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.passwordTxt = new System.Windows.Forms.MaskedTextBox();
             this.userTxt = new System.Windows.Forms.TextBox();
             this.ingresarBtn = new System.Windows.Forms.Button();
             this.recuperarPassword = new System.Windows.Forms.LinkLabel();
@@ -45,7 +45,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.maskedTextBox1);
+            this.panel1.Controls.Add(this.passwordTxt);
             this.panel1.Controls.Add(this.userTxt);
             this.panel1.Controls.Add(this.ingresarBtn);
             this.panel1.Controls.Add(this.recuperarPassword);
@@ -66,14 +66,14 @@
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
-            // maskedTextBox1
+            // passwordTxt
             // 
-            this.maskedTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBox1.Location = new System.Drawing.Point(91, 213);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.PasswordChar = '*';
-            this.maskedTextBox1.Size = new System.Drawing.Size(279, 26);
-            this.maskedTextBox1.TabIndex = 6;
+            this.passwordTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passwordTxt.Location = new System.Drawing.Point(91, 213);
+            this.passwordTxt.Name = "passwordTxt";
+            this.passwordTxt.PasswordChar = '*';
+            this.passwordTxt.Size = new System.Drawing.Size(279, 26);
+            this.passwordTxt.TabIndex = 6;
             // 
             // userTxt
             // 
@@ -86,23 +86,13 @@
             // ingresarBtn
             // 
             this.ingresarBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ingresarBtn.Location = new System.Drawing.Point(173, 254);
+            this.ingresarBtn.Location = new System.Drawing.Point(173, 261);
             this.ingresarBtn.Name = "ingresarBtn";
             this.ingresarBtn.Size = new System.Drawing.Size(99, 29);
             this.ingresarBtn.TabIndex = 3;
             this.ingresarBtn.Text = "Ingresar";
             this.ingresarBtn.UseVisualStyleBackColor = true;
-            // 
-            // recuperarPassword
-            // 
-            this.recuperarPassword.AutoSize = true;
-            this.recuperarPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recuperarPassword.Location = new System.Drawing.Point(138, 297);
-            this.recuperarPassword.Name = "recuperarPassword";
-            this.recuperarPassword.Size = new System.Drawing.Size(175, 20);
-            this.recuperarPassword.TabIndex = 2;
-            this.recuperarPassword.TabStop = true;
-            this.recuperarPassword.Text = "¿Olvido su contraseña?";
+            this.ingresarBtn.Click += new System.EventHandler(this.ingresarBtn_Click);
             // 
             // label2
             // 
@@ -128,7 +118,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.BackColor = System.Drawing.Color.Teal;
             this.ClientSize = new System.Drawing.Size(747, 450);
             this.Controls.Add(this.panel1);
             this.Name = "LoginForm";
@@ -148,7 +138,7 @@
         private System.Windows.Forms.LinkLabel recuperarPassword;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox passwordTxt;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
