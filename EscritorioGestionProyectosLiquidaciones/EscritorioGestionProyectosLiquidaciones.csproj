@@ -64,6 +64,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clientes\crearModificarClientesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clientes\crearModificarClientesForm.Designer.cs">
+      <DependentUpon>crearModificarClientesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clientes\gestionarClientesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clientes\gestionarClientesForm.Designer.cs">
+      <DependentUpon>gestionarClientesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Empleados\crearModificarEmpleadoFrom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Empleados\crearModificarEmpleadoFrom.Designer.cs">
+      <DependentUpon>crearModificarEmpleadoFrom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Empleados\gestionarEmpleadosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Empleados\gestionarEmpleadosForm.Designer.cs">
+      <DependentUpon>gestionarEmpleadosForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +108,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <EmbeddedResource Include="Clientes\crearModificarClientesForm.resx">
+      <DependentUpon>crearModificarClientesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clientes\gestionarClientesForm.resx">
+      <DependentUpon>gestionarClientesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Empleados\crearModificarEmpleadoFrom.resx">
+      <DependentUpon>crearModificarEmpleadoFrom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Empleados\gestionarEmpleadosForm.resx">
+      <DependentUpon>gestionarEmpleadosForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
@@ -125,7 +161,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Proyectos\" />
     <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
