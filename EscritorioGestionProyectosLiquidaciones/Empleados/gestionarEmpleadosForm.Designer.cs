@@ -53,7 +53,7 @@
             // 
             // crearEmpleadoBtn
             // 
-            this.crearEmpleadoBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.crearEmpleadoBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.crearEmpleadoBtn.Location = new System.Drawing.Point(133, 339);
             this.crearEmpleadoBtn.Name = "crearEmpleadoBtn";
             this.crearEmpleadoBtn.Size = new System.Drawing.Size(121, 23);
@@ -63,13 +63,14 @@
             // 
             // volverBtn
             // 
-            this.volverBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.volverBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.volverBtn.Location = new System.Drawing.Point(28, 339);
             this.volverBtn.Name = "volverBtn";
             this.volverBtn.Size = new System.Drawing.Size(99, 23);
             this.volverBtn.TabIndex = 3;
             this.volverBtn.Text = "Volver";
             this.volverBtn.UseVisualStyleBackColor = true;
+            this.volverBtn.Click += new System.EventHandler(this.volverBtn_Click);
             // 
             // empleadosDataView
             // 
@@ -77,17 +78,17 @@
             this.empleadosDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.empleadosDataView.Location = new System.Drawing.Point(28, 100);
             this.empleadosDataView.Name = "empleadosDataView";
-            this.empleadosDataView.Size = new System.Drawing.Size(646, 217);
+            this.empleadosDataView.Size = new System.Drawing.Size(683, 217);
             this.empleadosDataView.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(25, 55);
+            this.label2.Location = new System.Drawing.Point(25, 63);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(164, 15);
+            this.label2.Size = new System.Drawing.Size(187, 17);
             this.label2.TabIndex = 1;
             this.label2.Text = "Cree y modifique empleados";
             // 
@@ -95,7 +96,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(24, 25);
+            this.label1.Location = new System.Drawing.Point(24, 33);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(173, 24);
             this.label1.TabIndex = 0;

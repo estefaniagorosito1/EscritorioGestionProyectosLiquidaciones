@@ -53,7 +53,7 @@
             // 
             // crearClienteBtn
             // 
-            this.crearClienteBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.crearClienteBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.crearClienteBtn.Location = new System.Drawing.Point(102, 349);
             this.crearClienteBtn.Name = "crearClienteBtn";
             this.crearClienteBtn.Size = new System.Drawing.Size(122, 23);
@@ -63,22 +63,23 @@
             // 
             // volverBtn
             // 
-            this.volverBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.volverBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.volverBtn.Location = new System.Drawing.Point(21, 349);
             this.volverBtn.Name = "volverBtn";
             this.volverBtn.Size = new System.Drawing.Size(75, 23);
             this.volverBtn.TabIndex = 3;
             this.volverBtn.Text = "Volver";
             this.volverBtn.UseVisualStyleBackColor = true;
+            this.volverBtn.Click += new System.EventHandler(this.volverBtn_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label2.Location = new System.Drawing.Point(18, 45);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(144, 15);
+            this.label2.Size = new System.Drawing.Size(166, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "Cree y modifique clientes";
             // 
@@ -95,9 +96,9 @@
             // clientesDataView
             // 
             this.clientesDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.clientesDataView.Location = new System.Drawing.Point(21, 70);
+            this.clientesDataView.Location = new System.Drawing.Point(21, 83);
             this.clientesDataView.Name = "clientesDataView";
-            this.clientesDataView.Size = new System.Drawing.Size(698, 263);
+            this.clientesDataView.Size = new System.Drawing.Size(698, 250);
             this.clientesDataView.TabIndex = 0;
             // 
             // gestionarClientesForm

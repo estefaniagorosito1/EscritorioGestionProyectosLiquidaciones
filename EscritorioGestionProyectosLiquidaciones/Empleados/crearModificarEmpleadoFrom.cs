@@ -16,5 +16,10 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
         {
             InitializeComponent();
         }
+
+        private void volverBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
