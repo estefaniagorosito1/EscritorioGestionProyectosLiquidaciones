@@ -141,12 +141,14 @@
             this.crearProyectoBtn.Name = "crearProyectoBtn";
             this.crearProyectoBtn.Size = new System.Drawing.Size(174, 22);
             this.crearProyectoBtn.Text = "Crear proyecto";
+            this.crearProyectoBtn.Click += new System.EventHandler(this.crearProyectoBtn_Click);
             // 
             // gestionarProyectoBtn
             // 
             this.gestionarProyectoBtn.Name = "gestionarProyectoBtn";
             this.gestionarProyectoBtn.Size = new System.Drawing.Size(174, 22);
             this.gestionarProyectoBtn.Text = "Gestionar proyecto";
+            this.gestionarProyectoBtn.Click += new System.EventHandler(this.gestionarProyectoBtn_Click);
             // 
             // empleadosToolStripMenuItem
             // 
@@ -162,12 +164,14 @@
             this.crearEmpleadoBtn.Name = "crearEmpleadoBtn";
             this.crearEmpleadoBtn.Size = new System.Drawing.Size(180, 22);
             this.crearEmpleadoBtn.Text = "Crear empleado";
+            this.crearEmpleadoBtn.Click += new System.EventHandler(this.crearEmpleadoBtn_Click);
             // 
             // gestionarEmpleadoBtn
             // 
             this.gestionarEmpleadoBtn.Name = "gestionarEmpleadoBtn";
             this.gestionarEmpleadoBtn.Size = new System.Drawing.Size(180, 22);
             this.gestionarEmpleadoBtn.Text = "Gestionar empleado";
+            this.gestionarEmpleadoBtn.Click += new System.EventHandler(this.gestionarEmpleadoBtn_Click);
             // 
             // clientesToolStripMenuItem
             // 
@@ -183,12 +187,14 @@
             this.crearClienteBtn.Name = "crearClienteBtn";
             this.crearClienteBtn.Size = new System.Drawing.Size(167, 22);
             this.crearClienteBtn.Text = "Crear cliente";
+            this.crearClienteBtn.Click += new System.EventHandler(this.crearClienteBtn_Click);
             // 
             // gestionarClientesBtn
             // 
             this.gestionarClientesBtn.Name = "gestionarClientesBtn";
             this.gestionarClientesBtn.Size = new System.Drawing.Size(167, 22);
             this.gestionarClientesBtn.Text = "Gestionar clientes";
+            this.gestionarClientesBtn.Click += new System.EventHandler(this.gestionarClientesBtn_Click);
             // 
             // salirBtn
             // 
@@ -198,6 +204,7 @@
             this.salirBtn.Name = "salirBtn";
             this.salirBtn.Size = new System.Drawing.Size(33, 22);
             this.salirBtn.Text = "Salir";
+            this.salirBtn.Click += new System.EventHandler(this.salirBtn_Click);
             // 
             // Home
             // 
