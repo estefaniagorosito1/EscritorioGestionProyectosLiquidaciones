@@ -45,8 +45,8 @@ namespace EscritorioGestionProyectosLiquidaciones
 
         private void gestionarEmpleadoBtn_Click(object sender, EventArgs e)
         {
-            gestionarProyectosForm gestionarProyectos = new gestionarProyectosForm();
-            gestionarProyectos.Show();
+            gestionarEmpleadosForm gestionarEmpleados = new gestionarEmpleadosForm();
+            gestionarEmpleados.Show();
         }
         #endregion
 
