@@ -120,6 +120,12 @@
       <DependentUpon>gestionarProyectosForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Tarea\CrearModificarTareaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tarea\CrearModificarTareaForm.Designer.cs">
+      <DependentUpon>CrearModificarTareaForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Clientes\crearModificarClientesForm.resx">
       <DependentUpon>crearModificarClientesForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -148,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Proyectos\gestionarProyectosForm.resx">
       <DependentUpon>gestionarProyectosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tarea\CrearModificarTareaForm.resx">
+      <DependentUpon>CrearModificarTareaForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
