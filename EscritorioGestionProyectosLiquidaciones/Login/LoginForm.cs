@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EscritorioGestionProyectosLiquidaciones.Models;
+using EscritorioGestionProyectosLiquidaciones.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,36 +14,50 @@ namespace EscritorioGestionProyectosLiquidaciones
 {
     public partial class LoginForm : Form
     {
+        private UsuarioService _usuarioService;
+
         public LoginForm()
         {
             InitializeComponent();
+            _usuarioService = new UsuarioService();
         }
 
         private void ingresarBtn_Click(object sender, EventArgs e)
         {
-            // Tengo que tomar los datos que están contenidos en los textbox 
-            // y pegarle a base de datos para ver si existe el usuario 
             var usuario = userTxt.Text;
             var pass = passwordTxt.Text;
 
             if (usuario != string.Empty && pass != string.Empty)
             {
-                // llamo a service con los datos
-                var user = "asdasd";
 
-                if (user != string.Empty)
+                var user = _usuarioService.FindUsuario(usuario, pass);
+
+                if (user != null)
                 {
                     LoginForm.ActiveForm.Hide();
 
                     Home home = new Home();
                     home.Show();
-
-                } else
+                }
+                else
                 {
-                    // Muestro popup de error
+                    DialogResult result = MessageBox.Show("Usuario y/o contraseña incorrectos", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+
+                    switch (result)
+                    {
+                        case DialogResult.OK:
+                            break;
+                        case DialogResult.Cancel:
+                            break;
+                        default:
+                            break;
+                    }
+
                     userTxt.Clear();
                     passwordTxt.Clear();
                 }
+
+
             }
 
         }
