@@ -7,41 +7,40 @@ using System.Threading.Tasks;
 
 namespace EscritorioGestionProyectosLiquidaciones.Services
 {
-    public class ClienteService
+    class ProyectoService
     {
-        public void Guardar(Cliente cliente)
+        public List<Proyecto> Find()
         {
             using (var dbContext = new TpSeminarioContext())
             {
-                if (cliente.Idcliente != 0)
+                return dbContext.Proyecto.ToList();
+            }
+        }
+
+        public void Guardar(Proyecto proyecto)
+        {
+            using (var dbContext = new TpSeminarioContext())
+            {
+                if (proyecto.Idproyecto != 0)
                 {
-                    dbContext.Cliente.Add(cliente);
+                    dbContext.Proyecto.Update(proyecto);
                     dbContext.SaveChanges();
                 }
                 else
                 {
-                    dbContext.Update(cliente);
+                    dbContext.Proyecto.Add(proyecto);
                     dbContext.SaveChanges();
                 }
             }
         }
 
-        public List<Cliente> Find()
+        public void Eliminar(int idProyecto)
         {
             using (var dbContext = new TpSeminarioContext())
             {
-                var clientes = dbContext.Cliente.ToList();
-                return clientes;
-            }
-        }
+                var proyecto = dbContext.Proyecto.Find(idProyecto);
+                dbContext.Proyecto.Remove(proyecto);
 
-        public void Eliminar(int idCliente)
-        {
-            using (var dbContext = new TpSeminarioContext())
-            {
-                var cliente = dbContext.Cliente.Find(idCliente);
-
-                dbContext.Cliente.Remove(cliente);
                 dbContext.SaveChanges();
             }
         }

@@ -19,5 +19,22 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
                 return usuario;
             }
         }
+
+        public Usuario FindUsuarioByIdEmpleado(int IdEmpleado)
+        {
+            using (var dbContext = new TpSeminarioContext())
+            {
+                return dbContext.Usuario.Where(u => u.Idempleado == IdEmpleado).First();
+            }
+        }
+
+        public void Guardar(Usuario usuario)
+        {
+            using (var dbContext = new TpSeminarioContext())
+            {
+                dbContext.Usuario.Add(usuario);
+                dbContext.SaveChanges();
+            }
+        }
     }
 }
