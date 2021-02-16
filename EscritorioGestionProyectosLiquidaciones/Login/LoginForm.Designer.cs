@@ -69,7 +69,7 @@
             // passwordTxt
             // 
             this.passwordTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordTxt.Location = new System.Drawing.Point(91, 213);
+            this.passwordTxt.Location = new System.Drawing.Point(92, 229);
             this.passwordTxt.Name = "passwordTxt";
             this.passwordTxt.PasswordChar = '*';
             this.passwordTxt.Size = new System.Drawing.Size(279, 26);
@@ -78,7 +78,7 @@
             // userTxt
             // 
             this.userTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userTxt.Location = new System.Drawing.Point(91, 152);
+            this.userTxt.Location = new System.Drawing.Point(92, 168);
             this.userTxt.Name = "userTxt";
             this.userTxt.Size = new System.Drawing.Size(279, 26);
             this.userTxt.TabIndex = 4;
@@ -86,7 +86,7 @@
             // ingresarBtn
             // 
             this.ingresarBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ingresarBtn.Location = new System.Drawing.Point(173, 261);
+            this.ingresarBtn.Location = new System.Drawing.Point(174, 277);
             this.ingresarBtn.Name = "ingresarBtn";
             this.ingresarBtn.Size = new System.Drawing.Size(99, 29);
             this.ingresarBtn.TabIndex = 3;
@@ -94,11 +94,18 @@
             this.ingresarBtn.UseVisualStyleBackColor = true;
             this.ingresarBtn.Click += new System.EventHandler(this.ingresarBtn_Click);
             // 
+            // recuperarPassword
+            // 
+            this.recuperarPassword.Location = new System.Drawing.Point(0, 0);
+            this.recuperarPassword.Name = "recuperarPassword";
+            this.recuperarPassword.Size = new System.Drawing.Size(100, 23);
+            this.recuperarPassword.TabIndex = 8;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(87, 190);
+            this.label2.Location = new System.Drawing.Point(88, 206);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(92, 20);
             this.label2.TabIndex = 1;
@@ -108,7 +115,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(87, 129);
+            this.label1.Location = new System.Drawing.Point(88, 145);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 20);
             this.label1.TabIndex = 0;
