@@ -28,14 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.crearBtn = new System.Windows.Forms.Button();
             this.volverBtn = new System.Windows.Forms.Button();
             this.proyectosDataView = new System.Windows.Forms.DataGridView();
+            this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Tareas = new System.Windows.Forms.DataGridViewButtonColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.idproyectoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreProyectoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estadoProyectoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaInicioProyectoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proyectoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.proyectosDataView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -73,11 +84,56 @@
             // 
             // proyectosDataView
             // 
+            this.proyectosDataView.AllowUserToAddRows = false;
+            this.proyectosDataView.AllowUserToDeleteRows = false;
+            this.proyectosDataView.AutoGenerateColumns = false;
             this.proyectosDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.proyectosDataView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idproyectoDataGridViewTextBoxColumn,
+            this.nombreProyectoDataGridViewTextBoxColumn,
+            this.descripcionDataGridViewTextBoxColumn,
+            this.estadoProyectoDataGridViewTextBoxColumn,
+            this.fechaInicioProyectoDataGridViewTextBoxColumn,
+            this.Editar,
+            this.Eliminar,
+            this.Tareas});
+            this.proyectosDataView.DataSource = this.proyectoBindingSource;
             this.proyectosDataView.Location = new System.Drawing.Point(32, 93);
             this.proyectosDataView.Name = "proyectosDataView";
+            this.proyectosDataView.ReadOnly = true;
             this.proyectosDataView.Size = new System.Drawing.Size(672, 229);
             this.proyectosDataView.TabIndex = 2;
+            this.proyectosDataView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.proyectosDataView_CellContentClick);
+            // 
+            // Editar
+            // 
+            this.Editar.FillWeight = 64F;
+            this.Editar.HeaderText = "";
+            this.Editar.Name = "Editar";
+            this.Editar.ReadOnly = true;
+            this.Editar.Text = "Editar";
+            this.Editar.UseColumnTextForButtonValue = true;
+            this.Editar.Width = 64;
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.FillWeight = 65F;
+            this.Eliminar.HeaderText = "";
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.ReadOnly = true;
+            this.Eliminar.Text = "Eliminar";
+            this.Eliminar.UseColumnTextForButtonValue = true;
+            this.Eliminar.Width = 65;
+            // 
+            // Tareas
+            // 
+            this.Tareas.FillWeight = 80F;
+            this.Tareas.HeaderText = "";
+            this.Tareas.Name = "Tareas";
+            this.Tareas.ReadOnly = true;
+            this.Tareas.Text = "Ver tareas";
+            this.Tareas.UseColumnTextForButtonValue = true;
+            this.Tareas.Width = 70;
             // 
             // label2
             // 
@@ -100,6 +156,47 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Lista de proyectos";
             // 
+            // idproyectoDataGridViewTextBoxColumn
+            // 
+            this.idproyectoDataGridViewTextBoxColumn.DataPropertyName = "Idproyecto";
+            this.idproyectoDataGridViewTextBoxColumn.FillWeight = 30F;
+            this.idproyectoDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idproyectoDataGridViewTextBoxColumn.Name = "idproyectoDataGridViewTextBoxColumn";
+            this.idproyectoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idproyectoDataGridViewTextBoxColumn.Width = 30;
+            // 
+            // nombreProyectoDataGridViewTextBoxColumn
+            // 
+            this.nombreProyectoDataGridViewTextBoxColumn.DataPropertyName = "NombreProyecto";
+            this.nombreProyectoDataGridViewTextBoxColumn.HeaderText = "Nombre";
+            this.nombreProyectoDataGridViewTextBoxColumn.Name = "nombreProyectoDataGridViewTextBoxColumn";
+            this.nombreProyectoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // descripcionDataGridViewTextBoxColumn
+            // 
+            this.descripcionDataGridViewTextBoxColumn.DataPropertyName = "Descripcion";
+            this.descripcionDataGridViewTextBoxColumn.HeaderText = "Descripcion";
+            this.descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
+            this.descripcionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // estadoProyectoDataGridViewTextBoxColumn
+            // 
+            this.estadoProyectoDataGridViewTextBoxColumn.DataPropertyName = "EstadoProyecto";
+            this.estadoProyectoDataGridViewTextBoxColumn.HeaderText = "Estado";
+            this.estadoProyectoDataGridViewTextBoxColumn.Name = "estadoProyectoDataGridViewTextBoxColumn";
+            this.estadoProyectoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // fechaInicioProyectoDataGridViewTextBoxColumn
+            // 
+            this.fechaInicioProyectoDataGridViewTextBoxColumn.DataPropertyName = "FechaInicioProyecto";
+            this.fechaInicioProyectoDataGridViewTextBoxColumn.HeaderText = "Fecha Inicio";
+            this.fechaInicioProyectoDataGridViewTextBoxColumn.Name = "fechaInicioProyectoDataGridViewTextBoxColumn";
+            this.fechaInicioProyectoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // proyectoBindingSource
+            // 
+            this.proyectoBindingSource.DataSource = typeof(EscritorioGestionProyectosLiquidaciones.Models.Proyecto);
+            // 
             // gestionarProyectosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -109,9 +206,11 @@
             this.Controls.Add(this.panel1);
             this.Name = "gestionarProyectosForm";
             this.Text = "Gestionar proyectos";
+            this.Load += new System.EventHandler(this.gestionarProyectosForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.proyectosDataView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -124,5 +223,14 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button crearBtn;
         private System.Windows.Forms.Button volverBtn;
+        private System.Windows.Forms.BindingSource proyectoBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idproyectoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreProyectoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estadoProyectoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaInicioProyectoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn Editar;
+        private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
+        private System.Windows.Forms.DataGridViewButtonColumn Tareas;
     }
 }

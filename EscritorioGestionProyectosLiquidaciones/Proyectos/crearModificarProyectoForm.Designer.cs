@@ -32,8 +32,8 @@
             this.asignarBtn = new System.Windows.Forms.Button();
             this.guardarBtn = new System.Windows.Forms.Button();
             this.volverBtn = new System.Windows.Forms.Button();
-            this.clienteProyecto = new System.Windows.Forms.ComboBox();
-            this.estadoProyecto = new System.Windows.Forms.ComboBox();
+            this.clientes = new System.Windows.Forms.ComboBox();
+            this.estadosProyecto = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -50,8 +50,8 @@
             this.panel1.Controls.Add(this.asignarBtn);
             this.panel1.Controls.Add(this.guardarBtn);
             this.panel1.Controls.Add(this.volverBtn);
-            this.panel1.Controls.Add(this.clienteProyecto);
-            this.panel1.Controls.Add(this.estadoProyecto);
+            this.panel1.Controls.Add(this.clientes);
+            this.panel1.Controls.Add(this.estadosProyecto);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
@@ -72,6 +72,7 @@
             this.asignarBtn.TabIndex = 11;
             this.asignarBtn.Text = "Asignar empleados";
             this.asignarBtn.UseVisualStyleBackColor = true;
+            this.asignarBtn.Click += new System.EventHandler(this.asignarBtn_Click);
             // 
             // guardarBtn
             // 
@@ -81,6 +82,7 @@
             this.guardarBtn.TabIndex = 10;
             this.guardarBtn.Text = "Guardar";
             this.guardarBtn.UseVisualStyleBackColor = true;
+            this.guardarBtn.Click += new System.EventHandler(this.guardarBtn_Click);
             // 
             // volverBtn
             // 
@@ -92,21 +94,22 @@
             this.volverBtn.UseVisualStyleBackColor = true;
             this.volverBtn.Click += new System.EventHandler(this.volverBtn_Click);
             // 
-            // clienteProyecto
+            // clientes
             // 
-            this.clienteProyecto.FormattingEnabled = true;
-            this.clienteProyecto.Location = new System.Drawing.Point(481, 110);
-            this.clienteProyecto.Name = "clienteProyecto";
-            this.clienteProyecto.Size = new System.Drawing.Size(210, 21);
-            this.clienteProyecto.TabIndex = 8;
+            this.clientes.DisplayMember = "NombreCliente";
+            this.clientes.FormattingEnabled = true;
+            this.clientes.Location = new System.Drawing.Point(481, 110);
+            this.clientes.Name = "clientes";
+            this.clientes.Size = new System.Drawing.Size(210, 21);
+            this.clientes.TabIndex = 8;
             // 
-            // estadoProyecto
+            // estadosProyecto
             // 
-            this.estadoProyecto.FormattingEnabled = true;
-            this.estadoProyecto.Location = new System.Drawing.Point(260, 110);
-            this.estadoProyecto.Name = "estadoProyecto";
-            this.estadoProyecto.Size = new System.Drawing.Size(210, 21);
-            this.estadoProyecto.TabIndex = 7;
+            this.estadosProyecto.FormattingEnabled = true;
+            this.estadosProyecto.Location = new System.Drawing.Point(260, 110);
+            this.estadosProyecto.Name = "estadosProyecto";
+            this.estadosProyecto.Size = new System.Drawing.Size(210, 21);
+            this.estadosProyecto.TabIndex = 7;
             // 
             // label5
             // 
@@ -182,6 +185,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "crearModificarProyectoForm";
             this.Text = "Crear proyecto";
+            this.Load += new System.EventHandler(this.crearModificarProyectoForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -194,8 +198,8 @@
         private System.Windows.Forms.Button asignarBtn;
         private System.Windows.Forms.Button guardarBtn;
         private System.Windows.Forms.Button volverBtn;
-        private System.Windows.Forms.ComboBox clienteProyecto;
-        private System.Windows.Forms.ComboBox estadoProyecto;
+        private System.Windows.Forms.ComboBox clientes;
+        private System.Windows.Forms.ComboBox estadosProyecto;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
