@@ -28,14 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.crearEmpleadoBtn = new System.Windows.Forms.Button();
             this.volverBtn = new System.Windows.Forms.Button();
             this.empleadosDataView = new System.Windows.Forms.DataGridView();
+            this.idempleadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dniEmpleadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreEmpleadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.apellidoEmpleadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaIngresoEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.empleadoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.empleadosDataView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.empleadoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -60,6 +70,7 @@
             this.crearEmpleadoBtn.TabIndex = 4;
             this.crearEmpleadoBtn.Text = "Crear empleado";
             this.crearEmpleadoBtn.UseVisualStyleBackColor = true;
+            this.crearEmpleadoBtn.Click += new System.EventHandler(this.crearEmpleadoBtn_Click);
             // 
             // volverBtn
             // 
@@ -74,12 +85,92 @@
             // 
             // empleadosDataView
             // 
-            this.empleadosDataView.AllowUserToOrderColumns = true;
+            this.empleadosDataView.AllowUserToAddRows = false;
+            this.empleadosDataView.AllowUserToDeleteRows = false;
+            this.empleadosDataView.AutoGenerateColumns = false;
             this.empleadosDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.empleadosDataView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idempleadoDataGridViewTextBoxColumn,
+            this.dniEmpleadoDataGridViewTextBoxColumn,
+            this.nombreEmpleadoDataGridViewTextBoxColumn,
+            this.apellidoEmpleadoDataGridViewTextBoxColumn,
+            this.FechaIngresoEmpleado,
+            this.Editar,
+            this.Eliminar});
+            this.empleadosDataView.DataSource = this.empleadoBindingSource;
             this.empleadosDataView.Location = new System.Drawing.Point(28, 100);
             this.empleadosDataView.Name = "empleadosDataView";
+            this.empleadosDataView.ReadOnly = true;
             this.empleadosDataView.Size = new System.Drawing.Size(683, 217);
             this.empleadosDataView.TabIndex = 2;
+            this.empleadosDataView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.empleadosDataView_CellContentClick);
+            // 
+            // idempleadoDataGridViewTextBoxColumn
+            // 
+            this.idempleadoDataGridViewTextBoxColumn.DataPropertyName = "Idempleado";
+            this.idempleadoDataGridViewTextBoxColumn.FillWeight = 40F;
+            this.idempleadoDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idempleadoDataGridViewTextBoxColumn.Name = "idempleadoDataGridViewTextBoxColumn";
+            this.idempleadoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idempleadoDataGridViewTextBoxColumn.Width = 40;
+            // 
+            // dniEmpleadoDataGridViewTextBoxColumn
+            // 
+            this.dniEmpleadoDataGridViewTextBoxColumn.DataPropertyName = "DniEmpleado";
+            this.dniEmpleadoDataGridViewTextBoxColumn.HeaderText = "Dni";
+            this.dniEmpleadoDataGridViewTextBoxColumn.Name = "dniEmpleadoDataGridViewTextBoxColumn";
+            this.dniEmpleadoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nombreEmpleadoDataGridViewTextBoxColumn
+            // 
+            this.nombreEmpleadoDataGridViewTextBoxColumn.DataPropertyName = "NombreEmpleado";
+            this.nombreEmpleadoDataGridViewTextBoxColumn.FillWeight = 120F;
+            this.nombreEmpleadoDataGridViewTextBoxColumn.HeaderText = "Nombre";
+            this.nombreEmpleadoDataGridViewTextBoxColumn.Name = "nombreEmpleadoDataGridViewTextBoxColumn";
+            this.nombreEmpleadoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nombreEmpleadoDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // apellidoEmpleadoDataGridViewTextBoxColumn
+            // 
+            this.apellidoEmpleadoDataGridViewTextBoxColumn.DataPropertyName = "ApellidoEmpleado";
+            this.apellidoEmpleadoDataGridViewTextBoxColumn.FillWeight = 120F;
+            this.apellidoEmpleadoDataGridViewTextBoxColumn.HeaderText = "Apellido";
+            this.apellidoEmpleadoDataGridViewTextBoxColumn.Name = "apellidoEmpleadoDataGridViewTextBoxColumn";
+            this.apellidoEmpleadoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.apellidoEmpleadoDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // FechaIngresoEmpleado
+            // 
+            this.FechaIngresoEmpleado.DataPropertyName = "FechaIngresoEmpleado";
+            this.FechaIngresoEmpleado.FillWeight = 120F;
+            this.FechaIngresoEmpleado.HeaderText = "Fecha de ingreso";
+            this.FechaIngresoEmpleado.Name = "FechaIngresoEmpleado";
+            this.FechaIngresoEmpleado.ReadOnly = true;
+            this.FechaIngresoEmpleado.Width = 120;
+            // 
+            // Editar
+            // 
+            this.Editar.FillWeight = 70F;
+            this.Editar.HeaderText = "";
+            this.Editar.Name = "Editar";
+            this.Editar.ReadOnly = true;
+            this.Editar.Text = "Editar";
+            this.Editar.UseColumnTextForButtonValue = true;
+            this.Editar.Width = 70;
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.FillWeight = 70F;
+            this.Eliminar.HeaderText = "";
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.ReadOnly = true;
+            this.Eliminar.Text = "Eliminar";
+            this.Eliminar.UseColumnTextForButtonValue = true;
+            this.Eliminar.Width = 70;
+            // 
+            // empleadoBindingSource
+            // 
+            this.empleadoBindingSource.DataSource = typeof(EscritorioGestionProyectosLiquidaciones.Models.Empleado);
             // 
             // label2
             // 
@@ -111,9 +202,11 @@
             this.Controls.Add(this.panel1);
             this.Name = "gestionarEmpleadosForm";
             this.Text = "Gestionar Empleados";
+            this.Load += new System.EventHandler(this.gestionarEmpleadosForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.empleadosDataView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.empleadoBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -126,5 +219,13 @@
         private System.Windows.Forms.DataGridView empleadosDataView;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.BindingSource empleadoBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idempleadoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dniEmpleadoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreEmpleadoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn apellidoEmpleadoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaIngresoEmpleado;
+        private System.Windows.Forms.DataGridViewButtonColumn Editar;
+        private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
     }
 }

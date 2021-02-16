@@ -29,17 +29,12 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pmCheckBox = new System.Windows.Forms.CheckBox();
-            this.capacitadorCheckBox = new System.Windows.Forms.CheckBox();
-            this.implementadorCheckBox = new System.Windows.Forms.CheckBox();
-            this.testerCheckBox = new System.Windows.Forms.CheckBox();
-            this.desarrolladorCheckBox = new System.Windows.Forms.CheckBox();
-            this.analistaCheckBox = new System.Windows.Forms.CheckBox();
+            this.asignarBtn = new System.Windows.Forms.Button();
+            this.contraseñaTxt = new System.Windows.Forms.MaskedTextBox();
             this.guardarBtn = new System.Windows.Forms.Button();
             this.volverBtn = new System.Windows.Forms.Button();
             this.localidadSelected = new System.Windows.Forms.ComboBox();
             this.provinciaSelected = new System.Windows.Forms.ComboBox();
-            this.contraseñaTxt = new System.Windows.Forms.TextBox();
             this.usuarioTxt = new System.Windows.Forms.TextBox();
             this.apellidoEmpleadoTxt = new System.Windows.Forms.TextBox();
             this.nombreEmpleadoTxt = new System.Windows.Forms.TextBox();
@@ -48,7 +43,6 @@
             this.dniTxt = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -63,17 +57,12 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.pmCheckBox);
-            this.panel1.Controls.Add(this.capacitadorCheckBox);
-            this.panel1.Controls.Add(this.implementadorCheckBox);
-            this.panel1.Controls.Add(this.testerCheckBox);
-            this.panel1.Controls.Add(this.desarrolladorCheckBox);
-            this.panel1.Controls.Add(this.analistaCheckBox);
+            this.panel1.Controls.Add(this.asignarBtn);
+            this.panel1.Controls.Add(this.contraseñaTxt);
             this.panel1.Controls.Add(this.guardarBtn);
             this.panel1.Controls.Add(this.volverBtn);
             this.panel1.Controls.Add(this.localidadSelected);
             this.panel1.Controls.Add(this.provinciaSelected);
-            this.panel1.Controls.Add(this.contraseñaTxt);
             this.panel1.Controls.Add(this.usuarioTxt);
             this.panel1.Controls.Add(this.apellidoEmpleadoTxt);
             this.panel1.Controls.Add(this.nombreEmpleadoTxt);
@@ -82,7 +71,6 @@
             this.panel1.Controls.Add(this.dniTxt);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label6);
@@ -96,86 +84,39 @@
             this.panel1.Size = new System.Drawing.Size(741, 389);
             this.panel1.TabIndex = 0;
             // 
-            // pmCheckBox
+            // asignarBtn
             // 
-            this.pmCheckBox.AutoSize = true;
-            this.pmCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pmCheckBox.Location = new System.Drawing.Point(489, 258);
-            this.pmCheckBox.Name = "pmCheckBox";
-            this.pmCheckBox.Size = new System.Drawing.Size(114, 19);
-            this.pmCheckBox.TabIndex = 28;
-            this.pmCheckBox.Text = "Supervisor (PM)";
-            this.pmCheckBox.UseVisualStyleBackColor = true;
+            this.asignarBtn.Location = new System.Drawing.Point(239, 329);
+            this.asignarBtn.Name = "asignarBtn";
+            this.asignarBtn.Size = new System.Drawing.Size(94, 23);
+            this.asignarBtn.TabIndex = 30;
+            this.asignarBtn.Text = "Asignar perfiles";
+            this.asignarBtn.UseVisualStyleBackColor = true;
+            this.asignarBtn.Click += new System.EventHandler(this.asignarBtn_Click);
             // 
-            // capacitadorCheckBox
+            // contraseñaTxt
             // 
-            this.capacitadorCheckBox.AutoSize = true;
-            this.capacitadorCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.capacitadorCheckBox.Location = new System.Drawing.Point(391, 258);
-            this.capacitadorCheckBox.Name = "capacitadorCheckBox";
-            this.capacitadorCheckBox.Size = new System.Drawing.Size(92, 19);
-            this.capacitadorCheckBox.TabIndex = 27;
-            this.capacitadorCheckBox.Text = "Capacitador";
-            this.capacitadorCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // implementadorCheckBox
-            // 
-            this.implementadorCheckBox.AutoSize = true;
-            this.implementadorCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.implementadorCheckBox.Location = new System.Drawing.Point(275, 258);
-            this.implementadorCheckBox.Name = "implementadorCheckBox";
-            this.implementadorCheckBox.Size = new System.Drawing.Size(110, 19);
-            this.implementadorCheckBox.TabIndex = 26;
-            this.implementadorCheckBox.Text = "Implementador";
-            this.implementadorCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // testerCheckBox
-            // 
-            this.testerCheckBox.AutoSize = true;
-            this.testerCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.testerCheckBox.Location = new System.Drawing.Point(209, 258);
-            this.testerCheckBox.Name = "testerCheckBox";
-            this.testerCheckBox.Size = new System.Drawing.Size(60, 19);
-            this.testerCheckBox.TabIndex = 25;
-            this.testerCheckBox.Text = "Tester";
-            this.testerCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // desarrolladorCheckBox
-            // 
-            this.desarrolladorCheckBox.AutoSize = true;
-            this.desarrolladorCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.desarrolladorCheckBox.Location = new System.Drawing.Point(102, 258);
-            this.desarrolladorCheckBox.Name = "desarrolladorCheckBox";
-            this.desarrolladorCheckBox.Size = new System.Drawing.Size(101, 19);
-            this.desarrolladorCheckBox.TabIndex = 24;
-            this.desarrolladorCheckBox.Text = "Desarrollador";
-            this.desarrolladorCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // analistaCheckBox
-            // 
-            this.analistaCheckBox.AutoSize = true;
-            this.analistaCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.analistaCheckBox.Location = new System.Drawing.Point(33, 258);
-            this.analistaCheckBox.Name = "analistaCheckBox";
-            this.analistaCheckBox.Size = new System.Drawing.Size(69, 19);
-            this.analistaCheckBox.TabIndex = 23;
-            this.analistaCheckBox.Text = "Analista";
-            this.analistaCheckBox.UseVisualStyleBackColor = true;
+            this.contraseñaTxt.Location = new System.Drawing.Point(261, 275);
+            this.contraseñaTxt.Name = "contraseñaTxt";
+            this.contraseñaTxt.PasswordChar = '*';
+            this.contraseñaTxt.Size = new System.Drawing.Size(200, 20);
+            this.contraseñaTxt.TabIndex = 29;
             // 
             // guardarBtn
             // 
             this.guardarBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guardarBtn.Location = new System.Drawing.Point(127, 353);
+            this.guardarBtn.Location = new System.Drawing.Point(126, 329);
             this.guardarBtn.Name = "guardarBtn";
-            this.guardarBtn.Size = new System.Drawing.Size(131, 23);
+            this.guardarBtn.Size = new System.Drawing.Size(107, 23);
             this.guardarBtn.TabIndex = 22;
             this.guardarBtn.Text = "Guardar empleado";
             this.guardarBtn.UseVisualStyleBackColor = true;
+            this.guardarBtn.Click += new System.EventHandler(this.guardarBtn_Click);
             // 
             // volverBtn
             // 
             this.volverBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.volverBtn.Location = new System.Drawing.Point(33, 353);
+            this.volverBtn.Location = new System.Drawing.Point(32, 329);
             this.volverBtn.Name = "volverBtn";
             this.volverBtn.Size = new System.Drawing.Size(88, 23);
             this.volverBtn.TabIndex = 21;
@@ -185,30 +126,29 @@
             // 
             // localidadSelected
             // 
+            this.localidadSelected.DisplayMember = "Descripcion";
             this.localidadSelected.FormattingEnabled = true;
             this.localidadSelected.Location = new System.Drawing.Point(374, 204);
             this.localidadSelected.Name = "localidadSelected";
             this.localidadSelected.Size = new System.Drawing.Size(315, 21);
             this.localidadSelected.TabIndex = 19;
+            this.localidadSelected.ValueMember = "Idlocalidad";
             // 
             // provinciaSelected
             // 
+            this.provinciaSelected.DisplayMember = "Descripcion";
             this.provinciaSelected.FormattingEnabled = true;
             this.provinciaSelected.Location = new System.Drawing.Point(33, 204);
             this.provinciaSelected.Name = "provinciaSelected";
             this.provinciaSelected.Size = new System.Drawing.Size(315, 21);
             this.provinciaSelected.TabIndex = 18;
-            // 
-            // contraseñaTxt
-            // 
-            this.contraseñaTxt.Location = new System.Drawing.Point(258, 311);
-            this.contraseñaTxt.Name = "contraseñaTxt";
-            this.contraseñaTxt.Size = new System.Drawing.Size(200, 20);
-            this.contraseñaTxt.TabIndex = 17;
+            this.provinciaSelected.ValueMember = "IdProvincia";
+            this.provinciaSelected.SelectionChangeCommitted += new System.EventHandler(this.provinciaSelected_SelectionChangeCommitted);
+            this.provinciaSelected.Click += new System.EventHandler(this.provinciaSelected_Click);
             // 
             // usuarioTxt
             // 
-            this.usuarioTxt.Location = new System.Drawing.Point(33, 311);
+            this.usuarioTxt.Location = new System.Drawing.Point(33, 275);
             this.usuarioTxt.Name = "usuarioTxt";
             this.usuarioTxt.Size = new System.Drawing.Size(200, 20);
             this.usuarioTxt.TabIndex = 16;
@@ -252,7 +192,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(258, 291);
+            this.label11.Location = new System.Drawing.Point(258, 255);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(90, 17);
             this.label11.TabIndex = 10;
@@ -262,21 +202,11 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(30, 291);
+            this.label10.Location = new System.Drawing.Point(30, 255);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(66, 17);
             this.label10.TabIndex = 9;
             this.label10.Text = "Usuario *";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(30, 241);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(55, 17);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "Perfiles";
             // 
             // label8
             // 
@@ -367,6 +297,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "crearModificarEmpleadoFrom";
             this.Text = "Crear Empleado";
+            this.Load += new System.EventHandler(this.crearModificarEmpleadoFrom_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -378,7 +309,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -391,18 +321,13 @@
         private System.Windows.Forms.Button volverBtn;
         private System.Windows.Forms.ComboBox localidadSelected;
         private System.Windows.Forms.ComboBox provinciaSelected;
-        private System.Windows.Forms.TextBox contraseñaTxt;
         private System.Windows.Forms.TextBox usuarioTxt;
         private System.Windows.Forms.TextBox apellidoEmpleadoTxt;
         private System.Windows.Forms.TextBox nombreEmpleadoTxt;
         private System.Windows.Forms.TextBox telefonoTxt;
         private System.Windows.Forms.TextBox direccionTxt;
         private System.Windows.Forms.TextBox dniTxt;
-        private System.Windows.Forms.CheckBox pmCheckBox;
-        private System.Windows.Forms.CheckBox capacitadorCheckBox;
-        private System.Windows.Forms.CheckBox implementadorCheckBox;
-        private System.Windows.Forms.CheckBox testerCheckBox;
-        private System.Windows.Forms.CheckBox desarrolladorCheckBox;
-        private System.Windows.Forms.CheckBox analistaCheckBox;
+        private System.Windows.Forms.MaskedTextBox contraseñaTxt;
+        private System.Windows.Forms.Button asignarBtn;
     }
 }
