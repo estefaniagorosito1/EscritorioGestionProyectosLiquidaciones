@@ -77,5 +77,10 @@ namespace EscritorioGestionProyectosLiquidaciones
                     break;
             }
         }
+
+        private void Home_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

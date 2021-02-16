@@ -45,6 +45,7 @@
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.crearClienteBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionarClientesBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.liquidacionBtn = new System.Windows.Forms.ToolStripButton();
             this.salirBtn = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -99,6 +100,7 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.homeBtn,
             this.toolStripDropDownButton1,
+            this.liquidacionBtn,
             this.salirBtn});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -133,7 +135,7 @@
             this.crearProyectoBtn,
             this.gestionarProyectoBtn});
             this.proyectosToolStripMenuItem.Name = "proyectosToolStripMenuItem";
-            this.proyectosToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.proyectosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.proyectosToolStripMenuItem.Text = "Proyectos";
             // 
             // crearProyectoBtn
@@ -156,21 +158,21 @@
             this.crearEmpleadoBtn,
             this.gestionarEmpleadoBtn});
             this.empleadosToolStripMenuItem.Name = "empleadosToolStripMenuItem";
-            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.empleadosToolStripMenuItem.Text = "Empleados";
             // 
             // crearEmpleadoBtn
             // 
             this.crearEmpleadoBtn.Name = "crearEmpleadoBtn";
-            this.crearEmpleadoBtn.Size = new System.Drawing.Size(180, 22);
+            this.crearEmpleadoBtn.Size = new System.Drawing.Size(185, 22);
             this.crearEmpleadoBtn.Text = "Crear empleado";
             this.crearEmpleadoBtn.Click += new System.EventHandler(this.crearEmpleadoBtn_Click);
             // 
             // gestionarEmpleadoBtn
             // 
             this.gestionarEmpleadoBtn.Name = "gestionarEmpleadoBtn";
-            this.gestionarEmpleadoBtn.Size = new System.Drawing.Size(180, 22);
-            this.gestionarEmpleadoBtn.Text = "Gestionar empleado";
+            this.gestionarEmpleadoBtn.Size = new System.Drawing.Size(185, 22);
+            this.gestionarEmpleadoBtn.Text = "Gestionar empleados";
             this.gestionarEmpleadoBtn.Click += new System.EventHandler(this.gestionarEmpleadoBtn_Click);
             // 
             // clientesToolStripMenuItem
@@ -179,7 +181,7 @@
             this.crearClienteBtn,
             this.gestionarClientesBtn});
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clientesToolStripMenuItem.Text = "Clientes";
             // 
             // crearClienteBtn
@@ -195,6 +197,15 @@
             this.gestionarClientesBtn.Size = new System.Drawing.Size(167, 22);
             this.gestionarClientesBtn.Text = "Gestionar clientes";
             this.gestionarClientesBtn.Click += new System.EventHandler(this.gestionarClientesBtn_Click);
+            // 
+            // liquidacionBtn
+            // 
+            this.liquidacionBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.liquidacionBtn.Image = ((System.Drawing.Image)(resources.GetObject("liquidacionBtn.Image")));
+            this.liquidacionBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.liquidacionBtn.Name = "liquidacionBtn";
+            this.liquidacionBtn.Size = new System.Drawing.Size(73, 22);
+            this.liquidacionBtn.Text = "Liquidación";
             // 
             // salirBtn
             // 
@@ -216,6 +227,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "Home";
             this.Text = "Home";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Home_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -245,5 +257,6 @@
         private System.Windows.Forms.ToolStripMenuItem crearClienteBtn;
         private System.Windows.Forms.ToolStripMenuItem gestionarClientesBtn;
         private System.Windows.Forms.ToolStripButton salirBtn;
+        private System.Windows.Forms.ToolStripButton liquidacionBtn;
     }
 }
