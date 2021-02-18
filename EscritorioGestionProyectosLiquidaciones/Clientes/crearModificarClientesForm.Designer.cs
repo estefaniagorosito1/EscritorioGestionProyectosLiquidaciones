@@ -143,11 +143,13 @@
             // 
             // dropdownLocalidades
             // 
+            this.dropdownLocalidades.DisplayMember = "Descripcion";
             this.dropdownLocalidades.FormattingEnabled = true;
             this.dropdownLocalidades.Location = new System.Drawing.Point(385, 264);
             this.dropdownLocalidades.Name = "dropdownLocalidades";
             this.dropdownLocalidades.Size = new System.Drawing.Size(300, 21);
             this.dropdownLocalidades.TabIndex = 18;
+            this.dropdownLocalidades.ValueMember = "Idlocalidad";
             // 
             // mailTxt
             // 
@@ -199,11 +201,14 @@
             // 
             // dropdownProvincias
             // 
+            this.dropdownProvincias.DisplayMember = "Descripcion";
             this.dropdownProvincias.FormattingEnabled = true;
             this.dropdownProvincias.Location = new System.Drawing.Point(32, 264);
             this.dropdownProvincias.Name = "dropdownProvincias";
             this.dropdownProvincias.Size = new System.Drawing.Size(300, 21);
             this.dropdownProvincias.TabIndex = 2;
+            this.dropdownProvincias.ValueMember = "Idprovincia";
+            this.dropdownProvincias.SelectionChangeCommitted += new System.EventHandler(this.dropdownProvincias_SelectionChangeCommitted);
             // 
             // volverBtn
             // 
@@ -236,6 +241,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "crearModificarClientesForm";
             this.Text = "Crear cliente";
+            this.Load += new System.EventHandler(this.crearModificarClientesForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

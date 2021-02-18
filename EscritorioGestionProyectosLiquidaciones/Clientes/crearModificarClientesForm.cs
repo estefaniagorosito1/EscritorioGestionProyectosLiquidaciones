@@ -18,12 +18,16 @@ namespace EscritorioGestionProyectosLiquidaciones.Clientes
         private LocalidadService _localidadService;
         private ProvinciaService _provinciaService;
 
+        private int _idCliente;
+
         public crearModificarClientesForm()
         {
             InitializeComponent();
             _clienteService = new ClienteService();
             _localidadService = new LocalidadService();
             _provinciaService = new ProvinciaService();
+
+            _idCliente = 0;
         }
 
         private void volverBtn_Click(object sender, EventArgs e)
@@ -35,27 +39,88 @@ namespace EscritorioGestionProyectosLiquidaciones.Clientes
         {
             Cliente cliente = new Cliente();
 
-            cliente.NombreCliente = nombreClienteTxt.Text;
-            cliente.ApellidoCliente = apellidoClienteTxt.Text;
-            cliente.EmailCliente = mailTxt.Text;
-            cliente.TelefonoCliente = telefonoTxt.Text;
-            cliente.DireccionCliente = direccionTxt.Text;
-            cliente.LocalidadCliente = (dropdownLocalidades.SelectedValue as Localidad).Idlocalidad;
+            if (_idCliente == 0)
+            {
+                cliente.NombreCliente = nombreClienteTxt.Text;
+                cliente.ApellidoCliente = apellidoClienteTxt.Text;
+                cliente.EmailCliente = mailTxt.Text;
+                cliente.TelefonoCliente = telefonoTxt.Text;
+                cliente.DireccionCliente = direccionTxt.Text;
+                cliente.LocalidadCliente = (long) dropdownLocalidades.SelectedValue;
+            }
+            else
+            {
+                cliente = _clienteService.FindCliente(_idCliente);
+                cliente.NombreCliente = nombreClienteTxt.Text;
+                cliente.ApellidoCliente = apellidoClienteTxt.Text;
+                cliente.EmailCliente = mailTxt.Text;
+                cliente.TelefonoCliente = telefonoTxt.Text;
+                cliente.DireccionCliente = direccionTxt.Text;
+                cliente.LocalidadCliente = (long) dropdownLocalidades.SelectedValue;
+            }
 
             _clienteService.Guardar(cliente);
+            MessageBox.Show("Cliente guardado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Close();
         }
 
         public void LoadCliente(Cliente cliente)
         {
             label1.Text = "Modificar cliente";
+            _idCliente = cliente.Idcliente;
+
+            var clienteDB =_clienteService.FindCliente(_idCliente);
+
+            var provincia = _localidadService.FindProvinciaByLocalidad((long) clienteDB.LocalidadCliente);
+            var localidad = _localidadService.FindLocalidad((long) clienteDB.LocalidadCliente);
+
+            dropdownProvincias.DataSource = _provinciaService.FindProvincias();
+            dropdownLocalidades.DataSource = _localidadService.FindLocalidadesProvincia(provincia.Idprovincia);
 
             nombreClienteTxt.Text = cliente.NombreCliente;
             apellidoClienteTxt.Text = cliente.ApellidoCliente;
             mailTxt.Text = cliente.EmailCliente;
             direccionTxt.Text = cliente.DireccionCliente;
             telefonoTxt.Text = cliente.TelefonoCliente;
-            // dropdownLocalidades.SelectedValue = cliente.LocalidadClienteNavigation;
-            // dropdownProvincias.SelectedValue = cliente.LocalidadClienteNavigation.IdprovinciaNavigation;
+            dropdownProvincias.SelectedValue = provincia.Idprovincia;
+            dropdownLocalidades.SelectedValue = localidad.Idlocalidad;
+        }
+
+        private void crearModificarClientesForm_Load(object sender, EventArgs e)
+        {
+            if(_idCliente == 0)
+            {
+                var data = new List<Provincia>();
+
+                var provincia = new Provincia
+                {
+                    Idprovincia = 0,
+                    Descripcion = "Seleccione una provincia"
+                };
+
+                data.Add(provincia);
+                data.AddRange(_provinciaService.FindProvincias());
+
+                dropdownProvincias.DataSource = data;
+            }
+        }
+
+        private void dropdownProvincias_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            long idProvincia = long.Parse(dropdownProvincias.SelectedValue.ToString());
+
+            List<Localidad> data = new List<Localidad>();
+
+            var localidad = new Localidad()
+            {
+                Idlocalidad = 0,
+                Descripcion = "Seleccione una localidad"
+            };
+
+            data.Add(localidad);
+            data.AddRange(_localidadService.FindLocalidadesProvincia(idProvincia));
+
+            dropdownLocalidades.DataSource = data;
         }
     }
 }
