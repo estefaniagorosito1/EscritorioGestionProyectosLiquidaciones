@@ -36,10 +36,10 @@
             this.localidadSelected = new System.Windows.Forms.ComboBox();
             this.provinciaSelected = new System.Windows.Forms.ComboBox();
             this.usuarioTxt = new System.Windows.Forms.TextBox();
+            this.direccionTxt = new System.Windows.Forms.TextBox();
+            this.telefonoTxt = new System.Windows.Forms.TextBox();
             this.apellidoEmpleadoTxt = new System.Windows.Forms.TextBox();
             this.nombreEmpleadoTxt = new System.Windows.Forms.TextBox();
-            this.telefonoTxt = new System.Windows.Forms.TextBox();
-            this.direccionTxt = new System.Windows.Forms.TextBox();
             this.dniTxt = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -64,10 +64,10 @@
             this.panel1.Controls.Add(this.localidadSelected);
             this.panel1.Controls.Add(this.provinciaSelected);
             this.panel1.Controls.Add(this.usuarioTxt);
+            this.panel1.Controls.Add(this.direccionTxt);
+            this.panel1.Controls.Add(this.telefonoTxt);
             this.panel1.Controls.Add(this.apellidoEmpleadoTxt);
             this.panel1.Controls.Add(this.nombreEmpleadoTxt);
-            this.panel1.Controls.Add(this.telefonoTxt);
-            this.panel1.Controls.Add(this.direccionTxt);
             this.panel1.Controls.Add(this.dniTxt);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label10);
@@ -142,9 +142,8 @@
             this.provinciaSelected.Name = "provinciaSelected";
             this.provinciaSelected.Size = new System.Drawing.Size(315, 21);
             this.provinciaSelected.TabIndex = 18;
-            this.provinciaSelected.ValueMember = "IdProvincia";
+            this.provinciaSelected.ValueMember = "Idprovincia";
             this.provinciaSelected.SelectionChangeCommitted += new System.EventHandler(this.provinciaSelected_SelectionChangeCommitted);
-            this.provinciaSelected.Click += new System.EventHandler(this.provinciaSelected_Click);
             // 
             // usuarioTxt
             // 
@@ -153,33 +152,33 @@
             this.usuarioTxt.Size = new System.Drawing.Size(200, 20);
             this.usuarioTxt.TabIndex = 16;
             // 
-            // apellidoEmpleadoTxt
+            // direccionTxt
             // 
-            this.apellidoEmpleadoTxt.Location = new System.Drawing.Point(489, 78);
-            this.apellidoEmpleadoTxt.Name = "apellidoEmpleadoTxt";
-            this.apellidoEmpleadoTxt.Size = new System.Drawing.Size(200, 20);
-            this.apellidoEmpleadoTxt.TabIndex = 15;
-            // 
-            // nombreEmpleadoTxt
-            // 
-            this.nombreEmpleadoTxt.Location = new System.Drawing.Point(261, 78);
-            this.nombreEmpleadoTxt.Name = "nombreEmpleadoTxt";
-            this.nombreEmpleadoTxt.Size = new System.Drawing.Size(200, 20);
-            this.nombreEmpleadoTxt.TabIndex = 14;
+            this.direccionTxt.Location = new System.Drawing.Point(261, 142);
+            this.direccionTxt.Name = "direccionTxt";
+            this.direccionTxt.Size = new System.Drawing.Size(200, 20);
+            this.direccionTxt.TabIndex = 15;
             // 
             // telefonoTxt
             // 
             this.telefonoTxt.Location = new System.Drawing.Point(33, 142);
             this.telefonoTxt.Name = "telefonoTxt";
             this.telefonoTxt.Size = new System.Drawing.Size(200, 20);
-            this.telefonoTxt.TabIndex = 13;
+            this.telefonoTxt.TabIndex = 14;
             // 
-            // direccionTxt
+            // apellidoEmpleadoTxt
             // 
-            this.direccionTxt.Location = new System.Drawing.Point(261, 142);
-            this.direccionTxt.Name = "direccionTxt";
-            this.direccionTxt.Size = new System.Drawing.Size(200, 20);
-            this.direccionTxt.TabIndex = 12;
+            this.apellidoEmpleadoTxt.Location = new System.Drawing.Point(489, 78);
+            this.apellidoEmpleadoTxt.Name = "apellidoEmpleadoTxt";
+            this.apellidoEmpleadoTxt.Size = new System.Drawing.Size(200, 20);
+            this.apellidoEmpleadoTxt.TabIndex = 13;
+            // 
+            // nombreEmpleadoTxt
+            // 
+            this.nombreEmpleadoTxt.Location = new System.Drawing.Point(261, 78);
+            this.nombreEmpleadoTxt.Name = "nombreEmpleadoTxt";
+            this.nombreEmpleadoTxt.Size = new System.Drawing.Size(200, 20);
+            this.nombreEmpleadoTxt.TabIndex = 12;
             // 
             // dniTxt
             // 
@@ -322,10 +321,10 @@
         private System.Windows.Forms.ComboBox localidadSelected;
         private System.Windows.Forms.ComboBox provinciaSelected;
         private System.Windows.Forms.TextBox usuarioTxt;
+        private System.Windows.Forms.TextBox direccionTxt;
+        private System.Windows.Forms.TextBox telefonoTxt;
         private System.Windows.Forms.TextBox apellidoEmpleadoTxt;
         private System.Windows.Forms.TextBox nombreEmpleadoTxt;
-        private System.Windows.Forms.TextBox telefonoTxt;
-        private System.Windows.Forms.TextBox direccionTxt;
         private System.Windows.Forms.TextBox dniTxt;
         private System.Windows.Forms.MaskedTextBox contraseñaTxt;
         private System.Windows.Forms.Button asignarBtn;

@@ -50,6 +50,9 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
             var provincia = _localidadService.FindProvinciaByLocalidad((long)empleadoDB.Localidad);
             var localidad = _localidadService.FindLocalidad((long)empleadoDB.Localidad);
 
+            provinciaSelected.DataSource = _provinciaService.FindProvincias();
+            localidadSelected.DataSource = _localidadService.FindLocalidadesProvincia(provincia.Idprovincia);
+
             nombreEmpleadoTxt.Text = empleado.NombreEmpleado;
             apellidoEmpleadoTxt.Text = empleado.ApellidoEmpleado;
             direccionTxt.Text = empleado.Direccion;
@@ -57,8 +60,8 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
             telefonoTxt.Text = empleado.Telefono;
             usuarioTxt.Text = usuario.NombreUsuario;
             contraseñaTxt.Text = usuario.PasswordUsuario;
-            provinciaSelected.SelectedIndex = provinciaSelected.FindStringExact(provincia.Descripcion);
-            localidadSelected.SelectedItem = localidad;
+            provinciaSelected.SelectedValue = provincia.Idprovincia;
+            localidadSelected.SelectedValue = localidad.Idlocalidad;
         }
 
         private void guardarBtn_Click(object sender, EventArgs e)
@@ -66,47 +69,76 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
             Empleado empleado;
             Usuario usuario;
 
-            // Estoy creando un empleado
-            if (idEmpleado == 0)
+            if (ValidateForm())
             {
-                empleado = new Empleado
+                // Estoy creando un empleado
+                if (idEmpleado == 0)
                 {
-                    NombreEmpleado = nombreEmpleadoTxt.Text,
-                    ApellidoEmpleado = apellidoEmpleadoTxt.Text,
-                    DniEmpleado = long.Parse(dniTxt.Text),
-                    Telefono = telefonoTxt.Text,
-                    FechaIngresoEmpleado = new DateTime(),
-                    Direccion = direccionTxt.Text,
-                    Localidad = long.Parse(localidadSelected.SelectedValue.ToString())
-                };
 
-                usuario = new Usuario
+                    empleado = new Empleado
+                    {
+                        NombreEmpleado = nombreEmpleadoTxt.Text,
+                        ApellidoEmpleado = apellidoEmpleadoTxt.Text,
+                        DniEmpleado = long.Parse(dniTxt.Text),
+                        Telefono = telefonoTxt.Text,
+                        FechaIngresoEmpleado = DateTime.Today,
+                        Direccion = direccionTxt.Text,
+                        Localidad = long.Parse(localidadSelected.SelectedValue.ToString())
+                    };
+
+                    usuario = new Usuario
+                    {
+                        NombreUsuario = usuarioTxt.Text,
+                        PasswordUsuario = contraseñaTxt.Text,
+                        Idrol = 6 // Rol empleado
+                    };
+
+                }
+                else
                 {
-                    NombreUsuario = usuarioTxt.Text,
-                    PasswordUsuario = contraseñaTxt.Text
-                };
+                    // Estoy modificando un empleado
+                    empleado = _empleadoService.FindEmpleado(idEmpleado);
 
+                    empleado.NombreEmpleado = nombreEmpleadoTxt.Text;
+                    empleado.ApellidoEmpleado = apellidoEmpleadoTxt.Text;
+                    empleado.DniEmpleado = long.Parse(dniTxt.Text);
+                    empleado.Telefono = telefonoTxt.Text;
+                    empleado.Direccion = direccionTxt.Text;
+                    empleado.Localidad = long.Parse(localidadSelected.SelectedValue.ToString());
+
+                    usuario = _usuarioService.FindUsuarioByIdEmpleado(idEmpleado);
+                    usuario.NombreUsuario = usuarioTxt.Text;
+                    usuario.PasswordUsuario = contraseñaTxt.Text;
+                }
+
+                try
+                {
+                    _empleadoService.Guardar(empleado);
+
+                    if (usuario.Idempleado == 0)
+                    {
+                        // Busco el idEmpleado para poder crear el usuario
+                        var empleadoDB = _empleadoService.FindEmpleadoDni((long)empleado.DniEmpleado);
+                        usuario.Idempleado = empleadoDB.Idempleado;
+                    }
+
+                    _usuarioService.Guardar(usuario);
+
+                    MessageBox.Show("Empleado guardado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Close();
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    MessageBox.Show("Ha ocurrido un error", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                // Estoy modificando un empleado
-                empleado = _empleadoService.FindEmpleado(idEmpleado);
-
-                empleado.NombreEmpleado = nombreEmpleadoTxt.Text;
-                empleado.ApellidoEmpleado = apellidoEmpleadoTxt.Text;
-                empleado.DniEmpleado = long.Parse(dniTxt.Text);
-                empleado.Telefono = telefonoTxt.Text;
-                empleado.Direccion = direccionTxt.Text;
-                empleado.Localidad = long.Parse(localidadSelected.SelectedValue.ToString());
-
-                usuario = _usuarioService.FindUsuarioByIdEmpleado(idEmpleado);
-                usuario.NombreUsuario = usuarioTxt.Text;
-                usuario.PasswordUsuario = contraseñaTxt.Text;
-
+                MessageBox.Show("Debe completar todos los campos", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-            //_usuarioService.Guardar(usuario);
-            //_empleadoService.Guardar(empleado);
         }
 
         private void provinciaSelected_SelectionChangeCommitted(object sender, EventArgs e)
@@ -127,11 +159,6 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
             localidadSelected.DataSource = data;
         }
 
-        private void provinciaSelected_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void asignarBtn_Click(object sender, EventArgs e)
         {
             AsignarPerfilesForm asignarPerfilesForm = new AsignarPerfilesForm();
@@ -146,18 +173,38 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
 
         private void crearModificarEmpleadoFrom_Load(object sender, EventArgs e)
         {
-            var data = new List<Provincia>();
-
-            var provincia = new Provincia
+            if (idEmpleado == 0)
             {
-                Idprovincia = 0,
-                Descripcion = "Seleccione una provincia"
-            };
+                var data = new List<Provincia>();
 
-            data.Add(provincia);
-            data.AddRange(_provinciaService.FindProvincias());
+                var provincia = new Provincia
+                {
+                    Idprovincia = 0,
+                    Descripcion = "Seleccione una provincia"
+                };
 
-            provinciaSelected.DataSource = data;
+                data.Add(provincia);
+                data.AddRange(_provinciaService.FindProvincias());
+
+                provinciaSelected.DataSource = data;
+
+                asignarBtn.Enabled = false;
+            }
+
+        }
+
+        private bool ValidateForm()
+        {
+            var valid = false;
+            if (telefonoTxt.Text != string.Empty && direccionTxt.Text != string.Empty && nombreEmpleadoTxt.Text != string.Empty
+                && dniTxt.Text != string.Empty && apellidoEmpleadoTxt.Text != string.Empty && usuarioTxt.Text != string.Empty
+                && contraseñaTxt.Text != string.Empty && (int)provinciaSelected.SelectedValue != 0
+                && (int)localidadSelected.SelectedValue != 0)
+            {
+                valid = true;
+            }
+
+            return valid;
         }
     }
 }

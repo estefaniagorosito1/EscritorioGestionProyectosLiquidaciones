@@ -73,6 +73,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
                 {
                     case DialogResult.OK:
                         _empleadoService.Eliminar(IdEmpleado);
+                        MessageBox.Show("Empleado eliminado", "Éxito", MessageBoxButtons.OK);
                         empleadosDataView.DataSource = _empleadoService.Find();
                         break;
                     case DialogResult.Cancel:
