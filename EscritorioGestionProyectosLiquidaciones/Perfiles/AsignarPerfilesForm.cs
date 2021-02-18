@@ -121,19 +121,15 @@ namespace EscritorioGestionProyectosLiquidaciones
 
             foreach (var item in perfilesAAsignar)
             {
-                Console.WriteLine(item.ToString());
-
                 PerfilEmpleado perfilEmpleado = new PerfilEmpleado();
                 perfilEmpleado.Idperfil = item.Idperfil;
                 perfilEmpleado.Idempleado = IdEmpleado;
 
-                Console.WriteLine(perfilEmpleado.Idperfil.ToString());
                 perfilesEmpleado.Add(perfilEmpleado);
             }
 
-
-            // _perfilEmpleadoService.AsignarPerfilesEmpleado(perfilesEmpleado);
-
+            _perfilEmpleadoService.AsignarPerfilesEmpleado(perfilesEmpleado);
+            MessageBox.Show("Cambios guardados correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
