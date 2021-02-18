@@ -39,7 +39,6 @@ namespace EscritorioGestionProyectosLiquidaciones.Clientes
 
             if (cliente.Value.ToString().Equals("Editar"))
             {
-                // NOTA: BUSCAR LA PROVINCIA Y LOCALIDAD DEL CLIENTE
                 crearModificarClientesForm crearModificarClientesForm = new crearModificarClientesForm();
                 crearModificarClientesForm.LoadCliente(new Cliente {
                     Idcliente = int.Parse(clientesDataView.Rows[e.RowIndex].Cells[0].Value.ToString()),
@@ -52,6 +51,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Clientes
 
                 crearModificarClientesForm.Text = "Modificar cliente";
                 crearModificarClientesForm.Show();
+                Close();
             }
             else if(cliente.Value.ToString().Equals("Eliminar"))
             {
@@ -61,6 +61,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Clientes
                 {
                     case DialogResult.OK:
                         _clienteService.Eliminar(int.Parse(clientesDataView.Rows[e.RowIndex].Cells[0].Value.ToString()));
+                        MessageBox.Show("Cliente eliminado", "Éxito", MessageBoxButtons.OK);
                         clientesDataView.DataSource = _clienteService.Find();
                         break;
                     case DialogResult.Cancel:
