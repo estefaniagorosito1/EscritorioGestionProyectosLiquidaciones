@@ -53,5 +53,16 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
                 return empleados;
             }
         }
+
+        public EmpleadoProyecto FindEmpleadoProyecto(int idEmpleado, int idProyecto)
+        {
+            using (var dbContext = new TpSeminarioContext())
+            {
+                return dbContext.EmpleadoProyecto
+                                .Where(ep => ep.Idempleado == idEmpleado && ep.Idproyecto == idProyecto)
+                                .FirstOrDefault();
+
+            }
+        }
     }
 }
