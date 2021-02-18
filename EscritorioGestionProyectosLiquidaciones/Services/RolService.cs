@@ -16,5 +16,13 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
                 return dbContext.Rol.ToList();
             }
         }
+
+        public Rol FindRol(int idRol)
+        {
+            using (var dbContext = new TpSeminarioContext())
+            {
+                return dbContext.Rol.Find(idRol);
+            }
+        }
     }
 }
