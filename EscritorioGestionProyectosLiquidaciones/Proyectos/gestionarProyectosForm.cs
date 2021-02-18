@@ -27,7 +27,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
 
         private void volverBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void crearBtn_Click(object sender, EventArgs e)
@@ -50,13 +50,12 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
                     Idproyecto = int.Parse(proyectosDataView.Rows[e.RowIndex].Cells[0].Value.ToString()),
                     NombreProyecto = proyectosDataView.Rows[e.RowIndex].Cells[1].Value.ToString(),
                     Descripcion = proyectosDataView.Rows[e.RowIndex].Cells[2].Value.ToString(),
-                    EstadoProyecto = proyectosDataView.Rows[e.RowIndex].Cells[3].Value.ToString(),
-                    FechaInicioProyecto = new DateTime(),
-                    // FALTA CLIENTE
+                    EstadoProyecto = proyectosDataView.Rows[e.RowIndex].Cells[3].Value.ToString()
                 });
 
                 crearModificarProyectoForm.Text = "Modificar proyecto";
                 crearModificarProyectoForm.Show();
+                Close();
             }
             else if (buttonCell.Value.ToString().Equals("Eliminar"))
             {
@@ -66,6 +65,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
                 {
                     case DialogResult.OK:
                         _proyectoService.Eliminar(int.Parse(proyectosDataView.Rows[e.RowIndex].Cells[0].Value.ToString()));
+                        MessageBox.Show("Proyecto eliminado", "Éxito", MessageBoxButtons.OK);
                         proyectosDataView.DataSource = _proyectoService.Find();
                         break;
                     case DialogResult.Cancel:
@@ -77,8 +77,11 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
             }
             else if (buttonCell.Value.ToString().Equals("Ver tareas"))
             {
+                string nombre = proyectosDataView.Rows[e.RowIndex].Cells[1].Value.ToString();
+                int idProyecto = int.Parse(proyectosDataView.Rows[e.RowIndex].Cells[0].Value.ToString());
+
                 crearModificarTareaForm crearModificarTareaForm = new crearModificarTareaForm();
-                crearModificarTareaForm.SetProyecto(int.Parse(proyectosDataView.Rows[e.RowIndex].Cells[0].Value.ToString()));
+                crearModificarTareaForm.SetProyecto(idProyecto, nombre);
                 crearModificarTareaForm.Show();
             }
         }
