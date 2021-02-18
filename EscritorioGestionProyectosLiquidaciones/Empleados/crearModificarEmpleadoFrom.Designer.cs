@@ -51,12 +51,16 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.rolList = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.rolList);
             this.panel1.Controls.Add(this.asignarBtn);
             this.panel1.Controls.Add(this.contraseñaTxt);
             this.panel1.Controls.Add(this.guardarBtn);
@@ -287,6 +291,26 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Crear empleado";
             // 
+            // rolList
+            // 
+            this.rolList.DisplayMember = "DescripcionRol";
+            this.rolList.FormattingEnabled = true;
+            this.rolList.Location = new System.Drawing.Point(489, 273);
+            this.rolList.Name = "rolList";
+            this.rolList.Size = new System.Drawing.Size(200, 21);
+            this.rolList.TabIndex = 31;
+            this.rolList.ValueMember = "Idrol";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(486, 253);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(38, 17);
+            this.label9.TabIndex = 32;
+            this.label9.Text = "Rol *";
+            // 
             // crearModificarEmpleadoFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -328,5 +352,7 @@
         private System.Windows.Forms.TextBox dniTxt;
         private System.Windows.Forms.MaskedTextBox contraseñaTxt;
         private System.Windows.Forms.Button asignarBtn;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox rolList;
     }
 }

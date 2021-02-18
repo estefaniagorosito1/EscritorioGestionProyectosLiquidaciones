@@ -19,6 +19,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
         private LocalidadService _localidadService;
         private ProvinciaService _provinciaService;
         private PerfilEmpleadoService _perfilEmpleadoService;
+        private RolService _rolService;
 
         private int idEmpleado;
 
@@ -31,6 +32,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
             _localidadService = new LocalidadService();
             _provinciaService = new ProvinciaService();
             _perfilEmpleadoService = new PerfilEmpleadoService();
+            _rolService = new RolService();
 
             idEmpleado = 0;
         }
@@ -52,6 +54,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
 
             provinciaSelected.DataSource = _provinciaService.FindProvincias();
             localidadSelected.DataSource = _localidadService.FindLocalidadesProvincia(provincia.Idprovincia);
+            rolList.DataSource = _rolService.Find();
 
             nombreEmpleadoTxt.Text = empleado.NombreEmpleado;
             apellidoEmpleadoTxt.Text = empleado.ApellidoEmpleado;
@@ -62,6 +65,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
             contraseñaTxt.Text = usuario.PasswordUsuario;
             provinciaSelected.SelectedValue = provincia.Idprovincia;
             localidadSelected.SelectedValue = localidad.Idlocalidad;
+            rolList.SelectedValue = usuario.Idrol;
         }
 
         private void guardarBtn_Click(object sender, EventArgs e)
@@ -74,7 +78,6 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
                 // Estoy creando un empleado
                 if (idEmpleado == 0)
                 {
-
                     empleado = new Empleado
                     {
                         NombreEmpleado = nombreEmpleadoTxt.Text,
@@ -90,7 +93,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
                     {
                         NombreUsuario = usuarioTxt.Text,
                         PasswordUsuario = contraseñaTxt.Text,
-                        Idrol = 6 // Rol empleado
+                        Idrol = (int) rolList.SelectedValue
                     };
 
                 }
@@ -109,6 +112,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
                     usuario = _usuarioService.FindUsuarioByIdEmpleado(idEmpleado);
                     usuario.NombreUsuario = usuarioTxt.Text;
                     usuario.PasswordUsuario = contraseñaTxt.Text;
+                    usuario.Idrol = (int) rolList.SelectedValue;
                 }
 
                 try
@@ -189,6 +193,19 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
                 provinciaSelected.DataSource = data;
 
                 asignarBtn.Enabled = false;
+
+                var roles = new List<Rol>();
+                var rol = new Rol
+                {
+                    Idrol = 0,
+                    DescripcionRol = "Seleccione un rol"
+                };
+
+                roles.Add(rol);
+                roles.AddRange(_rolService.Find());
+
+                rolList.DataSource = roles;
+
             }
 
         }
@@ -198,8 +215,17 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
             var valid = false;
             if (telefonoTxt.Text != string.Empty && direccionTxt.Text != string.Empty && nombreEmpleadoTxt.Text != string.Empty
                 && dniTxt.Text != string.Empty && apellidoEmpleadoTxt.Text != string.Empty && usuarioTxt.Text != string.Empty
-                && contraseñaTxt.Text != string.Empty && (int)provinciaSelected.SelectedValue != 0
-                && (int)localidadSelected.SelectedValue != 0)
+                && contraseñaTxt.Text != string.Empty)
+            {
+                valid = true;
+            }
+
+            if ((int) rolList.SelectedValue != 0)
+            {
+                valid = true;
+            }
+
+            if((long) localidadSelected.SelectedValue != 0)
             {
                 valid = true;
             }
