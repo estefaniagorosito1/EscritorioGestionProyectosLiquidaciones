@@ -29,7 +29,6 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
         public void SetProyecto(Proyecto proyecto)
         {
             _proyecto = proyecto;
-            nombreProyecto.Text = proyecto.NombreProyecto;
         }
 
         private void volverBtn_Click(object sender, EventArgs e)
@@ -64,14 +63,36 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
                 }
             }
 
-            // _empleadoProyectoService.Guardar(empleadosProyecto);
+             _empleadoProyectoService.Guardar(empleadosProyecto);
 
-            MessageBox.Show("Empleados asignados correctamente", "Éxito", MessageBoxButtons.OK);
+            MessageBox.Show("Empleados asignados correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close();
         }
 
         private void AsignarEmpleados_Load(object sender, EventArgs e)
         {
-            empleadosDataView.DataSource = _empleadoService.Find();
+            var empleadosProyecto = _empleadoProyectoService.FindEmpleadosProyecto(_proyecto.Idproyecto);
+            empleadosProyectoDataView.DataSource = empleadosProyecto;
+
+            var empleadosDisponibles = _empleadoService.Find();
+            List<Empleado> empleadosAQuitar = new List<Empleado>();
+
+            foreach (var item in empleadosDisponibles)
+            {
+                if (empleadosProyecto.Any(emp => emp.Idempleado == item.Idempleado))
+                {
+                    empleadosAQuitar.Add(item);
+                }
+            }
+
+            empleadosDisponibles.RemoveAll(x => empleadosAQuitar.Contains(x));
+
+            empleadosDataView.DataSource = empleadosDisponibles;
+        }
+
+        private void empleadosProyectoDataView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
