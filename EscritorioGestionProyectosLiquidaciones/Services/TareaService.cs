@@ -24,5 +24,37 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
                 return dbContext.Tarea.Where(t => t.Idempleado == idEmpleado).ToList();
             }
         }
+
+        public void Guardar(Tarea tarea)
+        {
+            using (var dbContext = new TpSeminarioContext())
+            {
+                if (tarea.Idtarea != 0)
+                {
+                    dbContext.Tarea.Update(tarea);
+                    dbContext.SaveChanges();
+                }
+                else
+                {
+                    dbContext.Tarea.Add(tarea);
+                    dbContext.SaveChanges();
+                }
+
+            }
+        }
+
+        public Tarea FindTarea(int idTarea)
+        {
+            using (var dbContext = new TpSeminarioContext())
+            {
+                return dbContext.Tarea.Find(idTarea);
+            }
+
+        }
+
+        internal void Eliminar(int idTarea)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

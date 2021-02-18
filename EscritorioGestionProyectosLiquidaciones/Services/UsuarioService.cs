@@ -32,8 +32,17 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
         {
             using (var dbContext = new TpSeminarioContext())
             {
-                dbContext.Usuario.Add(usuario);
-                dbContext.SaveChanges();
+                if (usuario.Idusuario != 0)
+                {
+                    dbContext.Usuario.Update(usuario);
+                    dbContext.SaveChanges();
+                }
+                else
+                {
+                    dbContext.Usuario.Add(usuario);
+                    dbContext.SaveChanges();
+                }
+
             }
         }
     }

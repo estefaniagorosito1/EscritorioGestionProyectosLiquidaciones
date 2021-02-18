@@ -26,13 +26,21 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
             }
         }
 
+        public Empleado FindEmpleadoDni(long dni)
+        {
+            using (var dbContext = new TpSeminarioContext())
+            {
+                return dbContext.Empleado.Where(e => e.DniEmpleado == dni).FirstOrDefault();
+            }
+        }
+
         public void Guardar(Empleado empleado)
         {
             using (var dbContext = new TpSeminarioContext())
             {
                 if (empleado.Idempleado != 0)
                 {
-                    dbContext.Empleado.Update(empleado);
+                    dbContext.Update(empleado);
                     dbContext.SaveChanges();
                 }
                 else
@@ -49,8 +57,20 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
             using (var dbContext = new TpSeminarioContext())
             {
                 var empleado = dbContext.Empleado.Find(IdEmpleado);
-                dbContext.Empleado.Remove(empleado);
 
+                // Borro perfiles
+                var perfiles = dbContext.PerfilEmpleado.Where(pe => pe.Idempleado == empleado.Idempleado).ToList();
+
+                foreach (var item in perfiles)
+                {
+                    dbContext.PerfilEmpleado.Remove(item);
+                }
+
+                // Borro usuario
+                var usuario = dbContext.Usuario.Where(us => us.Idempleado == empleado.Idempleado).First();
+                dbContext.Usuario.Remove(usuario);
+
+                dbContext.Empleado.Remove(empleado);
                 dbContext.SaveChanges();
             }
         }

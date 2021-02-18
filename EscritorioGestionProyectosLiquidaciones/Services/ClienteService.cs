@@ -15,12 +15,12 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
             {
                 if (cliente.Idcliente != 0)
                 {
-                    dbContext.Cliente.Add(cliente);
+                    dbContext.Update(cliente);
                     dbContext.SaveChanges();
                 }
                 else
                 {
-                    dbContext.Update(cliente);
+                    dbContext.Cliente.Add(cliente);
                     dbContext.SaveChanges();
                 }
             }
@@ -32,6 +32,14 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
             {
                 var clientes = dbContext.Cliente.ToList();
                 return clientes;
+            }
+        }
+
+        public Cliente FindCliente(int idCliente)
+        {
+            using (var dbContext = new TpSeminarioContext())
+            {
+                return dbContext.Cliente.Find(idCliente);
             }
         }
 

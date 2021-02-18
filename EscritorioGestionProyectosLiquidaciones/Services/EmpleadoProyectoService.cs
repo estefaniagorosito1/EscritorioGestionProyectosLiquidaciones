@@ -9,13 +9,6 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
 {
     class EmpleadoProyectoService
     {
-        public List<EmpleadoProyecto> Find()
-        {
-            using (var dbContext = new TpSeminarioContext())
-            {
-                return dbContext.EmpleadoProyecto.ToList();
-            }
-        }
 
         public void Guardar(List<EmpleadoProyecto> empleadosProyecto)
         {

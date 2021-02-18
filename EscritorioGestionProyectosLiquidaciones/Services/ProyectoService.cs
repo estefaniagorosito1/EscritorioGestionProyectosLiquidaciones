@@ -23,7 +23,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
             {
                 if (proyecto.Idproyecto != 0)
                 {
-                    dbContext.Proyecto.Update(proyecto);
+                    dbContext.Update(proyecto);
                     dbContext.SaveChanges();
                 }
                 else
@@ -31,6 +31,14 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
                     dbContext.Proyecto.Add(proyecto);
                     dbContext.SaveChanges();
                 }
+            }
+        }
+
+        public Proyecto FindProyecto(int idproyecto)
+        {
+            using (var dbContext = new TpSeminarioContext())
+            {
+                return dbContext.Proyecto.Find(idproyecto);
             }
         }
 
