@@ -29,17 +29,28 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
         public void LoadProyecto(Proyecto proyecto)
         {
             label1.Text = "Modificar proyecto";
+            clientes.DataSource = _clienteService.Find();
+
+            proyecto =_proyectoService.FindProyecto(proyecto.Idproyecto);
+
+            List<string> estados = new List<string>();
+            estados.Add("Seleccione un estado");
+            estados.Add("En Proceso");
+            estados.Add("Finalizado");
+            estados.Add("Cancelado");
+
+            estadosProyecto.DataSource = estados;
 
             _proyecto = proyecto;
             nombreTxt.Text = proyecto.NombreProyecto;
             descripcionTxt.Text = proyecto.Descripcion;
-            estadosProyecto.SelectedItem = estadosProyecto.FindString(proyecto.EstadoProyecto);
-            clientes.SelectedItem = clientes.Items.IndexOf(proyecto.Idcliente);
+            estadosProyecto.SelectedIndex = estadosProyecto.FindString(proyecto.EstadoProyecto);
+            clientes.SelectedValue = proyecto.Idcliente;
         }
 
         private void volverBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void guardarBtn_Click(object sender, EventArgs e)
@@ -53,9 +64,9 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
                 {
                     NombreProyecto = nombreTxt.Text,
                     Descripcion = descripcionTxt.Text,
-                    EstadoProyecto = estadosProyecto.SelectedText,
+                    EstadoProyecto = estadosProyecto.SelectedValue.ToString(),
                     Idcliente = (int)clientes.SelectedValue,
-                    FechaInicioProyecto = new DateTime()
+                    FechaInicioProyecto = DateTime.Today
                 };
             }
             else
@@ -64,11 +75,13 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
                 proyecto = _proyecto;
                 proyecto.NombreProyecto = nombreTxt.Text;
                 proyecto.Descripcion = descripcionTxt.Text;
-                proyecto.EstadoProyecto = estadosProyecto.SelectedText;
+                proyecto.EstadoProyecto = estadosProyecto.SelectedValue.ToString();
                 proyecto.Idcliente = (int)clientes.SelectedValue;
             }
 
             _proyectoService.Guardar(proyecto);
+            MessageBox.Show("Proyecto guardado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Close();
 
         }
 
@@ -81,18 +94,32 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
 
         private void crearModificarProyectoForm_Load(object sender, EventArgs e)
         {
-            var data = new List<Cliente>();
-
-            var cliente = new Cliente
+            if (_proyecto.Idproyecto == 0)
             {
-                Idcliente = 0,
-                NombreCliente = "Seleccione un cliente"
-            };
+                var data = new List<Cliente>();
 
-            data.Add(cliente);
-            data.AddRange(_clienteService.Find());
+                var cliente = new Cliente
+                {
+                    Idcliente = 0,
+                    NombreCliente = "Seleccione un cliente"
+                };
 
-            clientes.DataSource = data;
+                List<string> estados = new List<string>();
+                estados.Add("Seleccione un estado");
+                estados.Add("En Proceso");
+                estados.Add("Finalizado");
+                estados.Add("Cancelado");
+
+                estadosProyecto.DataSource = estados;
+
+                data.Add(cliente);
+                data.AddRange(_clienteService.Find());
+
+                clientes.DataSource = data;
+
+                asignarBtn.Enabled = false;
+            }
+            
         }
     }
 }

@@ -102,6 +102,7 @@
             this.clientes.Name = "clientes";
             this.clientes.Size = new System.Drawing.Size(210, 21);
             this.clientes.TabIndex = 8;
+            this.clientes.ValueMember = "idCliente";
             // 
             // estadosProyecto
             // 
