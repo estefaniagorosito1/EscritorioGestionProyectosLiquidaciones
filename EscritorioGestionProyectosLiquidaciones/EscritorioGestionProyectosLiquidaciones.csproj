@@ -234,6 +234,7 @@
     <Compile Include="Services\ClienteService.cs" />
     <Compile Include="Services\EmpleadoProyectoService.cs" />
     <Compile Include="Services\EmpleadoService.cs" />
+    <Compile Include="Services\HoraTrabajadaService.cs" />
     <Compile Include="Services\LocalidadService.cs" />
     <Compile Include="Services\PerfilEmpleadoService.cs" />
     <Compile Include="Services\PerfilService.cs" />
@@ -243,11 +244,23 @@
     <Compile Include="Services\TareaService.cs" />
     <Compile Include="Services\UsuarioService.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Tareas\CargarHorasTarea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tareas\CargarHorasTarea.Designer.cs">
+      <DependentUpon>CargarHorasTarea.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tareas\crearModificarTareaForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Tareas\crearModificarTareaForm.Designer.cs">
       <DependentUpon>crearModificarTareaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tareas\ListaTareasEmpleadoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tareas\ListaTareasEmpleadoForm.Designer.cs">
+      <DependentUpon>ListaTareasEmpleadoForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Clientes\crearModificarClientesForm.resx">
       <DependentUpon>crearModificarClientesForm.cs</DependentUpon>
@@ -284,8 +297,14 @@
     <EmbeddedResource Include="Proyectos\gestionarProyectosForm.resx">
       <DependentUpon>gestionarProyectosForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Tareas\CargarHorasTarea.resx">
+      <DependentUpon>CargarHorasTarea.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tareas\crearModificarTareaForm.resx">
       <DependentUpon>crearModificarTareaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tareas\ListaTareasEmpleadoForm.resx">
+      <DependentUpon>ListaTareasEmpleadoForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\EscritorioGestionProyectosLiquidaciones.Models.Cliente.datasource" />

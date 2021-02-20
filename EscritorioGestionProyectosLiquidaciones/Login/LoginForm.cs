@@ -29,7 +29,6 @@ namespace EscritorioGestionProyectosLiquidaciones
 
             if (usuario != string.Empty && pass != string.Empty)
             {
-
                 var user = _usuarioService.FindUsuario(usuario, pass);
 
                 if (user != null)
@@ -37,6 +36,7 @@ namespace EscritorioGestionProyectosLiquidaciones
                     LoginForm.ActiveForm.Hide();
 
                     Home home = new Home();
+                    home.StoreUsuarioSession(usuario, pass);
                     home.Show();
                 }
                 else

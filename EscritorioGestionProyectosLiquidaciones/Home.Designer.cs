@@ -45,6 +45,7 @@
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.crearClienteBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionarClientesBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.misTareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.liquidacionBtn = new System.Windows.Forms.ToolStripButton();
             this.salirBtn = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
@@ -122,7 +123,8 @@
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.proyectosToolStripMenuItem,
             this.empleadosToolStripMenuItem,
-            this.clientesToolStripMenuItem});
+            this.clientesToolStripMenuItem,
+            this.misTareasToolStripMenuItem});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
@@ -135,7 +137,7 @@
             this.crearProyectoBtn,
             this.gestionarProyectoBtn});
             this.proyectosToolStripMenuItem.Name = "proyectosToolStripMenuItem";
-            this.proyectosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.proyectosToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.proyectosToolStripMenuItem.Text = "Proyectos";
             // 
             // crearProyectoBtn
@@ -158,7 +160,7 @@
             this.crearEmpleadoBtn,
             this.gestionarEmpleadoBtn});
             this.empleadosToolStripMenuItem.Name = "empleadosToolStripMenuItem";
-            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.empleadosToolStripMenuItem.Text = "Empleados";
             // 
             // crearEmpleadoBtn
@@ -181,7 +183,7 @@
             this.crearClienteBtn,
             this.gestionarClientesBtn});
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.clientesToolStripMenuItem.Text = "Clientes";
             // 
             // crearClienteBtn
@@ -197,6 +199,13 @@
             this.gestionarClientesBtn.Size = new System.Drawing.Size(167, 22);
             this.gestionarClientesBtn.Text = "Gestionar clientes";
             this.gestionarClientesBtn.Click += new System.EventHandler(this.gestionarClientesBtn_Click);
+            // 
+            // misTareasToolStripMenuItem
+            // 
+            this.misTareasToolStripMenuItem.Name = "misTareasToolStripMenuItem";
+            this.misTareasToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.misTareasToolStripMenuItem.Text = "Mis tareas";
+            this.misTareasToolStripMenuItem.Click += new System.EventHandler(this.misTareasToolStripMenuItem_Click);
             // 
             // liquidacionBtn
             // 
@@ -228,6 +237,7 @@
             this.Name = "Home";
             this.Text = "Home";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Home_FormClosing);
+            this.Load += new System.EventHandler(this.Home_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -258,5 +268,6 @@
         private System.Windows.Forms.ToolStripMenuItem gestionarClientesBtn;
         private System.Windows.Forms.ToolStripButton salirBtn;
         private System.Windows.Forms.ToolStripButton liquidacionBtn;
+        private System.Windows.Forms.ToolStripMenuItem misTareasToolStripMenuItem;
     }
 }
