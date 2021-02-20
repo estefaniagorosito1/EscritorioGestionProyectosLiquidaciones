@@ -34,9 +34,9 @@
             this.crearBtn = new System.Windows.Forms.Button();
             this.volverBtn = new System.Windows.Forms.Button();
             this.proyectosDataView = new System.Windows.Forms.DataGridView();
-            this.proyectoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.proyectoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idproyectoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreProyectoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,6 +45,7 @@
             this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Tareas = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.informeHoras = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.proyectosDataView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).BeginInit();
@@ -65,7 +66,7 @@
             // 
             // crearBtn
             // 
-            this.crearBtn.Location = new System.Drawing.Point(113, 345);
+            this.crearBtn.Location = new System.Drawing.Point(99, 348);
             this.crearBtn.Name = "crearBtn";
             this.crearBtn.Size = new System.Drawing.Size(126, 23);
             this.crearBtn.TabIndex = 4;
@@ -75,7 +76,7 @@
             // 
             // volverBtn
             // 
-            this.volverBtn.Location = new System.Drawing.Point(32, 345);
+            this.volverBtn.Location = new System.Drawing.Point(18, 348);
             this.volverBtn.Name = "volverBtn";
             this.volverBtn.Size = new System.Drawing.Size(75, 23);
             this.volverBtn.TabIndex = 3;
@@ -97,25 +98,22 @@
             this.fechaInicioProyectoDataGridViewTextBoxColumn,
             this.Editar,
             this.Eliminar,
-            this.Tareas});
+            this.Tareas,
+            this.informeHoras});
             this.proyectosDataView.DataSource = this.proyectoBindingSource;
-            this.proyectosDataView.Location = new System.Drawing.Point(32, 93);
+            this.proyectosDataView.Location = new System.Drawing.Point(21, 83);
             this.proyectosDataView.Name = "proyectosDataView";
             this.proyectosDataView.ReadOnly = true;
-            this.proyectosDataView.Size = new System.Drawing.Size(672, 229);
+            this.proyectosDataView.Size = new System.Drawing.Size(699, 250);
             this.proyectosDataView.TabIndex = 2;
             this.proyectosDataView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.proyectosDataView_CellContentClick);
-            // 
-            // proyectoBindingSource
-            // 
-            this.proyectoBindingSource.DataSource = typeof(EscritorioGestionProyectosLiquidaciones.Models.Proyecto);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(32, 60);
+            this.label2.Location = new System.Drawing.Point(18, 45);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(292, 17);
             this.label2.TabIndex = 1;
@@ -125,11 +123,15 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(32, 29);
+            this.label1.Location = new System.Drawing.Point(18, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(161, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "Lista de proyectos";
+            // 
+            // proyectoBindingSource
+            // 
+            this.proyectoBindingSource.DataSource = typeof(EscritorioGestionProyectosLiquidaciones.Models.Proyecto);
             // 
             // idproyectoDataGridViewTextBoxColumn
             // 
@@ -157,9 +159,11 @@
             // estadoProyectoDataGridViewTextBoxColumn
             // 
             this.estadoProyectoDataGridViewTextBoxColumn.DataPropertyName = "EstadoProyecto";
+            this.estadoProyectoDataGridViewTextBoxColumn.FillWeight = 90F;
             this.estadoProyectoDataGridViewTextBoxColumn.HeaderText = "Estado";
             this.estadoProyectoDataGridViewTextBoxColumn.Name = "estadoProyectoDataGridViewTextBoxColumn";
             this.estadoProyectoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.estadoProyectoDataGridViewTextBoxColumn.Width = 90;
             // 
             // fechaInicioProyectoDataGridViewTextBoxColumn
             // 
@@ -173,33 +177,43 @@
             // 
             // Editar
             // 
-            this.Editar.FillWeight = 64F;
+            this.Editar.FillWeight = 57F;
             this.Editar.HeaderText = "";
             this.Editar.Name = "Editar";
             this.Editar.ReadOnly = true;
             this.Editar.Text = "Editar";
             this.Editar.UseColumnTextForButtonValue = true;
-            this.Editar.Width = 64;
+            this.Editar.Width = 57;
             // 
             // Eliminar
             // 
-            this.Eliminar.FillWeight = 65F;
+            this.Eliminar.FillWeight = 57F;
             this.Eliminar.HeaderText = "";
             this.Eliminar.Name = "Eliminar";
             this.Eliminar.ReadOnly = true;
             this.Eliminar.Text = "Eliminar";
             this.Eliminar.UseColumnTextForButtonValue = true;
-            this.Eliminar.Width = 65;
+            this.Eliminar.Width = 57;
             // 
             // Tareas
             // 
-            this.Tareas.FillWeight = 80F;
+            this.Tareas.FillWeight = 62F;
             this.Tareas.HeaderText = "";
             this.Tareas.Name = "Tareas";
             this.Tareas.ReadOnly = true;
             this.Tareas.Text = "Ver tareas";
             this.Tareas.UseColumnTextForButtonValue = true;
-            this.Tareas.Width = 70;
+            this.Tareas.Width = 62;
+            // 
+            // informeHoras
+            // 
+            this.informeHoras.FillWeight = 60F;
+            this.informeHoras.HeaderText = "";
+            this.informeHoras.Name = "informeHoras";
+            this.informeHoras.ReadOnly = true;
+            this.informeHoras.Text = "Informe";
+            this.informeHoras.UseColumnTextForButtonValue = true;
+            this.informeHoras.Width = 60;
             // 
             // gestionarProyectosForm
             // 
@@ -236,5 +250,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn Editar;
         private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
         private System.Windows.Forms.DataGridViewButtonColumn Tareas;
+        private System.Windows.Forms.DataGridViewButtonColumn informeHoras;
     }
 }

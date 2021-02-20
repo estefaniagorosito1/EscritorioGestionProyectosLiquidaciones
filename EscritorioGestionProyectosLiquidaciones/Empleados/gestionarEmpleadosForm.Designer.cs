@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.crearEmpleadoBtn = new System.Windows.Forms.Button();
             this.volverBtn = new System.Windows.Forms.Button();
             this.empleadosDataView = new System.Windows.Forms.DataGridView();
-            this.empleadoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.empleadoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idempleadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dniEmpleadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreEmpleadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,9 +65,9 @@
             // crearEmpleadoBtn
             // 
             this.crearEmpleadoBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.crearEmpleadoBtn.Location = new System.Drawing.Point(133, 339);
+            this.crearEmpleadoBtn.Location = new System.Drawing.Point(103, 350);
             this.crearEmpleadoBtn.Name = "crearEmpleadoBtn";
-            this.crearEmpleadoBtn.Size = new System.Drawing.Size(121, 23);
+            this.crearEmpleadoBtn.Size = new System.Drawing.Size(102, 23);
             this.crearEmpleadoBtn.TabIndex = 4;
             this.crearEmpleadoBtn.Text = "Crear empleado";
             this.crearEmpleadoBtn.UseVisualStyleBackColor = true;
@@ -76,9 +76,9 @@
             // volverBtn
             // 
             this.volverBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.volverBtn.Location = new System.Drawing.Point(28, 339);
+            this.volverBtn.Location = new System.Drawing.Point(22, 350);
             this.volverBtn.Name = "volverBtn";
-            this.volverBtn.Size = new System.Drawing.Size(99, 23);
+            this.volverBtn.Size = new System.Drawing.Size(75, 23);
             this.volverBtn.TabIndex = 3;
             this.volverBtn.Text = "Volver";
             this.volverBtn.UseVisualStyleBackColor = true;
@@ -99,23 +99,19 @@
             this.Editar,
             this.Eliminar});
             this.empleadosDataView.DataSource = this.empleadoBindingSource;
-            this.empleadosDataView.Location = new System.Drawing.Point(28, 100);
+            this.empleadosDataView.Location = new System.Drawing.Point(21, 83);
             this.empleadosDataView.Name = "empleadosDataView";
             this.empleadosDataView.ReadOnly = true;
-            this.empleadosDataView.Size = new System.Drawing.Size(683, 217);
+            this.empleadosDataView.Size = new System.Drawing.Size(699, 250);
             this.empleadosDataView.TabIndex = 2;
             this.empleadosDataView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.empleadosDataView_CellContentClick);
-            // 
-            // empleadoBindingSource
-            // 
-            this.empleadoBindingSource.DataSource = typeof(EscritorioGestionProyectosLiquidaciones.Models.Empleado);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(25, 63);
+            this.label2.Location = new System.Drawing.Point(18, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(187, 17);
             this.label2.TabIndex = 1;
@@ -125,11 +121,15 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(24, 33);
+            this.label1.Location = new System.Drawing.Point(18, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(173, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "Lista de empleados";
+            // 
+            // empleadoBindingSource
+            // 
+            this.empleadoBindingSource.DataSource = typeof(EscritorioGestionProyectosLiquidaciones.Models.Empleado);
             // 
             // idempleadoDataGridViewTextBoxColumn
             // 
@@ -168,9 +168,9 @@
             // FechaIngresoEmpleado
             // 
             this.FechaIngresoEmpleado.DataPropertyName = "FechaIngresoEmpleado";
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.FechaIngresoEmpleado.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.FechaIngresoEmpleado.DefaultCellStyle = dataGridViewCellStyle2;
             this.FechaIngresoEmpleado.FillWeight = 120F;
             this.FechaIngresoEmpleado.HeaderText = "Fecha de ingreso";
             this.FechaIngresoEmpleado.Name = "FechaIngresoEmpleado";
@@ -179,23 +179,23 @@
             // 
             // Editar
             // 
-            this.Editar.FillWeight = 70F;
+            this.Editar.FillWeight = 77F;
             this.Editar.HeaderText = "";
             this.Editar.Name = "Editar";
             this.Editar.ReadOnly = true;
             this.Editar.Text = "Editar";
             this.Editar.UseColumnTextForButtonValue = true;
-            this.Editar.Width = 70;
+            this.Editar.Width = 77;
             // 
             // Eliminar
             // 
-            this.Eliminar.FillWeight = 70F;
+            this.Eliminar.FillWeight = 77F;
             this.Eliminar.HeaderText = "";
             this.Eliminar.Name = "Eliminar";
             this.Eliminar.ReadOnly = true;
             this.Eliminar.Text = "Eliminar";
             this.Eliminar.UseColumnTextForButtonValue = true;
-            this.Eliminar.Width = 70;
+            this.Eliminar.Width = 77;
             // 
             // gestionarEmpleadosForm
             // 
@@ -205,7 +205,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
             this.Name = "gestionarEmpleadosForm";
-            this.Text = "Gestionar Empleados";
+            this.Text = "Gestionar empleados";
             this.Load += new System.EventHandler(this.gestionarEmpleadosForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
