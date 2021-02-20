@@ -343,6 +343,11 @@ namespace EscritorioGestionProyectosLiquidaciones.Models
                     .HasColumnName("IDTarea")
                     .ValueGeneratedOnAdd();
 
+                entity.Property(e => e.finalizada)
+                      .HasColumnName("Finalizada")
+                      .HasMaxLength(50)
+                      .IsUnicode(false);
+
                 entity.Property(e => e.Idproyecto).HasColumnName("IDProyecto");
 
                 entity.Property(e => e.DescripcionTarea)
