@@ -35,9 +35,9 @@ namespace EscritorioGestionProyectosLiquidaciones.Clientes
 
         private void clientesDataView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewButtonCell cliente = (DataGridViewButtonCell) clientesDataView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            DataGridViewButtonCell buttonCell = (DataGridViewButtonCell) clientesDataView.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
-            if (cliente.Value.ToString().Equals("Editar"))
+            if (buttonCell.Value.ToString().Equals("Editar"))
             {
                 crearModificarClientesForm crearModificarClientesForm = new crearModificarClientesForm();
                 crearModificarClientesForm.LoadCliente(new Cliente {
@@ -53,7 +53,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Clientes
                 crearModificarClientesForm.Show();
                 Close();
             }
-            else if(cliente.Value.ToString().Equals("Eliminar"))
+            else if(buttonCell.Value.ToString().Equals("Eliminar"))
             {
                 DialogResult result = MessageBox.Show("¿Está seguro de eliminar este cliente?", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
 
