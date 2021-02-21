@@ -74,5 +74,27 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
                 dbContext.SaveChanges();
             }
         }
+
+        public List<Empleado> FiltrarEmpleados()
+        {
+            using (var dbContext = new TpSeminarioContext())
+            {
+                List<Empleado> empleadosFiltrados = new List<Empleado>();
+                var empleados = dbContext.Empleado.ToList();
+
+                foreach (var emp in empleados)
+                {
+                    var user = dbContext.Usuario.Where(u => u.Idempleado == emp.Idempleado).First();
+                    var rol = dbContext.Rol.Find(user.Idrol);
+
+                    if (rol.DescripcionRol == "Empleado")
+                    {
+                        empleadosFiltrados.Add(emp);
+                    }
+                }
+
+                return empleadosFiltrados;
+            }
+        }
     }
 }
