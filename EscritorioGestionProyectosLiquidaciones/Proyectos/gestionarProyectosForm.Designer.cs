@@ -34,9 +34,9 @@
             this.crearBtn = new System.Windows.Forms.Button();
             this.volverBtn = new System.Windows.Forms.Button();
             this.proyectosDataView = new System.Windows.Forms.DataGridView();
+            this.proyectoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.proyectoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idproyectoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreProyectoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -108,6 +108,10 @@
             this.proyectosDataView.TabIndex = 2;
             this.proyectosDataView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.proyectosDataView_CellContentClick);
             // 
+            // proyectoBindingSource
+            // 
+            this.proyectoBindingSource.DataSource = typeof(EscritorioGestionProyectosLiquidaciones.Models.Proyecto);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -128,10 +132,6 @@
             this.label1.Size = new System.Drawing.Size(161, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "Lista de proyectos";
-            // 
-            // proyectoBindingSource
-            // 
-            this.proyectoBindingSource.DataSource = typeof(EscritorioGestionProyectosLiquidaciones.Models.Proyecto);
             // 
             // idproyectoDataGridViewTextBoxColumn
             // 
@@ -212,6 +212,7 @@
             this.informeHoras.Name = "informeHoras";
             this.informeHoras.ReadOnly = true;
             this.informeHoras.Text = "Informe";
+            this.informeHoras.ToolTipText = "Ver informe de horas del proyecto";
             this.informeHoras.UseColumnTextForButtonValue = true;
             this.informeHoras.Width = 60;
             // 
