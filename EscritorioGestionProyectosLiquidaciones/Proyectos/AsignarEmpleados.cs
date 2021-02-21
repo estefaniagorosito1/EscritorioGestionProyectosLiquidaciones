@@ -74,8 +74,8 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
             var empleadosProyecto = _empleadoProyectoService.FindEmpleadosProyecto(_proyecto.Idproyecto);
             empleadosProyectoDataView.DataSource = empleadosProyecto;
 
-            var empleadosDisponibles = _empleadoService.Find();
             List<Empleado> empleadosAQuitar = new List<Empleado>();
+            var empleadosDisponibles = _empleadoService.FiltrarEmpleados();
 
             foreach (var item in empleadosDisponibles)
             {
@@ -86,7 +86,6 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
             }
 
             empleadosDisponibles.RemoveAll(x => empleadosAQuitar.Contains(x));
-
             empleadosDataView.DataSource = empleadosDisponibles;
         }
 
