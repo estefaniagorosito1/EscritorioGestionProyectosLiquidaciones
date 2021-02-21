@@ -41,7 +41,37 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
             if (_idProyecto != 0)
             {
                 tareasDataGrid.DataSource = _tareaService.FindTareasProyecto(_idProyecto);
-                empleadosList.DataSource = GetEmpleados(_idProyecto);
+
+                // Traigo solo a los empleados que están asociados pero no tienen tareas sin terminar del proyecto
+                List<Empleado> empleados = GetEmpleados(_idProyecto);
+
+                var empleadosOcupados = new List<Empleado>();
+
+                foreach (var emp in empleados)
+                {
+                    var tareasEmpleado = _tareaService.FindTareasEmpleado(emp.Idempleado);
+                    if (tareasEmpleado.Any(x => x.Idproyecto == _idProyecto && x.finalizada == "false")) {
+                        empleadosOcupados.Add(emp);
+                    }
+                }
+
+                empleados.RemoveAll(emp => empleadosOcupados.Contains(emp));
+                empleadosList.DataSource = empleados;
+
+                // Deshabilito los botones si la tarea está finalizada
+                foreach (DataGridViewRow row in tareasDataGrid.Rows)
+                {
+                    var idTarea = (int) tareasDataGrid.Rows[row.Index].Cells[0].Value;
+                    var tarea = _tareaService.FindTarea(idTarea);
+
+                    if (tarea.finalizada == "true")
+                    {
+                        var editarBtn = (DataGridViewButtonCell) tareasDataGrid.Rows[row.Index].Cells[5];
+                        editarBtn.DataGridView.Enabled = false;
+                        var eliminarBtn = (DataGridViewButtonCell) tareasDataGrid.Rows[row.Index].Cells[6];
+                        eliminarBtn.DataGridView.Enabled = false;
+                    }
+                } 
             }
         }
 
@@ -89,6 +119,9 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
                 _idTarea = (int)tareasDataGrid.Rows[e.RowIndex].Cells[0].Value;
                 descripcionTxt.Text = tareasDataGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
                 cantHoras.Value = (int) tareasDataGrid.Rows[e.RowIndex].Cells[2].Value;
+
+                // Deshabilito el campo de horas estimadas
+                cantHoras.Enabled = false;
 
                 var tarea = _tareaService.FindTarea(_idTarea);
                 empleadosList.DataSource = GetEmpleados(_idProyecto);
