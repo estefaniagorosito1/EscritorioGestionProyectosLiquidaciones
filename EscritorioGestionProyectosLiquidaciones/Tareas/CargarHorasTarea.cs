@@ -15,6 +15,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
     public partial class CargarHorasTarea : Form
     {
         private TareaService _tareaService;
+        private HoraTrabajadaService _horaTrabajadaService;
         private int _idTarea;
         private int _idEmpleado;
 
@@ -22,6 +23,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
         {
             InitializeComponent();
             _tareaService = new TareaService();
+            _horaTrabajadaService = new HoraTrabajadaService();
             _idTarea = 0;
             _idEmpleado = 0;
         }
@@ -55,6 +57,17 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
                 tarea.HorasOverbudget = 0;
             }
 
+            HoraTrabajada horaTrabajada = new HoraTrabajada
+            {
+                EstadoHoraTrabajada = "ADEUDADAS",
+                FechaHoraTrabajada = DateTime.Today,
+                Idempleado = _idEmpleado,
+                Idtarea = _idTarea,
+                Idperfil = tarea.Idperfil,
+                CantidadHoraTrabajada = tarea.HorasTrabajadas + (int) horas,
+                Idproyecto = tarea.Idproyecto
+            };
+
             if (horas + horasTrabajadas > horasEstimadas)
             {
                 var horasOverbudget = ((horas + horasTrabajadas) - horasEstimadas) - tarea.HorasOverbudget;
@@ -66,6 +79,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
                     case DialogResult.Yes:
                         tarea.HorasOverbudget = tarea.HorasOverbudget + (int?)horasOverbudget;
                         CargarHoras(tarea, (int)horas);
+                        _horaTrabajadaService.CrearHoraTrabajada(horaTrabajada);
                         break;
                     case DialogResult.No:
                         break;
@@ -76,6 +90,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
             else
             {
                 CargarHoras(tarea, (int)horas);
+                _horaTrabajadaService.CrearHoraTrabajada(horaTrabajada);
             }
         }
 
