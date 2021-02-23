@@ -25,6 +25,26 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
             _clienteService = new ClienteService();
         }
 
+        public void LoadProyectos()
+        {
+            var proyectos = _proyectoService.Find();
+            var proyectosFinalizados = new List<Proyecto>();
+
+            foreach (var item in proyectos)
+            {
+                if (item.EstadoProyecto == "Finalizado")
+                {
+                    proyectosFinalizados.Add(item);
+                }
+            }
+
+            proyectos.RemoveAll(p => proyectosFinalizados.Contains(p));
+
+            proyectosDataView.DataSource = proyectos;
+            proyectosFinalizadosDataGrid.DataSource = proyectosFinalizados;
+
+        }
+
         private void volverBtn_Click(object sender, EventArgs e)
         {
             Close();
@@ -32,63 +52,81 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
 
         private void crearBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
             crearModificarProyectoForm crearModificarProyectoForm = new crearModificarProyectoForm();
-            crearModificarProyectoForm.Show();
+            crearModificarProyectoForm.Show(this);
         }
 
         private void proyectosDataView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewButtonCell buttonCell = (DataGridViewButtonCell) proyectosDataView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-
-            if (buttonCell.Value.ToString().Equals("Editar"))
+            try
             {
-                crearModificarProyectoForm crearModificarProyectoForm = new crearModificarProyectoForm();
+                DataGridViewButtonCell buttonCell = (DataGridViewButtonCell)proyectosDataView.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
-                crearModificarProyectoForm.LoadProyecto(new Proyecto
+                if (buttonCell.Value.ToString().Equals("Editar"))
                 {
-                    Idproyecto = int.Parse(proyectosDataView.Rows[e.RowIndex].Cells[0].Value.ToString()),
-                    NombreProyecto = proyectosDataView.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                    Descripcion = proyectosDataView.Rows[e.RowIndex].Cells[2].Value.ToString(),
-                    EstadoProyecto = proyectosDataView.Rows[e.RowIndex].Cells[3].Value.ToString()
-                });
+                    crearModificarProyectoForm crearModificarProyectoForm = new crearModificarProyectoForm();
 
-                crearModificarProyectoForm.Text = "Modificar proyecto";
-                crearModificarProyectoForm.Show();
-                Close();
-            }
-            else if (buttonCell.Value.ToString().Equals("Eliminar"))
-            {
-                DialogResult result = MessageBox.Show("¿Está seguro de eliminar este proyecto?", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                    crearModificarProyectoForm.LoadProyecto(new Proyecto
+                    {
+                        Idproyecto = int.Parse(proyectosDataView.Rows[e.RowIndex].Cells[0].Value.ToString()),
+                        NombreProyecto = proyectosDataView.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                        Descripcion = proyectosDataView.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                        EstadoProyecto = proyectosDataView.Rows[e.RowIndex].Cells[3].Value.ToString()
+                    });
 
-                switch (result)
-                {
-                    case DialogResult.OK:
-                        _proyectoService.Eliminar(int.Parse(proyectosDataView.Rows[e.RowIndex].Cells[0].Value.ToString()));
-                        MessageBox.Show("Proyecto eliminado", "Éxito", MessageBoxButtons.OK);
-                        proyectosDataView.DataSource = _proyectoService.Find();
-                        break;
-                    case DialogResult.Cancel:
-                        break;
-                    default:
-                        break;
+                    crearModificarProyectoForm.Text = "Modificar proyecto";
+                    crearModificarProyectoForm.Show(this);
                 }
+                else if (buttonCell.Value.ToString().Equals("Eliminar"))
+                {
+                    DialogResult result = MessageBox.Show("¿Está seguro de eliminar este proyecto?", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
 
+                    switch (result)
+                    {
+                        case DialogResult.OK:
+                            _proyectoService.Eliminar(int.Parse(proyectosDataView.Rows[e.RowIndex].Cells[0].Value.ToString()));
+                            MessageBox.Show("Proyecto eliminado", "Éxito", MessageBoxButtons.OK);
+                            LoadProyectos();
+                            break;
+                        case DialogResult.Cancel:
+                            break;
+                        default:
+                            break;
+                    }
+
+                }
+                else if (buttonCell.Value.ToString().Equals("Ver tareas"))
+                {
+                    string nombre = proyectosDataView.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    int idProyecto = int.Parse(proyectosDataView.Rows[e.RowIndex].Cells[0].Value.ToString());
+
+                    crearModificarTareaForm crearModificarTareaForm = new crearModificarTareaForm();
+                    crearModificarTareaForm.SetProyecto(idProyecto, nombre);
+                    crearModificarTareaForm.Show();
+                }
+                else if (buttonCell.Value.ToString().Equals("Informe"))
+                {
+                    InformeHorasProyecto informeHorasProyecto = new InformeHorasProyecto();
+                    informeHorasProyecto.SetProyecto(int.Parse(proyectosDataView.Rows[e.RowIndex].Cells[0].Value.ToString()));
+                    informeHorasProyecto.Show();
+                }
             }
-            else if (buttonCell.Value.ToString().Equals("Ver tareas"))
+            catch (InvalidCastException ex)
             {
-                string nombre = proyectosDataView.Rows[e.RowIndex].Cells[1].Value.ToString();
-                int idProyecto = int.Parse(proyectosDataView.Rows[e.RowIndex].Cells[0].Value.ToString());
-
-                crearModificarTareaForm crearModificarTareaForm = new crearModificarTareaForm();
-                crearModificarTareaForm.SetProyecto(idProyecto, nombre);
-                crearModificarTareaForm.Show();
+                // Cuando el usuario haga click en una celda que no es un botón
             }
         }
 
         private void gestionarProyectosForm_Load(object sender, EventArgs e)
         {
-            proyectosDataView.DataSource = _proyectoService.Find();
+            LoadProyectos();
+        }
+
+        private void proyectosFinalizadosDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            InformeHorasProyecto informeHorasProyecto = new InformeHorasProyecto();
+            informeHorasProyecto.SetProyecto(int.Parse(proyectosFinalizadosDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString()));
+            informeHorasProyecto.Show();
         }
     }
 }

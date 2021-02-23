@@ -119,17 +119,27 @@ namespace EscritorioGestionProyectosLiquidaciones
                 perfilesAAsignar.Add(perfil);
             }
 
-            foreach (var item in perfilesAAsignar)
+            // Chequeo que haya perfiles seleccionados
+            if (perfilesAAsignar.Count == 0)
             {
-                PerfilEmpleado perfilEmpleado = new PerfilEmpleado();
-                perfilEmpleado.Idperfil = item.Idperfil;
-                perfilEmpleado.Idempleado = IdEmpleado;
+                MessageBox.Show("Debe seleccionar al menos un perfil", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                foreach (var item in perfilesAAsignar)
+                {
+                    PerfilEmpleado perfilEmpleado = new PerfilEmpleado();
+                    perfilEmpleado.Idperfil = item.Idperfil;
+                    perfilEmpleado.Idempleado = IdEmpleado;
 
-                perfilesEmpleado.Add(perfilEmpleado);
+                    perfilesEmpleado.Add(perfilEmpleado);
+                }
+
+                _perfilEmpleadoService.AsignarPerfilesEmpleado(perfilesEmpleado);
+                MessageBox.Show("Cambios guardados correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
 
-            _perfilEmpleadoService.AsignarPerfilesEmpleado(perfilesEmpleado);
-            MessageBox.Show("Cambios guardados correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

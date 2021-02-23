@@ -31,8 +31,9 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
             label1.Text = "Modificar proyecto";
             clientes.DataSource = _clienteService.Find();
 
-            proyecto =_proyectoService.FindProyecto(proyecto.Idproyecto);
+            proyecto = _proyectoService.FindProyecto(proyecto.Idproyecto);
 
+            // CREAR ENUM DE ESTADOS
             List<string> estados = new List<string>();
             estados.Add("Seleccione un estado");
             estados.Add("En Proceso");
@@ -57,31 +58,50 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
         {
             Proyecto proyecto;
 
-            // Creo un proyecto
-            if (_proyecto.Idproyecto == 0)
+            if (Valid())
             {
-                proyecto = new Proyecto
+                // Creo un proyecto
+                if (_proyecto.Idproyecto == 0)
                 {
-                    NombreProyecto = nombreTxt.Text,
-                    Descripcion = descripcionTxt.Text,
-                    EstadoProyecto = estadosProyecto.SelectedValue.ToString(),
-                    Idcliente = (int)clientes.SelectedValue,
-                    FechaInicioProyecto = DateTime.Today
-                };
+                    proyecto = new Proyecto
+                    {
+                        NombreProyecto = nombreTxt.Text,
+                        Descripcion = descripcionTxt.Text,
+                        EstadoProyecto = estadosProyecto.SelectedValue.ToString(),
+                        Idcliente = (int)clientes.SelectedValue,
+                        FechaInicioProyecto = DateTime.Today
+                    };
+                }
+                else
+                {
+                    // Modifico un proyecto
+                    proyecto = _proyecto;
+                    proyecto.NombreProyecto = nombreTxt.Text;
+                    proyecto.Descripcion = descripcionTxt.Text;
+                    proyecto.EstadoProyecto = estadosProyecto.SelectedValue.ToString();
+                    proyecto.Idcliente = (int)clientes.SelectedValue;
+
+                    if(proyecto.EstadoProyecto == "Finalizado")
+                    {
+                        proyecto.FechaFinProyecto = DateTime.Today; 
+                    }
+
+                }
+
+                _proyectoService.Guardar(proyecto);
+                MessageBox.Show("Proyecto guardado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if(this.Owner != null)
+                {
+                    ((gestionarProyectosForm)this.Owner).LoadProyectos();
+                }
+
+                Close();
             }
             else
             {
-                // Modifico un proyecto
-                proyecto = _proyecto;
-                proyecto.NombreProyecto = nombreTxt.Text;
-                proyecto.Descripcion = descripcionTxt.Text;
-                proyecto.EstadoProyecto = estadosProyecto.SelectedValue.ToString();
-                proyecto.Idcliente = (int)clientes.SelectedValue;
+                MessageBox.Show("Debe completar todos los campos", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-            _proyectoService.Guardar(proyecto);
-            MessageBox.Show("Proyecto guardado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Close();
 
         }
 
@@ -104,6 +124,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
                     NombreCliente = "Seleccione un cliente"
                 };
 
+                // AGREGAR ENUM DE ESTADOS DEL PROYECTO
                 List<string> estados = new List<string>();
                 estados.Add("Seleccione un estado");
                 estados.Add("En Proceso");
@@ -119,7 +140,20 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
 
                 asignarBtn.Enabled = false;
             }
-            
+
+        }
+
+        private bool Valid()
+        {
+            bool valid = false;
+
+            if (nombreTxt.Text != string.Empty && (string)estadosProyecto.SelectedValue != string.Empty
+                && (int)clientes.SelectedValue != 0 && descripcionTxt.Text != string.Empty)
+            {
+                valid = true;
+            }
+
+            return valid;
         }
     }
 }

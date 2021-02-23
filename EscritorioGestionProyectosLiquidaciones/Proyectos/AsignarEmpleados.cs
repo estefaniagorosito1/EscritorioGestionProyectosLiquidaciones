@@ -48,25 +48,35 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
 
                 if (row.Cells[3].Value != null)
                 {
-                    asignar = (bool) row.Cells[3].Value;
+                    asignar = (bool)row.Cells[3].Value;
                 }
 
                 if (asignar)
                 {
                     var idEmpleado = int.Parse(row.Cells[0].Value.ToString());
 
-                    EmpleadoProyecto empleadoProyecto = new EmpleadoProyecto();
-                    empleadoProyecto.Idproyecto = _proyecto.Idproyecto;
-                    empleadoProyecto.Idempleado = idEmpleado;
+                    EmpleadoProyecto empleadoProyecto = new EmpleadoProyecto
+                    {
+                        Idproyecto = _proyecto.Idproyecto,
+                        Idempleado = idEmpleado
+                    };
 
                     empleadosProyecto.Add(empleadoProyecto);
                 }
             }
 
-             _empleadoProyectoService.Guardar(empleadosProyecto);
+            if (empleadosProyecto.Count == 0)
+            {
+                MessageBox.Show("Debe asignar al menos un empleado", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                _empleadoProyectoService.Guardar(empleadosProyecto);
 
-            MessageBox.Show("Empleados asignados correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Close();
+                MessageBox.Show("Empleados asignados correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Close();
+            }
+
         }
 
         private void AsignarEmpleados_Load(object sender, EventArgs e)
@@ -75,7 +85,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
             empleadosProyectoDataView.DataSource = empleadosProyecto;
 
             List<Empleado> empleadosAQuitar = new List<Empleado>();
-            var empleadosDisponibles = _empleadoService.FiltrarEmpleados();
+            var empleadosDisponibles = _empleadoService.EmpleadosDisponibles();
 
             foreach (var item in empleadosDisponibles)
             {
