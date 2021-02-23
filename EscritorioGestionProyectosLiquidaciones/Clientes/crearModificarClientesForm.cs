@@ -30,49 +30,15 @@ namespace EscritorioGestionProyectosLiquidaciones.Clientes
             _idCliente = 0;
         }
 
-        private void volverBtn_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void guardarBtn_Click(object sender, EventArgs e)
-        {
-            Cliente cliente = new Cliente();
-
-            if (_idCliente == 0)
-            {
-                cliente.NombreCliente = nombreClienteTxt.Text;
-                cliente.ApellidoCliente = apellidoClienteTxt.Text;
-                cliente.EmailCliente = mailTxt.Text;
-                cliente.TelefonoCliente = telefonoTxt.Text;
-                cliente.DireccionCliente = direccionTxt.Text;
-                cliente.LocalidadCliente = (long) dropdownLocalidades.SelectedValue;
-            }
-            else
-            {
-                cliente = _clienteService.FindCliente(_idCliente);
-                cliente.NombreCliente = nombreClienteTxt.Text;
-                cliente.ApellidoCliente = apellidoClienteTxt.Text;
-                cliente.EmailCliente = mailTxt.Text;
-                cliente.TelefonoCliente = telefonoTxt.Text;
-                cliente.DireccionCliente = direccionTxt.Text;
-                cliente.LocalidadCliente = (long) dropdownLocalidades.SelectedValue;
-            }
-
-            _clienteService.Guardar(cliente);
-            MessageBox.Show("Cliente guardado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Close();
-        }
-
         public void LoadCliente(Cliente cliente)
         {
             label1.Text = "Modificar cliente";
             _idCliente = cliente.Idcliente;
 
-            var clienteDB =_clienteService.FindCliente(_idCliente);
+            var clienteDB = _clienteService.FindCliente(_idCliente);
 
-            var provincia = _localidadService.FindProvinciaByLocalidad((long) clienteDB.LocalidadCliente);
-            var localidad = _localidadService.FindLocalidad((long) clienteDB.LocalidadCliente);
+            var provincia = _localidadService.FindProvinciaByLocalidad((long)clienteDB.LocalidadCliente);
+            var localidad = _localidadService.FindLocalidad((long)clienteDB.LocalidadCliente);
 
             dropdownProvincias.DataSource = _provinciaService.FindProvincias();
             dropdownLocalidades.DataSource = _localidadService.FindLocalidadesProvincia(provincia.Idprovincia);
@@ -86,9 +52,56 @@ namespace EscritorioGestionProyectosLiquidaciones.Clientes
             dropdownLocalidades.SelectedValue = localidad.Idlocalidad;
         }
 
+        private void volverBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void guardarBtn_Click(object sender, EventArgs e)
+        {
+            Cliente cliente = new Cliente();
+
+            if (Valid())
+            {
+                if (_idCliente == 0)
+                {
+                    cliente.NombreCliente = nombreClienteTxt.Text;
+                    cliente.ApellidoCliente = apellidoClienteTxt.Text;
+                    cliente.EmailCliente = mailTxt.Text;
+                    cliente.TelefonoCliente = telefonoTxt.Text;
+                    cliente.DireccionCliente = direccionTxt.Text;
+                    cliente.LocalidadCliente = (long)dropdownLocalidades.SelectedValue;
+                }
+                else
+                {
+                    cliente = _clienteService.FindCliente(_idCliente);
+                    cliente.NombreCliente = nombreClienteTxt.Text;
+                    cliente.ApellidoCliente = apellidoClienteTxt.Text;
+                    cliente.EmailCliente = mailTxt.Text;
+                    cliente.TelefonoCliente = telefonoTxt.Text;
+                    cliente.DireccionCliente = direccionTxt.Text;
+                    cliente.LocalidadCliente = (long)dropdownLocalidades.SelectedValue;
+                }
+
+                _clienteService.Guardar(cliente);
+                MessageBox.Show("Cliente guardado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (this.Owner != null)
+                {
+                    ((gestionarClientesForm)this.Owner).LoadClientes();
+                }
+
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Debe completar todos los campos", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         private void crearModificarClientesForm_Load(object sender, EventArgs e)
         {
-            if(_idCliente == 0)
+            if (_idCliente == 0)
             {
                 var data = new List<Provincia>();
 
@@ -121,6 +134,20 @@ namespace EscritorioGestionProyectosLiquidaciones.Clientes
             data.AddRange(_localidadService.FindLocalidadesProvincia(idProvincia));
 
             dropdownLocalidades.DataSource = data;
+        }
+
+        private bool Valid()
+        {
+            bool valid = false;
+
+            if (nombreClienteTxt.Text != string.Empty && apellidoClienteTxt.Text != string.Empty
+                && mailTxt.Text != string.Empty && direccionTxt.Text != string.Empty && telefonoTxt.Text != string.Empty
+                && (long)dropdownProvincias.SelectedValue != 0 && (long)dropdownLocalidades.SelectedValue != 0)
+            {
+                valid = true;
+            }
+
+            return valid;
         }
     }
 }
