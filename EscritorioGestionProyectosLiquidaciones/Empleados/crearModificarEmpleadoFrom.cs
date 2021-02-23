@@ -93,7 +93,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
                     {
                         NombreUsuario = usuarioTxt.Text,
                         PasswordUsuario = contraseñaTxt.Text,
-                        Idrol = (int) rolList.SelectedValue
+                        Idrol = (int)rolList.SelectedValue
                     };
 
                 }
@@ -112,7 +112,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
                     usuario = _usuarioService.FindUsuarioByIdEmpleado(idEmpleado);
                     usuario.NombreUsuario = usuarioTxt.Text;
                     usuario.PasswordUsuario = contraseñaTxt.Text;
-                    usuario.Idrol = (int) rolList.SelectedValue;
+                    usuario.Idrol = (int)rolList.SelectedValue;
                 }
 
                 try
@@ -129,6 +129,12 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
                     _usuarioService.Guardar(usuario);
 
                     MessageBox.Show("Empleado guardado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    if (this.Owner != null)
+                    {
+                        ((gestionarEmpleadosForm)this.Owner).LoadEmpleados();
+                    }
+
                     Close();
 
                 }
@@ -215,17 +221,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
             var valid = false;
             if (telefonoTxt.Text != string.Empty && direccionTxt.Text != string.Empty && nombreEmpleadoTxt.Text != string.Empty
                 && dniTxt.Text != string.Empty && apellidoEmpleadoTxt.Text != string.Empty && usuarioTxt.Text != string.Empty
-                && contraseñaTxt.Text != string.Empty)
-            {
-                valid = true;
-            }
-
-            if ((int) rolList.SelectedValue != 0)
-            {
-                valid = true;
-            }
-
-            if((long) localidadSelected.SelectedValue != 0)
+                && contraseñaTxt.Text != string.Empty && (int)rolList.SelectedValue != 0 && (long)localidadSelected.SelectedValue != 0)
             {
                 valid = true;
             }

@@ -22,6 +22,12 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
             _empleadoService = new EmpleadoService();
         }
 
+        public void LoadEmpleados()
+        {
+            var empleados = _empleadoService.Find();
+            empleadosDataView.DataSource = empleados;
+        }
+
         private void volverBtn_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -29,58 +35,64 @@ namespace EscritorioGestionProyectosLiquidaciones.Empleados
 
         private void gestionarEmpleadosForm_Load(object sender, EventArgs e)
         {
-            var empleados = _empleadoService.Find();
-            empleadosDataView.DataSource = empleados;
+            LoadEmpleados();
         }
 
         private void crearEmpleadoBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
             crearModificarEmpleadoFrom crearModificarEmpleadoFrom = new crearModificarEmpleadoFrom();
-            crearModificarEmpleadoFrom.Show();
+            crearModificarEmpleadoFrom.Show(this);
         }
 
         private void empleadosDataView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewButtonCell buttonCell = (DataGridViewButtonCell)empleadosDataView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-
-            var IdEmpleado = int.Parse(empleadosDataView.Rows[e.RowIndex].Cells[0].Value.ToString());
-
-            if (buttonCell.Value.ToString().Equals("Editar"))
+            try
             {
-                var empleado = _empleadoService.FindEmpleado(IdEmpleado);
+                DataGridViewButtonCell buttonCell = (DataGridViewButtonCell)empleadosDataView.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
-                crearModificarEmpleadoFrom crearModificarEmpleadoFrom = new crearModificarEmpleadoFrom();
-                crearModificarEmpleadoFrom.LoadEmpleado(new Empleado
+                var IdEmpleado = int.Parse(empleadosDataView.Rows[e.RowIndex].Cells[0].Value.ToString());
+
+                if (buttonCell.Value.ToString().Equals("Editar"))
                 {
-                    Idempleado = IdEmpleado,
-                    DniEmpleado = long.Parse(empleadosDataView.Rows[e.RowIndex].Cells[1].Value.ToString()),
-                    NombreEmpleado = empleadosDataView.Rows[e.RowIndex].Cells[2].Value.ToString(),
-                    ApellidoEmpleado = empleadosDataView.Rows[e.RowIndex].Cells[3].Value.ToString(),
-                    Direccion = empleado.Direccion,
-                    FechaIngresoEmpleado = empleado.FechaIngresoEmpleado,
-                    Telefono = empleado.Telefono,
-                });
+                    var empleado = _empleadoService.FindEmpleado(IdEmpleado);
 
-                crearModificarEmpleadoFrom.Text = "Modificar empleado";
-                crearModificarEmpleadoFrom.Show();
-            }
-            else if (buttonCell.Value.ToString().Equals("Eliminar"))
-            {
-                DialogResult result = MessageBox.Show("¿Está seguro de eliminar este empleado?", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                    crearModificarEmpleadoFrom crearModificarEmpleadoFrom = new crearModificarEmpleadoFrom();
+                    crearModificarEmpleadoFrom.LoadEmpleado(new Empleado
+                    {
+                        Idempleado = IdEmpleado,
+                        DniEmpleado = long.Parse(empleadosDataView.Rows[e.RowIndex].Cells[1].Value.ToString()),
+                        NombreEmpleado = empleadosDataView.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                        ApellidoEmpleado = empleadosDataView.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                        Direccion = empleado.Direccion,
+                        FechaIngresoEmpleado = empleado.FechaIngresoEmpleado,
+                        Telefono = empleado.Telefono,
+                    });
 
-                switch (result)
-                {
-                    case DialogResult.OK:
-                        _empleadoService.Eliminar(IdEmpleado);
-                        MessageBox.Show("Empleado eliminado", "Éxito", MessageBoxButtons.OK);
-                        empleadosDataView.DataSource = _empleadoService.Find();
-                        break;
-                    case DialogResult.Cancel:
-                        break;
-                    default:
-                        break;
+                    crearModificarEmpleadoFrom.Text = "Modificar empleado";
+                    crearModificarEmpleadoFrom.Show(this);
                 }
+                else if (buttonCell.Value.ToString().Equals("Eliminar"))
+                {
+                    DialogResult result = MessageBox.Show("¿Está seguro de eliminar este empleado?", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+
+                    switch (result)
+                    {
+                        case DialogResult.OK:
+                            _empleadoService.Eliminar(IdEmpleado);
+                            MessageBox.Show("Empleado eliminado", "Éxito", MessageBoxButtons.OK);
+                            LoadEmpleados();
+                            break;
+                        case DialogResult.Cancel:
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+            }
+            catch (InvalidCastException ex)
+            {
+                // Cuando el usuario haga click en una celda que no es un botón
             }
 
         }
