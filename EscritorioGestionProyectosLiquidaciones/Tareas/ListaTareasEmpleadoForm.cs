@@ -31,25 +31,11 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
             _idEmpleado = idEmpleado;
 
             var data = _tareaService.FindTareasEmpleado(idEmpleado);
+            data.RemoveAll(t => t.finalizada == "true");
             tareasEmpleadoDataGrid.DataSource = data;
 
-            foreach (DataGridViewRow row in tareasEmpleadoDataGrid.Rows)
-            {
-                if (row.Cells[5].Value.ToString() == "false")
-                {
-                    row.Cells[5].Value = "No";
-                }
-                else if (row.Cells[5].Value.ToString() == "true")
-                {
-                    row.Cells[5].Value = "Si";
-                    var agregarBtn = (DataGridViewButtonCell)tareasEmpleadoDataGrid.Rows[row.Index].Cells[6];
-                    agregarBtn.DataGridView.Enabled = false;
+            tareasFinalizadasDataGrid.DataSource = _tareaService.FindTareasFinalizadasEmpleado(idEmpleado);
 
-                    var finalizarBtn = (DataGridViewButtonCell)tareasEmpleadoDataGrid.Rows[row.Index].Cells[7];
-                    finalizarBtn.DataGridView.Enabled = false;
-                }
-
-            }
         }
 
         private void tareasEmpleadoDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -80,14 +66,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
                         MessageBox.Show("Tarea n°" + idTarea + " finalizada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         tarea.finalizada = "true";
                         _tareaService.Guardar(tarea);
-
                         LoadTareasEmpleado(_idEmpleado);
-
-                        var agregarBtn = (DataGridViewButtonCell)tareasEmpleadoDataGrid.Rows[e.RowIndex].Cells[6];
-                        agregarBtn.DataGridView.Enabled = false;
-
-                        var finalizarBtn = (DataGridViewButtonCell)tareasEmpleadoDataGrid.Rows[e.RowIndex].Cells[7];
-                        finalizarBtn.DataGridView.Enabled = false;
                         break;
                     case DialogResult.No:
                         break;
