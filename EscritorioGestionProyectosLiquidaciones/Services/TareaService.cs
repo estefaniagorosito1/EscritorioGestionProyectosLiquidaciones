@@ -25,6 +25,14 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
             }
         }
 
+        public List<Tarea> FindTareasFinalizadasEmpleado(int idEmpleado)
+        {
+            using (var dbContext = new TpSeminarioContext())
+            {
+                return dbContext.Tarea.Where(t => t.Idempleado == idEmpleado && t.finalizada == "true").ToList();
+            }
+        }
+
         public void Guardar(Tarea tarea)
         {
             using (var dbContext = new TpSeminarioContext())
