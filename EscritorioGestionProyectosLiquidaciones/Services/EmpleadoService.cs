@@ -75,7 +75,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
             }
         }
 
-        public List<Empleado> FiltrarEmpleados()
+        public List<Empleado> EmpleadosDisponibles()
         {
             using (var dbContext = new TpSeminarioContext())
             {
