@@ -147,6 +147,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Liquidaciones\GenerarLiquidacionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Liquidaciones\GenerarLiquidacionForm.Designer.cs">
+      <DependentUpon>GenerarLiquidacionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Liquidaciones\ReporteLiquidacionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Liquidaciones\ReporteLiquidacionForm.Designer.cs">
+      <DependentUpon>ReporteLiquidacionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HorasReportBody.cs" />
     <Compile Include="Perfiles\AsignarPerfilesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -231,10 +244,17 @@
     <Compile Include="Proyectos\gestionarProyectosForm.Designer.cs">
       <DependentUpon>gestionarProyectosForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Proyectos\InformeHorasProyecto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Proyectos\InformeHorasProyecto.Designer.cs">
+      <DependentUpon>InformeHorasProyecto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Services\ClienteService.cs" />
     <Compile Include="Services\EmpleadoProyectoService.cs" />
     <Compile Include="Services\EmpleadoService.cs" />
     <Compile Include="Services\HoraTrabajadaService.cs" />
+    <Compile Include="Services\LiquidacionService.cs" />
     <Compile Include="Services\LocalidadService.cs" />
     <Compile Include="Services\PerfilEmpleadoService.cs" />
     <Compile Include="Services\PerfilService.cs" />
@@ -262,6 +282,12 @@
     <Compile Include="Tareas\ListaTareasEmpleadoForm.Designer.cs">
       <DependentUpon>ListaTareasEmpleadoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tareas\TareasFinalizadasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tareas\TareasFinalizadasForm.Designer.cs">
+      <DependentUpon>TareasFinalizadasForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Clientes\crearModificarClientesForm.resx">
       <DependentUpon>crearModificarClientesForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -276,6 +302,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Liquidaciones\GenerarLiquidacionForm.resx">
+      <DependentUpon>GenerarLiquidacionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Liquidaciones\ReporteLiquidacionForm.resx">
+      <DependentUpon>ReporteLiquidacionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -297,6 +329,11 @@
     <EmbeddedResource Include="Proyectos\gestionarProyectosForm.resx">
       <DependentUpon>gestionarProyectosForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Proyectos\InformeHorasProyecto.resx">
+      <DependentUpon>InformeHorasProyecto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ReporteHoras.rdlc" />
+    <EmbeddedResource Include="Reportes\ReporteLiquidacion.rdlc" />
     <EmbeddedResource Include="Tareas\CargarHorasTarea.resx">
       <DependentUpon>CargarHorasTarea.cs</DependentUpon>
     </EmbeddedResource>
@@ -306,10 +343,19 @@
     <EmbeddedResource Include="Tareas\ListaTareasEmpleadoForm.resx">
       <DependentUpon>ListaTareasEmpleadoForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Tareas\TareasFinalizadasForm.resx">
+      <DependentUpon>TareasFinalizadasForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\EscritorioGestionProyectosLiquidaciones.Models.Cliente.datasource" />
     <None Include="Properties\DataSources\EscritorioGestionProyectosLiquidaciones.Models.Empleado.datasource" />
+    <None Include="Properties\DataSources\EscritorioGestionProyectosLiquidaciones.Models.EscalaAntiguedad.datasource" />
+    <None Include="Properties\DataSources\EscritorioGestionProyectosLiquidaciones.Models.EscalaHoras.datasource" />
+    <None Include="Properties\DataSources\EscritorioGestionProyectosLiquidaciones.Models.EscalaPerfiles.datasource" />
+    <None Include="Properties\DataSources\EscritorioGestionProyectosLiquidaciones.Models.HorasReportBody.datasource" />
+    <None Include="Properties\DataSources\EscritorioGestionProyectosLiquidaciones.Models.Liquidacion.datasource" />
     <None Include="Properties\DataSources\EscritorioGestionProyectosLiquidaciones.Models.Localidad.datasource" />
+    <None Include="Properties\DataSources\EscritorioGestionProyectosLiquidaciones.Models.Perfil.datasource" />
     <None Include="Properties\DataSources\EscritorioGestionProyectosLiquidaciones.Models.Provincia.datasource" />
     <None Include="Properties\DataSources\EscritorioGestionProyectosLiquidaciones.Models.Proyecto.datasource" />
     <None Include="Properties\DataSources\EscritorioGestionProyectosLiquidaciones.Models.Tarea.datasource" />

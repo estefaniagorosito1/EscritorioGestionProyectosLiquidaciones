@@ -213,8 +213,9 @@
             this.liquidacionBtn.Image = ((System.Drawing.Image)(resources.GetObject("liquidacionBtn.Image")));
             this.liquidacionBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.liquidacionBtn.Name = "liquidacionBtn";
-            this.liquidacionBtn.Size = new System.Drawing.Size(73, 22);
-            this.liquidacionBtn.Text = "Liquidación";
+            this.liquidacionBtn.Size = new System.Drawing.Size(114, 22);
+            this.liquidacionBtn.Text = "Generar liquidación";
+            this.liquidacionBtn.Click += new System.EventHandler(this.liquidacionBtn_Click);
             // 
             // salirBtn
             // 

@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using EscritorioGestionProyectosLiquidaciones.Models;
 using EscritorioGestionProyectosLiquidaciones.Services;
 using EscritorioGestionProyectosLiquidaciones.Tareas;
+using EscritorioGestionProyectosLiquidaciones.Liquidaciones;
 
 namespace EscritorioGestionProyectosLiquidaciones
 {
@@ -76,6 +77,23 @@ namespace EscritorioGestionProyectosLiquidaciones
         }
         #endregion
 
+        #region TAREAS
+        private void misTareasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListaTareasEmpleadoForm listaTareasEmpleadoForm = new ListaTareasEmpleadoForm();
+            listaTareasEmpleadoForm.LoadTareasEmpleado(_usuarioSession.Idempleado);
+            listaTareasEmpleadoForm.Show();
+        }
+        #endregion
+
+        #region LIQUIDACIONES
+        private void liquidacionBtn_Click(object sender, EventArgs e)
+        {
+            GenerarLiquidacionForm generarLiquidacionForm = new GenerarLiquidacionForm();
+            generarLiquidacionForm.Show();
+        }
+        #endregion
+
         private void salirBtn_Click(object sender, EventArgs e)
         {
             DialogResult dialog = MessageBox.Show("¿Está seguro que desea salir?", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
@@ -93,13 +111,6 @@ namespace EscritorioGestionProyectosLiquidaciones
         private void Home_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
-        }
-
-        private void misTareasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ListaTareasEmpleadoForm listaTareasEmpleadoForm = new ListaTareasEmpleadoForm();
-            listaTareasEmpleadoForm.LoadTareasEmpleado(_usuarioSession.Idempleado);
-            listaTareasEmpleadoForm.Show();
         }
 
         public void StoreUsuarioSession(string nombreUsuario, string password)
@@ -129,13 +140,11 @@ namespace EscritorioGestionProyectosLiquidaciones
                 toolStrip1.Items.Remove(liquidacionBtn);
             }
 
-            if (rolUsuario.DescripcionRol == "Administrativo")
+            if (rolUsuario.DescripcionRol == "Root")
             {
-                toolStripDropDownButton1.DropDownItems.Remove(empleadosToolStripMenuItem);
-                toolStripDropDownButton1.DropDownItems.Remove(clientesToolStripMenuItem);
-                toolStripDropDownButton1.DropDownItems.Remove(proyectosToolStripMenuItem);
                 toolStripDropDownButton1.DropDownItems.Remove(misTareasToolStripMenuItem);
             }
         }
+
     }
 }
