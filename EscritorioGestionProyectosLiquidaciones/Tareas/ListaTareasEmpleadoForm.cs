@@ -40,41 +40,47 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
 
         private void tareasEmpleadoDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewButtonCell buttonCell = (DataGridViewButtonCell)tareasEmpleadoDataGrid.Rows[e.RowIndex].Cells[e.ColumnIndex];
-
-            if (buttonCell.Value.ToString().Equals("Agregar horas"))
+            try
             {
-                var idTarea = int.Parse(tareasEmpleadoDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
-                var horasEstimadas = int.Parse(tareasEmpleadoDataGrid.Rows[e.RowIndex].Cells[2].Value.ToString());
-                var horasTrabajadas = int.Parse(tareasEmpleadoDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString());
+                DataGridViewButtonCell buttonCell = (DataGridViewButtonCell)tareasEmpleadoDataGrid.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
-                CargarHorasTarea cargarHorasTareaForm = new CargarHorasTarea();
-                cargarHorasTareaForm.Text = cargarHorasTareaForm.Text + " - Tarea n°" + idTarea;
-                cargarHorasTareaForm.LoadHorasTarea(horasEstimadas, horasTrabajadas, idTarea, _idEmpleado);
-                cargarHorasTareaForm.ShowDialog(this);
-
-            }
-            else if (buttonCell.Value.ToString().Equals("Finalizar"))
-            {
-                var idTarea = int.Parse(tareasEmpleadoDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
-                Tarea tarea = _tareaService.FindTarea(idTarea);
-                DialogResult result = MessageBox.Show("¿Desea marcar esta tarea como finalizada?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                switch (result)
+                if (buttonCell.Value.ToString().Equals("Agregar horas"))
                 {
-                    case DialogResult.Yes:
-                        MessageBox.Show("Tarea n°" + idTarea + " finalizada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        tarea.finalizada = "true";
-                        _tareaService.Guardar(tarea);
-                        LoadTareasEmpleado(_idEmpleado);
-                        break;
-                    case DialogResult.No:
-                        break;
-                    default:
-                        break;
+                    var idTarea = int.Parse(tareasEmpleadoDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    var horasEstimadas = int.Parse(tareasEmpleadoDataGrid.Rows[e.RowIndex].Cells[2].Value.ToString());
+                    var horasTrabajadas = int.Parse(tareasEmpleadoDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString());
+
+                    CargarHorasTarea cargarHorasTareaForm = new CargarHorasTarea();
+                    cargarHorasTareaForm.Text = cargarHorasTareaForm.Text + " - Tarea n°" + idTarea;
+                    cargarHorasTareaForm.LoadHorasTarea(horasEstimadas, horasTrabajadas, idTarea, _idEmpleado);
+                    cargarHorasTareaForm.ShowDialog(this);
+
+                }
+                else if (buttonCell.Value.ToString().Equals("Finalizar"))
+                {
+                    var idTarea = int.Parse(tareasEmpleadoDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    Tarea tarea = _tareaService.FindTarea(idTarea);
+                    DialogResult result = MessageBox.Show("¿Desea marcar esta tarea como finalizada?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    switch (result)
+                    {
+                        case DialogResult.Yes:
+                            MessageBox.Show("Tarea n°" + idTarea + " finalizada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            tarea.finalizada = "true";
+                            _tareaService.Guardar(tarea);
+                            LoadTareasEmpleado(_idEmpleado);
+                            break;
+                        case DialogResult.No:
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
+            catch (Exception)
+            {
 
+            }
 
         }
     }

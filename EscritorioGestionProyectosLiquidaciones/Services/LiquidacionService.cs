@@ -26,7 +26,6 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
                 DateTime fechaIngreso = dbContext.Empleado.Find(liquidacion.Idempleado).FechaIngresoEmpleado;
                 int antiguedad = DateTime.Today.Year - fechaIngreso.Year;
 
-                // Horas trabajadas ht.FechaHoraTrabajada.Month == liquidacion.MesLiquidado
                 List<HoraTrabajada> horas = dbContext.HoraTrabajada
                                                         .Where(ht => ht.Idempleado == liquidacion.Idempleado 
                                                                 && ht.FechaHoraTrabajada.Month == liquidacion.MesLiquidado 
@@ -38,8 +37,21 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
                     throw new Exception("No hay horas adeudadas en el mes seleccionado");
                 }
 
-                // REVISAR Y COMPARAR CON WEB
-                var tareasEmpleado = dbContext.Tarea.Where(t => t.Idempleado == liquidacion.Idempleado).ToList();
+                List<Tarea> tareasAdeudadas = new List<Tarea>(); ;
+
+                foreach (var horaTrabajada in horas)
+                {
+                    // Por cada adeudada traigo la tarea de esa adeudada
+                    tareasAdeudadas.Add(dbContext.Tarea.Where(t => t.Idtarea == horaTrabajada.Idtarea).First());
+                }
+
+                var importeHorasOverbudget = 0;
+                foreach (var tarea in tareasAdeudadas)
+                {
+                    // Por cada tarea calculo aplico la formula overbudget.
+                    var perfilTarea = dbContext.Perfil.Where(p => p.Idperfil == tarea.Idperfil).First();
+                    importeHorasOverbudget = importeHorasOverbudget + (int)tarea.HorasOverbudget * (perfilTarea.ValorHora / 2);
+                }
 
                 foreach (var item in horas)
                 {
@@ -50,18 +62,6 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
                 liquidacion.ImporteLiquidacion = horas.Sum(x => x.CantidadHoraTrabajada <= 8 ?
                                                            x.CantidadHoraTrabajada * dbContext.Perfil.Find(x.Idperfil).ValorHora
                                                            : (x.CantidadHoraTrabajada - 8) * dbContext.Perfil.Find(x.Idperfil).ValorHora * (float)1.5 + (8 * dbContext.Perfil.Find(x.Idperfil).ValorHora));
-
-                // ------------------------------------
-                // Las horas overbudget se pagan al 50%
-                var descuentoHoras = 0;
-                foreach (var item in tareasEmpleado)
-                {
-                    int horasOverbudget = (int) item.HorasOverbudget * (dbContext.Perfil.Find(item.Idperfil).ValorHora / 2);
-                    descuentoHoras = descuentoHoras + horasOverbudget;
-                }
-
-                liquidacion.ImporteLiquidacion = liquidacion.ImporteLiquidacion - descuentoHoras;
-                // ------------------------------------
 
                 // Chequeo si realizo horas bajo más de un perfil
                 var perfiles = horas.Select(x => x.Idperfil).Distinct().Count();

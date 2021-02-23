@@ -51,7 +51,7 @@
             this.panel1.Controls.Add(this.recuperarPassword);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(145, 49);
+            this.panel1.Location = new System.Drawing.Point(25, 28);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(454, 340);
             this.panel1.TabIndex = 0;
@@ -73,7 +73,7 @@
             this.passwordTxt.Name = "passwordTxt";
             this.passwordTxt.PasswordChar = '*';
             this.passwordTxt.Size = new System.Drawing.Size(279, 26);
-            this.passwordTxt.TabIndex = 6;
+            this.passwordTxt.TabIndex = 1;
             // 
             // userTxt
             // 
@@ -81,7 +81,7 @@
             this.userTxt.Location = new System.Drawing.Point(92, 168);
             this.userTxt.Name = "userTxt";
             this.userTxt.Size = new System.Drawing.Size(279, 26);
-            this.userTxt.TabIndex = 4;
+            this.userTxt.TabIndex = 0;
             // 
             // ingresarBtn
             // 
@@ -89,7 +89,7 @@
             this.ingresarBtn.Location = new System.Drawing.Point(174, 277);
             this.ingresarBtn.Name = "ingresarBtn";
             this.ingresarBtn.Size = new System.Drawing.Size(99, 29);
-            this.ingresarBtn.TabIndex = 3;
+            this.ingresarBtn.TabIndex = 2;
             this.ingresarBtn.Text = "Ingresar";
             this.ingresarBtn.UseVisualStyleBackColor = true;
             this.ingresarBtn.Click += new System.EventHandler(this.ingresarBtn_Click);
@@ -126,7 +126,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
-            this.ClientSize = new System.Drawing.Size(747, 450);
+            this.ClientSize = new System.Drawing.Size(511, 400);
             this.Controls.Add(this.panel1);
             this.Name = "LoginForm";
             this.Text = "Login";

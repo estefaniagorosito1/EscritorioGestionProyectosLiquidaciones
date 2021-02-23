@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.rolList = new System.Windows.Forms.ComboBox();
             this.asignarBtn = new System.Windows.Forms.Button();
             this.contraseñaTxt = new System.Windows.Forms.MaskedTextBox();
             this.guardarBtn = new System.Windows.Forms.Button();
@@ -51,8 +53,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.rolList = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,12 +88,32 @@
             this.panel1.Size = new System.Drawing.Size(741, 389);
             this.panel1.TabIndex = 0;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(486, 253);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(38, 17);
+            this.label9.TabIndex = 32;
+            this.label9.Text = "Rol *";
+            // 
+            // rolList
+            // 
+            this.rolList.DisplayMember = "DescripcionRol";
+            this.rolList.FormattingEnabled = true;
+            this.rolList.Location = new System.Drawing.Point(489, 273);
+            this.rolList.Name = "rolList";
+            this.rolList.Size = new System.Drawing.Size(200, 21);
+            this.rolList.TabIndex = 20;
+            this.rolList.ValueMember = "Idrol";
+            // 
             // asignarBtn
             // 
             this.asignarBtn.Location = new System.Drawing.Point(239, 329);
             this.asignarBtn.Name = "asignarBtn";
             this.asignarBtn.Size = new System.Drawing.Size(94, 23);
-            this.asignarBtn.TabIndex = 30;
+            this.asignarBtn.TabIndex = 23;
             this.asignarBtn.Text = "Asignar perfiles";
             this.asignarBtn.UseVisualStyleBackColor = true;
             this.asignarBtn.Click += new System.EventHandler(this.asignarBtn_Click);
@@ -104,7 +124,7 @@
             this.contraseñaTxt.Name = "contraseñaTxt";
             this.contraseñaTxt.PasswordChar = '*';
             this.contraseñaTxt.Size = new System.Drawing.Size(200, 20);
-            this.contraseñaTxt.TabIndex = 29;
+            this.contraseñaTxt.TabIndex = 19;
             // 
             // guardarBtn
             // 
@@ -135,7 +155,7 @@
             this.localidadSelected.Location = new System.Drawing.Point(374, 204);
             this.localidadSelected.Name = "localidadSelected";
             this.localidadSelected.Size = new System.Drawing.Size(315, 21);
-            this.localidadSelected.TabIndex = 19;
+            this.localidadSelected.TabIndex = 17;
             this.localidadSelected.ValueMember = "Idlocalidad";
             // 
             // provinciaSelected
@@ -145,7 +165,7 @@
             this.provinciaSelected.Location = new System.Drawing.Point(33, 204);
             this.provinciaSelected.Name = "provinciaSelected";
             this.provinciaSelected.Size = new System.Drawing.Size(315, 21);
-            this.provinciaSelected.TabIndex = 18;
+            this.provinciaSelected.TabIndex = 16;
             this.provinciaSelected.ValueMember = "Idprovincia";
             this.provinciaSelected.SelectionChangeCommitted += new System.EventHandler(this.provinciaSelected_SelectionChangeCommitted);
             // 
@@ -154,7 +174,7 @@
             this.usuarioTxt.Location = new System.Drawing.Point(33, 275);
             this.usuarioTxt.Name = "usuarioTxt";
             this.usuarioTxt.Size = new System.Drawing.Size(200, 20);
-            this.usuarioTxt.TabIndex = 16;
+            this.usuarioTxt.TabIndex = 18;
             // 
             // direccionTxt
             // 
@@ -290,26 +310,6 @@
             this.label1.Size = new System.Drawing.Size(146, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "Crear empleado";
-            // 
-            // rolList
-            // 
-            this.rolList.DisplayMember = "DescripcionRol";
-            this.rolList.FormattingEnabled = true;
-            this.rolList.Location = new System.Drawing.Point(489, 273);
-            this.rolList.Name = "rolList";
-            this.rolList.Size = new System.Drawing.Size(200, 21);
-            this.rolList.TabIndex = 31;
-            this.rolList.ValueMember = "Idrol";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(486, 253);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(38, 17);
-            this.label9.TabIndex = 32;
-            this.label9.Text = "Rol *";
             // 
             // crearModificarEmpleadoFrom
             // 

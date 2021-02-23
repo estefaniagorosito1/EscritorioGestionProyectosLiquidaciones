@@ -29,12 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.proyectosFinalizadosDataGrid = new System.Windows.Forms.DataGridView();
+            this.idproyectoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreProyectoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcionDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaInicioProyectoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaFinProyectoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estadisticas = new System.Windows.Forms.DataGridViewButtonColumn();
             this.proyectoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.crearBtn = new System.Windows.Forms.Button();
             this.volverBtn = new System.Windows.Forms.Button();
@@ -50,12 +56,6 @@
             this.informeHoras = new System.Windows.Forms.DataGridViewButtonColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.idproyectoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreProyectoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcionDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaInicioProyectoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaFinProyectoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estadisticas = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.proyectosFinalizadosDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).BeginInit();
@@ -92,6 +92,7 @@
             this.proyectosFinalizadosDataGrid.AllowUserToAddRows = false;
             this.proyectosFinalizadosDataGrid.AllowUserToDeleteRows = false;
             this.proyectosFinalizadosDataGrid.AutoGenerateColumns = false;
+            this.proyectosFinalizadosDataGrid.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.proyectosFinalizadosDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.proyectosFinalizadosDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idproyectoDataGridViewTextBoxColumn1,
@@ -107,6 +108,59 @@
             this.proyectosFinalizadosDataGrid.Size = new System.Drawing.Size(699, 111);
             this.proyectosFinalizadosDataGrid.TabIndex = 5;
             this.proyectosFinalizadosDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.proyectosFinalizadosDataGrid_CellContentClick);
+            // 
+            // idproyectoDataGridViewTextBoxColumn1
+            // 
+            this.idproyectoDataGridViewTextBoxColumn1.DataPropertyName = "Idproyecto";
+            this.idproyectoDataGridViewTextBoxColumn1.FillWeight = 30F;
+            this.idproyectoDataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.idproyectoDataGridViewTextBoxColumn1.Name = "idproyectoDataGridViewTextBoxColumn1";
+            this.idproyectoDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.idproyectoDataGridViewTextBoxColumn1.Width = 30;
+            // 
+            // nombreProyectoDataGridViewTextBoxColumn1
+            // 
+            this.nombreProyectoDataGridViewTextBoxColumn1.DataPropertyName = "NombreProyecto";
+            this.nombreProyectoDataGridViewTextBoxColumn1.HeaderText = "Nombre";
+            this.nombreProyectoDataGridViewTextBoxColumn1.Name = "nombreProyectoDataGridViewTextBoxColumn1";
+            this.nombreProyectoDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // descripcionDataGridViewTextBoxColumn1
+            // 
+            this.descripcionDataGridViewTextBoxColumn1.DataPropertyName = "Descripcion";
+            this.descripcionDataGridViewTextBoxColumn1.FillWeight = 224F;
+            this.descripcionDataGridViewTextBoxColumn1.HeaderText = "Descripcion";
+            this.descripcionDataGridViewTextBoxColumn1.Name = "descripcionDataGridViewTextBoxColumn1";
+            this.descripcionDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.descripcionDataGridViewTextBoxColumn1.Width = 224;
+            // 
+            // fechaInicioProyectoDataGridViewTextBoxColumn1
+            // 
+            this.fechaInicioProyectoDataGridViewTextBoxColumn1.DataPropertyName = "FechaInicioProyecto";
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.fechaInicioProyectoDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle1;
+            this.fechaInicioProyectoDataGridViewTextBoxColumn1.HeaderText = "Fecha Inicio";
+            this.fechaInicioProyectoDataGridViewTextBoxColumn1.Name = "fechaInicioProyectoDataGridViewTextBoxColumn1";
+            this.fechaInicioProyectoDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // fechaFinProyectoDataGridViewTextBoxColumn
+            // 
+            this.fechaFinProyectoDataGridViewTextBoxColumn.DataPropertyName = "FechaFinProyecto";
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.fechaFinProyectoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.fechaFinProyectoDataGridViewTextBoxColumn.HeaderText = "Fecha Fin";
+            this.fechaFinProyectoDataGridViewTextBoxColumn.Name = "fechaFinProyectoDataGridViewTextBoxColumn";
+            this.fechaFinProyectoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // estadisticas
+            // 
+            this.estadisticas.HeaderText = "";
+            this.estadisticas.Name = "estadisticas";
+            this.estadisticas.ReadOnly = true;
+            this.estadisticas.Text = "Estadísticas";
+            this.estadisticas.UseColumnTextForButtonValue = true;
             // 
             // proyectoBindingSource
             // 
@@ -137,6 +191,7 @@
             this.proyectosDataView.AllowUserToAddRows = false;
             this.proyectosDataView.AllowUserToDeleteRows = false;
             this.proyectosDataView.AutoGenerateColumns = false;
+            this.proyectosDataView.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.proyectosDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.proyectosDataView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idproyectoDataGridViewTextBoxColumn,
@@ -259,59 +314,6 @@
             this.label1.Size = new System.Drawing.Size(161, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "Lista de proyectos";
-            // 
-            // idproyectoDataGridViewTextBoxColumn1
-            // 
-            this.idproyectoDataGridViewTextBoxColumn1.DataPropertyName = "Idproyecto";
-            this.idproyectoDataGridViewTextBoxColumn1.FillWeight = 30F;
-            this.idproyectoDataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.idproyectoDataGridViewTextBoxColumn1.Name = "idproyectoDataGridViewTextBoxColumn1";
-            this.idproyectoDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.idproyectoDataGridViewTextBoxColumn1.Width = 30;
-            // 
-            // nombreProyectoDataGridViewTextBoxColumn1
-            // 
-            this.nombreProyectoDataGridViewTextBoxColumn1.DataPropertyName = "NombreProyecto";
-            this.nombreProyectoDataGridViewTextBoxColumn1.HeaderText = "Nombre";
-            this.nombreProyectoDataGridViewTextBoxColumn1.Name = "nombreProyectoDataGridViewTextBoxColumn1";
-            this.nombreProyectoDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // descripcionDataGridViewTextBoxColumn1
-            // 
-            this.descripcionDataGridViewTextBoxColumn1.DataPropertyName = "Descripcion";
-            this.descripcionDataGridViewTextBoxColumn1.FillWeight = 224F;
-            this.descripcionDataGridViewTextBoxColumn1.HeaderText = "Descripcion";
-            this.descripcionDataGridViewTextBoxColumn1.Name = "descripcionDataGridViewTextBoxColumn1";
-            this.descripcionDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.descripcionDataGridViewTextBoxColumn1.Width = 224;
-            // 
-            // fechaInicioProyectoDataGridViewTextBoxColumn1
-            // 
-            this.fechaInicioProyectoDataGridViewTextBoxColumn1.DataPropertyName = "FechaInicioProyecto";
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.fechaInicioProyectoDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.fechaInicioProyectoDataGridViewTextBoxColumn1.HeaderText = "Fecha Inicio";
-            this.fechaInicioProyectoDataGridViewTextBoxColumn1.Name = "fechaInicioProyectoDataGridViewTextBoxColumn1";
-            this.fechaInicioProyectoDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // fechaFinProyectoDataGridViewTextBoxColumn
-            // 
-            this.fechaFinProyectoDataGridViewTextBoxColumn.DataPropertyName = "FechaFinProyecto";
-            dataGridViewCellStyle2.Format = "d";
-            dataGridViewCellStyle2.NullValue = null;
-            this.fechaFinProyectoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.fechaFinProyectoDataGridViewTextBoxColumn.HeaderText = "Fecha Fin";
-            this.fechaFinProyectoDataGridViewTextBoxColumn.Name = "fechaFinProyectoDataGridViewTextBoxColumn";
-            this.fechaFinProyectoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // estadisticas
-            // 
-            this.estadisticas.HeaderText = "";
-            this.estadisticas.Name = "estadisticas";
-            this.estadisticas.ReadOnly = true;
-            this.estadisticas.Text = "Estadísticas";
-            this.estadisticas.UseColumnTextForButtonValue = true;
             // 
             // gestionarProyectosForm
             // 

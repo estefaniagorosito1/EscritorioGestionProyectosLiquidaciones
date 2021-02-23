@@ -29,14 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.crearEmpleadoBtn = new System.Windows.Forms.Button();
             this.volverBtn = new System.Windows.Forms.Button();
             this.empleadosDataView = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.empleadoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idempleadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dniEmpleadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreEmpleadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,6 +41,9 @@
             this.FechaIngresoEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.empleadoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.empleadosDataView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.empleadoBindingSource)).BeginInit();
@@ -89,6 +89,7 @@
             this.empleadosDataView.AllowUserToAddRows = false;
             this.empleadosDataView.AllowUserToDeleteRows = false;
             this.empleadosDataView.AutoGenerateColumns = false;
+            this.empleadosDataView.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.empleadosDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.empleadosDataView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idempleadoDataGridViewTextBoxColumn,
@@ -105,31 +106,6 @@
             this.empleadosDataView.Size = new System.Drawing.Size(699, 250);
             this.empleadosDataView.TabIndex = 2;
             this.empleadosDataView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.empleadosDataView_CellContentClick);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(18, 46);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(187, 17);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Cree y modifique empleados";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(18, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(173, 24);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Lista de empleados";
-            // 
-            // empleadoBindingSource
-            // 
-            this.empleadoBindingSource.DataSource = typeof(EscritorioGestionProyectosLiquidaciones.Models.Empleado);
             // 
             // idempleadoDataGridViewTextBoxColumn
             // 
@@ -168,9 +144,9 @@
             // FechaIngresoEmpleado
             // 
             this.FechaIngresoEmpleado.DataPropertyName = "FechaIngresoEmpleado";
-            dataGridViewCellStyle2.Format = "d";
-            dataGridViewCellStyle2.NullValue = null;
-            this.FechaIngresoEmpleado.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.FechaIngresoEmpleado.DefaultCellStyle = dataGridViewCellStyle1;
             this.FechaIngresoEmpleado.FillWeight = 120F;
             this.FechaIngresoEmpleado.HeaderText = "Fecha de ingreso";
             this.FechaIngresoEmpleado.Name = "FechaIngresoEmpleado";
@@ -196,6 +172,31 @@
             this.Eliminar.Text = "Eliminar";
             this.Eliminar.UseColumnTextForButtonValue = true;
             this.Eliminar.Width = 77;
+            // 
+            // empleadoBindingSource
+            // 
+            this.empleadoBindingSource.DataSource = typeof(EscritorioGestionProyectosLiquidaciones.Models.Empleado);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label2.Location = new System.Drawing.Point(18, 46);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(187, 17);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Cree y modifique empleados";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(18, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(173, 24);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Lista de empleados";
             // 
             // gestionarEmpleadosForm
             // 

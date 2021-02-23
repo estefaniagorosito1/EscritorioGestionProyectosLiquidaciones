@@ -64,7 +64,7 @@
             this.nombreClienteTxt.Location = new System.Drawing.Point(32, 105);
             this.nombreClienteTxt.Name = "nombreClienteTxt";
             this.nombreClienteTxt.Size = new System.Drawing.Size(200, 20);
-            this.nombreClienteTxt.TabIndex = 2;
+            this.nombreClienteTxt.TabIndex = 0;
             // 
             // label2
             // 
@@ -148,7 +148,7 @@
             this.dropdownLocalidades.Location = new System.Drawing.Point(385, 264);
             this.dropdownLocalidades.Name = "dropdownLocalidades";
             this.dropdownLocalidades.Size = new System.Drawing.Size(300, 21);
-            this.dropdownLocalidades.TabIndex = 18;
+            this.dropdownLocalidades.TabIndex = 6;
             this.dropdownLocalidades.ValueMember = "Idlocalidad";
             // 
             // mailTxt
@@ -156,28 +156,28 @@
             this.mailTxt.Location = new System.Drawing.Point(385, 182);
             this.mailTxt.Name = "mailTxt";
             this.mailTxt.Size = new System.Drawing.Size(300, 20);
-            this.mailTxt.TabIndex = 17;
+            this.mailTxt.TabIndex = 4;
             // 
             // apellidoClienteTxt
             // 
             this.apellidoClienteTxt.Location = new System.Drawing.Point(263, 105);
             this.apellidoClienteTxt.Name = "apellidoClienteTxt";
             this.apellidoClienteTxt.Size = new System.Drawing.Size(200, 20);
-            this.apellidoClienteTxt.TabIndex = 16;
+            this.apellidoClienteTxt.TabIndex = 1;
             // 
             // direccionTxt
             // 
             this.direccionTxt.Location = new System.Drawing.Point(485, 105);
             this.direccionTxt.Name = "direccionTxt";
             this.direccionTxt.Size = new System.Drawing.Size(200, 20);
-            this.direccionTxt.TabIndex = 15;
+            this.direccionTxt.TabIndex = 2;
             // 
             // telefonoTxt
             // 
             this.telefonoTxt.Location = new System.Drawing.Point(32, 182);
             this.telefonoTxt.Name = "telefonoTxt";
             this.telefonoTxt.Size = new System.Drawing.Size(300, 20);
-            this.telefonoTxt.TabIndex = 14;
+            this.telefonoTxt.TabIndex = 3;
             // 
             // label8
             // 
@@ -206,7 +206,7 @@
             this.dropdownProvincias.Location = new System.Drawing.Point(32, 264);
             this.dropdownProvincias.Name = "dropdownProvincias";
             this.dropdownProvincias.Size = new System.Drawing.Size(300, 21);
-            this.dropdownProvincias.TabIndex = 2;
+            this.dropdownProvincias.TabIndex = 5;
             this.dropdownProvincias.ValueMember = "Idprovincia";
             this.dropdownProvincias.SelectionChangeCommitted += new System.EventHandler(this.dropdownProvincias_SelectionChangeCommitted);
             // 
@@ -216,7 +216,7 @@
             this.volverBtn.Location = new System.Drawing.Point(32, 319);
             this.volverBtn.Name = "volverBtn";
             this.volverBtn.Size = new System.Drawing.Size(85, 25);
-            this.volverBtn.TabIndex = 1;
+            this.volverBtn.TabIndex = 7;
             this.volverBtn.Text = "Volver";
             this.volverBtn.UseVisualStyleBackColor = true;
             this.volverBtn.Click += new System.EventHandler(this.volverBtn_Click);
@@ -227,7 +227,7 @@
             this.guardarBtn.Location = new System.Drawing.Point(123, 319);
             this.guardarBtn.Name = "guardarBtn";
             this.guardarBtn.Size = new System.Drawing.Size(94, 25);
-            this.guardarBtn.TabIndex = 0;
+            this.guardarBtn.TabIndex = 8;
             this.guardarBtn.Text = "Guardar cliente";
             this.guardarBtn.UseVisualStyleBackColor = true;
             this.guardarBtn.Click += new System.EventHandler(this.guardarBtn_Click);

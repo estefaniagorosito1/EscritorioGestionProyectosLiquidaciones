@@ -117,43 +117,51 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
 
         private void tareasDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewButtonCell buttonCell = (DataGridViewButtonCell)tareasDataGrid.Rows[e.RowIndex].Cells[e.ColumnIndex];
-
-            if (buttonCell.Value.ToString().Equals("Editar"))
+            try
             {
-                _idTarea = (int)tareasDataGrid.Rows[e.RowIndex].Cells[0].Value;
-                descripcionTxt.Text = tareasDataGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
-                cantHoras.Value = (int)tareasDataGrid.Rows[e.RowIndex].Cells[2].Value;
+                DataGridViewButtonCell buttonCell = (DataGridViewButtonCell)tareasDataGrid.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
-                // Deshabilito el campo de horas estimadas
-                cantHoras.Enabled = false;
-
-                var tarea = _tareaService.FindTarea(_idTarea);
-                empleadosList.DataSource = GetEmpleados(_idProyecto);
-                empleadosList.SelectedValue = tarea.Idempleado;
-
-                perfilesEmpleadoList.DataSource = GetPerfilesEmpleado(tarea.Idempleado);
-                perfilesEmpleadoList.SelectedValue = tarea.Idperfil;
-
-                label1.Text = "Modificar tarea";
-            }
-            else if (buttonCell.Value.ToString().Equals("Eliminar"))
-            {
-                DialogResult result = MessageBox.Show("¿Está seguro de eliminar esta tarea?", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
-
-                switch (result)
+                if (buttonCell.Value.ToString().Equals("Editar"))
                 {
-                    case DialogResult.OK:
-                        _tareaService.Eliminar(_idTarea);
-                        MessageBox.Show("Tarea eliminada", "Éxito", MessageBoxButtons.OK);
-                        tareasDataGrid.DataSource = _tareaService.FindTareasSinFinalizarProyecto(_idProyecto);
-                        break;
-                    case DialogResult.Cancel:
-                        break;
-                    default:
-                        break;
+                    _idTarea = (int)tareasDataGrid.Rows[e.RowIndex].Cells[0].Value;
+                    descripcionTxt.Text = tareasDataGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    cantHoras.Value = (int)tareasDataGrid.Rows[e.RowIndex].Cells[2].Value;
+
+                    // Deshabilito el campo de horas estimadas
+                    cantHoras.Enabled = false;
+
+                    var tarea = _tareaService.FindTarea(_idTarea);
+                    empleadosList.DataSource = GetEmpleados(_idProyecto);
+                    empleadosList.SelectedValue = tarea.Idempleado;
+
+                    perfilesEmpleadoList.DataSource = GetPerfilesEmpleado(tarea.Idempleado);
+                    perfilesEmpleadoList.SelectedValue = tarea.Idperfil;
+
+                    label1.Text = "Modificar tarea";
+                }
+                else if (buttonCell.Value.ToString().Equals("Eliminar"))
+                {
+                    DialogResult result = MessageBox.Show("¿Está seguro de eliminar esta tarea?", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+
+                    switch (result)
+                    {
+                        case DialogResult.OK:
+                            _tareaService.Eliminar(_idTarea);
+                            MessageBox.Show("Tarea eliminada", "Éxito", MessageBoxButtons.OK);
+                            tareasDataGrid.DataSource = _tareaService.FindTareasSinFinalizarProyecto(_idProyecto);
+                            break;
+                        case DialogResult.Cancel:
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
+            catch (Exception)
+            {
+
+            }
+
         }
 
         private List<Empleado> GetEmpleados(int idProyecto)

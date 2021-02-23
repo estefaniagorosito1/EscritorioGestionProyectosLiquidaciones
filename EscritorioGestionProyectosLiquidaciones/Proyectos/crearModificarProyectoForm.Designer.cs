@@ -101,7 +101,7 @@
             this.clientes.Location = new System.Drawing.Point(481, 110);
             this.clientes.Name = "clientes";
             this.clientes.Size = new System.Drawing.Size(210, 21);
-            this.clientes.TabIndex = 8;
+            this.clientes.TabIndex = 2;
             this.clientes.ValueMember = "idCliente";
             // 
             // estadosProyecto
@@ -110,7 +110,7 @@
             this.estadosProyecto.Location = new System.Drawing.Point(260, 110);
             this.estadosProyecto.Name = "estadosProyecto";
             this.estadosProyecto.Size = new System.Drawing.Size(210, 21);
-            this.estadosProyecto.TabIndex = 7;
+            this.estadosProyecto.TabIndex = 1;
             // 
             // label5
             // 
@@ -168,7 +168,7 @@
             this.descripcionTxt.Multiline = true;
             this.descripcionTxt.Name = "descripcionTxt";
             this.descripcionTxt.Size = new System.Drawing.Size(653, 135);
-            this.descripcionTxt.TabIndex = 1;
+            this.descripcionTxt.TabIndex = 3;
             // 
             // nombreTxt
             // 

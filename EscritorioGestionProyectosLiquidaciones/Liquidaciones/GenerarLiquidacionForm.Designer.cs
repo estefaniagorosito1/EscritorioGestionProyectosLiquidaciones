@@ -76,7 +76,7 @@
             this.generarLiqBtn.Location = new System.Drawing.Point(103, 107);
             this.generarLiqBtn.Name = "generarLiqBtn";
             this.generarLiqBtn.Size = new System.Drawing.Size(113, 23);
-            this.generarLiqBtn.TabIndex = 6;
+            this.generarLiqBtn.TabIndex = 4;
             this.generarLiqBtn.Text = "Generar liquidación";
             this.generarLiqBtn.UseVisualStyleBackColor = true;
             this.generarLiqBtn.Click += new System.EventHandler(this.generarLiqBtn_Click);
@@ -86,7 +86,7 @@
             this.volverBtn.Location = new System.Drawing.Point(22, 107);
             this.volverBtn.Name = "volverBtn";
             this.volverBtn.Size = new System.Drawing.Size(75, 23);
-            this.volverBtn.TabIndex = 5;
+            this.volverBtn.TabIndex = 3;
             this.volverBtn.Text = "Volver";
             this.volverBtn.UseVisualStyleBackColor = true;
             this.volverBtn.Click += new System.EventHandler(this.volverBtn_Click);
@@ -159,7 +159,7 @@
             this.empleadosConLiqList.Location = new System.Drawing.Point(22, 57);
             this.empleadosConLiqList.Name = "empleadosConLiqList";
             this.empleadosConLiqList.Size = new System.Drawing.Size(228, 21);
-            this.empleadosConLiqList.TabIndex = 3;
+            this.empleadosConLiqList.TabIndex = 5;
             this.empleadosConLiqList.ValueMember = "Idempleado";
             this.empleadosConLiqList.SelectionChangeCommitted += new System.EventHandler(this.empleadosConLiqList_SelectionChangeCommitted);
             this.empleadosConLiqList.Click += new System.EventHandler(this.empleadosConLiqList_Click);
@@ -169,6 +169,7 @@
             this.liquidacionesDataGrid.AllowUserToAddRows = false;
             this.liquidacionesDataGrid.AllowUserToDeleteRows = false;
             this.liquidacionesDataGrid.AutoGenerateColumns = false;
+            this.liquidacionesDataGrid.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.liquidacionesDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.liquidacionesDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codLiquidacionDataGridViewTextBoxColumn,

@@ -101,28 +101,37 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
 
         private void empleadosProyectoDataView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewButtonCell buttonCell = (DataGridViewButtonCell)empleadosProyectoDataView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-
-            if (buttonCell.Value.ToString().Equals("Eliminar"))
+            try
             {
-                DialogResult result = MessageBox.Show("¿Está seguro de quitar a este empleado?", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                DataGridViewButtonCell buttonCell = (DataGridViewButtonCell)empleadosProyectoDataView.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
-                switch (result)
+                if (buttonCell.Value.ToString().Equals("Eliminar"))
                 {
-                    case DialogResult.OK:
-                        var ep = _empleadoProyectoService.FindEmpleadoProyecto(int.Parse(empleadosProyectoDataView.Rows[e.RowIndex].Cells[0].Value.ToString()), _proyecto.Idproyecto);
-                        _empleadoProyectoService.Eliminar(ep);
-                        MessageBox.Show("Empleado quitado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        empleadosProyectoDataView.DataSource = _empleadoProyectoService.FindEmpleadosProyecto(_proyecto.Idproyecto);
-                        empleadosDataView.DataSource = _empleadoService.Find();
-                        break;
-                    case DialogResult.Cancel:
-                        break;
-                    default:
-                        break;
+                    DialogResult result = MessageBox.Show("¿Está seguro de quitar a este empleado?", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+
+                    switch (result)
+                    {
+                        case DialogResult.OK:
+                            var ep = _empleadoProyectoService.FindEmpleadoProyecto(int.Parse(empleadosProyectoDataView.Rows[e.RowIndex].Cells[0].Value.ToString()), _proyecto.Idproyecto);
+                            _empleadoProyectoService.Eliminar(ep);
+                            MessageBox.Show("Empleado quitado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            empleadosProyectoDataView.DataSource = _empleadoProyectoService.FindEmpleadosProyecto(_proyecto.Idproyecto);
+                            empleadosDataView.DataSource = _empleadoService.Find();
+                            break;
+                        case DialogResult.Cancel:
+                            break;
+                        default:
+                            break;
+                    }
+
                 }
 
             }
+            catch (Exception)
+            {
+
+            }
+
         }
     }
 }

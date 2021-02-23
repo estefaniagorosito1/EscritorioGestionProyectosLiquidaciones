@@ -124,9 +124,24 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
 
         private void proyectosFinalizadosDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            InformeHorasProyecto informeHorasProyecto = new InformeHorasProyecto();
-            informeHorasProyecto.SetProyecto(int.Parse(proyectosFinalizadosDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString()));
-            informeHorasProyecto.Show();
+            try
+            {
+                DataGridViewButtonCell buttonCell = (DataGridViewButtonCell)proyectosFinalizadosDataGrid.Rows[e.RowIndex].Cells[e.ColumnIndex];
+
+                if (buttonCell.Value.ToString() == "Estadísticas")
+                {
+                    InformeHorasProyecto informeHorasProyecto = new InformeHorasProyecto();
+                    informeHorasProyecto.SetProyecto(int.Parse(proyectosFinalizadosDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString()));
+                    informeHorasProyecto.Show();
+
+                }
+            }
+            catch (InvalidCastException ex)
+            {
+
+            }
+
+
         }
     }
 }

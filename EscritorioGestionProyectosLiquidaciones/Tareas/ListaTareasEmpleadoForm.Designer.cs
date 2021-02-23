@@ -30,13 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tareasEmpleadoDataGrid = new System.Windows.Forms.DataGridView();
-            this.tareaBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tareasFinalizadasDataGrid = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
+            this.tareasFinalizadasDataGrid = new System.Windows.Forms.DataGridView();
+            this.tareaBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.tareasEmpleadoDataGrid = new System.Windows.Forms.DataGridView();
             this.idtareaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcionTareaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.horasEstimadasTareaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,15 +41,18 @@
             this.horasTrabajadasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.agregarHoras = new System.Windows.Forms.DataGridViewButtonColumn();
             this.finalizar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idtareaDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcionTareaDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.horasEstimadasTareaDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.horasOverbudgetDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.horasTrabajadasDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tareasEmpleadoDataGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tareaBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tareasFinalizadasDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tareaBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tareasEmpleadoDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -64,14 +64,46 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(22, 25);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(757, 401);
+            this.panel1.Size = new System.Drawing.Size(706, 401);
             this.panel1.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(22, 201);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(137, 20);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Tareas finalizadas";
+            // 
+            // tareasFinalizadasDataGrid
+            // 
+            this.tareasFinalizadasDataGrid.AutoGenerateColumns = false;
+            this.tareasFinalizadasDataGrid.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.tareasFinalizadasDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tareasFinalizadasDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idtareaDataGridViewTextBoxColumn1,
+            this.descripcionTareaDataGridViewTextBoxColumn1,
+            this.horasEstimadasTareaDataGridViewTextBoxColumn1,
+            this.horasOverbudgetDataGridViewTextBoxColumn1,
+            this.horasTrabajadasDataGridViewTextBoxColumn1});
+            this.tareasFinalizadasDataGrid.DataSource = this.tareaBindingSource1;
+            this.tareasFinalizadasDataGrid.Location = new System.Drawing.Point(22, 232);
+            this.tareasFinalizadasDataGrid.Name = "tareasFinalizadasDataGrid";
+            this.tareasFinalizadasDataGrid.Size = new System.Drawing.Size(653, 150);
+            this.tareasFinalizadasDataGrid.TabIndex = 2;
+            // 
+            // tareaBindingSource1
+            // 
+            this.tareaBindingSource1.DataSource = typeof(EscritorioGestionProyectosLiquidaciones.Models.Tarea);
             // 
             // tareasEmpleadoDataGrid
             // 
             this.tareasEmpleadoDataGrid.AllowUserToAddRows = false;
             this.tareasEmpleadoDataGrid.AllowUserToDeleteRows = false;
             this.tareasEmpleadoDataGrid.AutoGenerateColumns = false;
+            this.tareasEmpleadoDataGrid.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.tareasEmpleadoDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tareasEmpleadoDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idtareaDataGridViewTextBoxColumn,
@@ -85,66 +117,9 @@
             this.tareasEmpleadoDataGrid.Location = new System.Drawing.Point(22, 53);
             this.tareasEmpleadoDataGrid.Name = "tareasEmpleadoDataGrid";
             this.tareasEmpleadoDataGrid.ReadOnly = true;
-            this.tareasEmpleadoDataGrid.Size = new System.Drawing.Size(715, 128);
+            this.tareasEmpleadoDataGrid.Size = new System.Drawing.Size(653, 128);
             this.tareasEmpleadoDataGrid.TabIndex = 1;
             this.tareasEmpleadoDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tareasEmpleadoDataGrid_CellContentClick);
-            // 
-            // tareaBindingSource1
-            // 
-            this.tareaBindingSource1.DataSource = typeof(EscritorioGestionProyectosLiquidaciones.Models.Tarea);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(18, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(189, 24);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Tareas del empleado";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "IdproyectoNavigation";
-            this.dataGridViewTextBoxColumn1.FillWeight = 90F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Proyecto";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 90;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "IdproyectoNavigation";
-            this.dataGridViewTextBoxColumn2.FillWeight = 90F;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Proyecto";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 90;
-            // 
-            // tareasFinalizadasDataGrid
-            // 
-            this.tareasFinalizadasDataGrid.AutoGenerateColumns = false;
-            this.tareasFinalizadasDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tareasFinalizadasDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idtareaDataGridViewTextBoxColumn1,
-            this.descripcionTareaDataGridViewTextBoxColumn1,
-            this.horasEstimadasTareaDataGridViewTextBoxColumn1,
-            this.horasOverbudgetDataGridViewTextBoxColumn1,
-            this.horasTrabajadasDataGridViewTextBoxColumn1});
-            this.tareasFinalizadasDataGrid.DataSource = this.tareaBindingSource1;
-            this.tareasFinalizadasDataGrid.Location = new System.Drawing.Point(22, 232);
-            this.tareasFinalizadasDataGrid.Name = "tareasFinalizadasDataGrid";
-            this.tareasFinalizadasDataGrid.Size = new System.Drawing.Size(715, 150);
-            this.tareasFinalizadasDataGrid.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(22, 201);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(137, 20);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Tareas finalizadas";
             // 
             // idtareaDataGridViewTextBoxColumn
             // 
@@ -211,6 +186,33 @@
             this.finalizar.UseColumnTextForButtonValue = true;
             this.finalizar.Width = 90;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(18, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(189, 24);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Tareas del empleado";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "IdproyectoNavigation";
+            this.dataGridViewTextBoxColumn1.FillWeight = 90F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Proyecto";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 90;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "IdproyectoNavigation";
+            this.dataGridViewTextBoxColumn2.FillWeight = 90F;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Proyecto";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 90;
+            // 
             // idtareaDataGridViewTextBoxColumn1
             // 
             this.idtareaDataGridViewTextBoxColumn1.DataPropertyName = "Idtarea";
@@ -222,10 +224,10 @@
             // descripcionTareaDataGridViewTextBoxColumn1
             // 
             this.descripcionTareaDataGridViewTextBoxColumn1.DataPropertyName = "DescripcionTarea";
-            this.descripcionTareaDataGridViewTextBoxColumn1.FillWeight = 200F;
+            this.descripcionTareaDataGridViewTextBoxColumn1.FillWeight = 218F;
             this.descripcionTareaDataGridViewTextBoxColumn1.HeaderText = "Descripcion";
             this.descripcionTareaDataGridViewTextBoxColumn1.Name = "descripcionTareaDataGridViewTextBoxColumn1";
-            this.descripcionTareaDataGridViewTextBoxColumn1.Width = 200;
+            this.descripcionTareaDataGridViewTextBoxColumn1.Width = 218;
             // 
             // horasEstimadasTareaDataGridViewTextBoxColumn1
             // 
@@ -256,15 +258,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(755, 450);
             this.Controls.Add(this.panel1);
             this.Name = "ListaTareasEmpleadoForm";
             this.Text = "Mis tareas";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tareasEmpleadoDataGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tareaBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tareasFinalizadasDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tareaBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tareasEmpleadoDataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }

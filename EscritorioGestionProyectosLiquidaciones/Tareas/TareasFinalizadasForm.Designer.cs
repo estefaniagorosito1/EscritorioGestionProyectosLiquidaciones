@@ -83,6 +83,7 @@
             this.tareasFinalizadasDataGrid.AllowUserToAddRows = false;
             this.tareasFinalizadasDataGrid.AllowUserToDeleteRows = false;
             this.tareasFinalizadasDataGrid.AutoGenerateColumns = false;
+            this.tareasFinalizadasDataGrid.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.tareasFinalizadasDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tareasFinalizadasDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idtareaDataGridViewTextBoxColumn,

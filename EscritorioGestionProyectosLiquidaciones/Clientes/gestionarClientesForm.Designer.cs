@@ -110,6 +110,7 @@
             this.clientesDataView.AllowUserToAddRows = false;
             this.clientesDataView.AllowUserToDeleteRows = false;
             this.clientesDataView.AutoGenerateColumns = false;
+            this.clientesDataView.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.clientesDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.clientesDataView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Idcliente,

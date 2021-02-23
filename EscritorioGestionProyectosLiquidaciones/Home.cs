@@ -131,7 +131,7 @@ namespace EscritorioGestionProyectosLiquidaciones
                 toolStrip1.Items.Remove(liquidacionBtn);
             }
 
-            if (rolUsuario.DescripcionRol == "Project Manager")
+            if (rolUsuario.DescripcionRol == "ProjectManager")
             {
                 toolStripDropDownButton1.DropDownItems.Remove(empleadosToolStripMenuItem);
                 toolStripDropDownButton1.DropDownItems.Remove(clientesToolStripMenuItem);
