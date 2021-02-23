@@ -33,14 +33,16 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
         public void SetProyecto(int idProyecto, string nombre)
         {
             _idProyecto = idProyecto;
-            Text = Text + " - " + nombre;
+            Text = Text + " - Proyecto: " + nombre;
         }
 
         private void crearModificarTareaForm_Load(object sender, EventArgs e)
         {
             if (_idProyecto != 0)
             {
-                tareasDataGrid.DataSource = _tareaService.FindTareasProyecto(_idProyecto);
+                var tareas = _tareaService.FindTareasSinFinalizarProyecto(_idProyecto);
+                tareas.RemoveAll(t => t.finalizada == "true");
+                tareasDataGrid.DataSource = tareas;
 
                 // Traigo solo a los empleados que están asociados pero no tienen tareas sin terminar del proyecto
                 List<Empleado> empleados = GetEmpleados(_idProyecto);
@@ -50,28 +52,14 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
                 foreach (var emp in empleados)
                 {
                     var tareasEmpleado = _tareaService.FindTareasEmpleado(emp.Idempleado);
-                    if (tareasEmpleado.Any(x => x.Idproyecto == _idProyecto && x.finalizada == "false")) {
+                    if (tareasEmpleado.Any(x => x.Idproyecto == _idProyecto && x.finalizada == "false"))
+                    {
                         empleadosOcupados.Add(emp);
                     }
                 }
 
                 empleados.RemoveAll(emp => empleadosOcupados.Contains(emp));
                 empleadosList.DataSource = empleados;
-
-                // Deshabilito los botones si la tarea está finalizada
-                foreach (DataGridViewRow row in tareasDataGrid.Rows)
-                {
-                    var idTarea = (int) tareasDataGrid.Rows[row.Index].Cells[0].Value;
-                    var tarea = _tareaService.FindTarea(idTarea);
-
-                    if (tarea.finalizada == "true")
-                    {
-                        var editarBtn = (DataGridViewButtonCell) tareasDataGrid.Rows[row.Index].Cells[5];
-                        editarBtn.DataGridView.Enabled = false;
-                        var eliminarBtn = (DataGridViewButtonCell) tareasDataGrid.Rows[row.Index].Cells[6];
-                        eliminarBtn.DataGridView.Enabled = false;
-                    }
-                } 
             }
         }
 
@@ -84,30 +72,47 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
         {
             Tarea tarea = new Tarea();
 
-            if (_idTarea == 0)
+            if (Valid())
             {
-                tarea.DescripcionTarea = descripcionTxt.Text;
-                tarea.HorasEstimadasTarea = (int)cantHoras.Value;
-                tarea.Idproyecto = _idProyecto;
-                tarea.Idempleado = (int) empleadosList.SelectedValue;
-                tarea.Idperfil = (int) perfilesEmpleadoList.SelectedValue;
+                if (_idTarea == 0)
+                {
+                    tarea.DescripcionTarea = descripcionTxt.Text;
+                    tarea.HorasEstimadasTarea = (int)cantHoras.Value;
+                    tarea.Idproyecto = _idProyecto;
+                    tarea.Idempleado = (int)empleadosList.SelectedValue;
+                    tarea.Idperfil = (int)perfilesEmpleadoList.SelectedValue;
+                    tarea.finalizada = "false";
+                }
+                else
+                {
+                    tarea = _tareaService.FindTarea(_idTarea);
+                    tarea.DescripcionTarea = descripcionTxt.Text;
+                    tarea.HorasEstimadasTarea = (int)cantHoras.Value;
+                    tarea.Idproyecto = _idProyecto;
+                    tarea.Idempleado = (int)empleadosList.SelectedValue;
+                    tarea.Idperfil = (int)perfilesEmpleadoList.SelectedValue;
+                    tarea.finalizada = "false";
+                }
+
+                _tareaService.Guardar(tarea);
+
+                MessageBox.Show("Tarea guardada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                label1.Text = "Crear tarea";
+                Clean();
+                tareasDataGrid.DataSource = _tareaService.FindTareasSinFinalizarProyecto(_idProyecto);
             }
             else
             {
-                tarea = _tareaService.FindTarea(_idTarea);
-                tarea.DescripcionTarea = descripcionTxt.Text;
-                tarea.HorasEstimadasTarea = (int)cantHoras.Value;
-                tarea.Idproyecto = _idProyecto;
-                tarea.Idempleado = (int) empleadosList.SelectedValue;
-                tarea.Idperfil = (int) perfilesEmpleadoList.SelectedValue;
+                MessageBox.Show("Debe completar todos los campos", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-            _tareaService.Guardar(tarea);
+        }
 
-            MessageBox.Show("Tarea guardada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            label1.Text = "Crear tarea";
-            Clean();
-            tareasDataGrid.DataSource = _tareaService.FindTareasProyecto(_idProyecto);
+        private void tareasFinalizadasBtn_Click(object sender, EventArgs e)
+        {
+            TareasFinalizadasForm tareasFinalizadasForm = new TareasFinalizadasForm();
+            tareasFinalizadasForm.SetProyecto(_idProyecto);
+            tareasFinalizadasForm.ShowDialog();
         }
 
         private void tareasDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -118,7 +123,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
             {
                 _idTarea = (int)tareasDataGrid.Rows[e.RowIndex].Cells[0].Value;
                 descripcionTxt.Text = tareasDataGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
-                cantHoras.Value = (int) tareasDataGrid.Rows[e.RowIndex].Cells[2].Value;
+                cantHoras.Value = (int)tareasDataGrid.Rows[e.RowIndex].Cells[2].Value;
 
                 // Deshabilito el campo de horas estimadas
                 cantHoras.Enabled = false;
@@ -141,7 +146,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
                     case DialogResult.OK:
                         _tareaService.Eliminar(_idTarea);
                         MessageBox.Show("Tarea eliminada", "Éxito", MessageBoxButtons.OK);
-                        tareasDataGrid.DataSource = _tareaService.FindTareasProyecto(_idProyecto);
+                        tareasDataGrid.DataSource = _tareaService.FindTareasSinFinalizarProyecto(_idProyecto);
                         break;
                     case DialogResult.Cancel:
                         break;
@@ -185,7 +190,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
 
         private void empleadosList_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            int idEmpleado = (int) empleadosList.SelectedValue;
+            int idEmpleado = (int)empleadosList.SelectedValue;
             perfilesEmpleadoList.DataSource = GetPerfilesEmpleado(idEmpleado);
         }
 
@@ -197,5 +202,20 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
             empleadosList.SelectedValue = 0;
             perfilesEmpleadoList.SelectedValue = 0;
         }
+
+        private bool Valid()
+        {
+            bool valid = false;
+
+            if (descripcionTxt.Text != string.Empty && cantHoras.Value != 0
+                && (int)empleadosList.SelectedValue != 0 && (int)perfilesEmpleadoList.SelectedValue != 0)
+            {
+                valid = true;
+            }
+
+            return valid;
+        }
+
+
     }
 }

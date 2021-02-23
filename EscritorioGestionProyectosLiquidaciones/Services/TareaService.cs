@@ -9,11 +9,19 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
 {
     class TareaService
     {
-        public List<Tarea> FindTareasProyecto(int idProyecto)
+        public List<Tarea> FindTareasSinFinalizarProyecto(int idProyecto)
         {
             using (var dbContext = new TpSeminarioContext())
             {
-                return dbContext.Tarea.Where(t => t.Idproyecto == idProyecto).ToList();
+                return dbContext.Tarea.Where(t => t.Idproyecto == idProyecto && t.finalizada == "false").ToList();
+            }
+        }
+
+        public List<Tarea> FindTareasFinalizadasProyecto(int idProyecto)
+        {
+            using (var dbContext = new TpSeminarioContext())
+            {
+                return dbContext.Tarea.Where(t => t.Idproyecto == idProyecto && t.finalizada == "true").ToList();
             }
         }
 

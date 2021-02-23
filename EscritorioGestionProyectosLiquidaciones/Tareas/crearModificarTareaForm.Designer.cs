@@ -31,9 +31,13 @@
             this.components = new System.ComponentModel.Container();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tareasDataGrid = new System.Windows.Forms.DataGridView();
+            this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.perfilesEmpleadoList = new System.Windows.Forms.ComboBox();
+            this.empleadosList = new System.Windows.Forms.ComboBox();
             this.cantHoras = new System.Windows.Forms.NumericUpDown();
             this.guardarBtn = new System.Windows.Forms.Button();
             this.volverBtn = new System.Windows.Forms.Button();
@@ -42,16 +46,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.empleadosList = new System.Windows.Forms.ComboBox();
-            this.perfilesEmpleadoList = new System.Windows.Forms.ComboBox();
-            this.tareaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idtareaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcionTareaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.horasEstimadasTareaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.horasOverbudgetDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.horasTrabajadasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.tareaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tareasFinalizadasBtn = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tareasDataGrid)).BeginInit();
             this.panel1.SuspendLayout();
@@ -91,6 +92,24 @@
             this.tareasDataGrid.TabIndex = 3;
             this.tareasDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tareasDataGrid_CellContentClick);
             // 
+            // Editar
+            // 
+            this.Editar.FillWeight = 70F;
+            this.Editar.HeaderText = "";
+            this.Editar.Name = "Editar";
+            this.Editar.Text = "Editar";
+            this.Editar.UseColumnTextForButtonValue = true;
+            this.Editar.Width = 70;
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.FillWeight = 70F;
+            this.Eliminar.HeaderText = "";
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.Text = "Eliminar";
+            this.Eliminar.UseColumnTextForButtonValue = true;
+            this.Eliminar.Width = 70;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -115,6 +134,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.tareasFinalizadasBtn);
             this.panel1.Controls.Add(this.perfilesEmpleadoList);
             this.panel1.Controls.Add(this.empleadosList);
             this.panel1.Controls.Add(this.cantHoras);
@@ -129,6 +149,27 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(741, 188);
             this.panel1.TabIndex = 2;
+            // 
+            // perfilesEmpleadoList
+            // 
+            this.perfilesEmpleadoList.DisplayMember = "NombrePerfil";
+            this.perfilesEmpleadoList.FormattingEnabled = true;
+            this.perfilesEmpleadoList.Location = new System.Drawing.Point(598, 118);
+            this.perfilesEmpleadoList.Name = "perfilesEmpleadoList";
+            this.perfilesEmpleadoList.Size = new System.Drawing.Size(121, 21);
+            this.perfilesEmpleadoList.TabIndex = 11;
+            this.perfilesEmpleadoList.ValueMember = "idPerfil";
+            // 
+            // empleadosList
+            // 
+            this.empleadosList.DisplayMember = "NombreEmpleado";
+            this.empleadosList.FormattingEnabled = true;
+            this.empleadosList.Location = new System.Drawing.Point(24, 118);
+            this.empleadosList.Name = "empleadosList";
+            this.empleadosList.Size = new System.Drawing.Size(552, 21);
+            this.empleadosList.TabIndex = 10;
+            this.empleadosList.ValueMember = "idEmpleado";
+            this.empleadosList.SelectionChangeCommitted += new System.EventHandler(this.empleadosList_SelectionChangeCommitted);
             // 
             // cantHoras
             // 
@@ -203,31 +244,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Crear Tarea";
             // 
-            // empleadosList
-            // 
-            this.empleadosList.DisplayMember = "NombreEmpleado";
-            this.empleadosList.FormattingEnabled = true;
-            this.empleadosList.Location = new System.Drawing.Point(24, 118);
-            this.empleadosList.Name = "empleadosList";
-            this.empleadosList.Size = new System.Drawing.Size(552, 21);
-            this.empleadosList.TabIndex = 10;
-            this.empleadosList.ValueMember = "idEmpleado";
-            this.empleadosList.SelectionChangeCommitted += new System.EventHandler(this.empleadosList_SelectionChangeCommitted);
-            // 
-            // perfilesEmpleadoList
-            // 
-            this.perfilesEmpleadoList.DisplayMember = "NombrePerfil";
-            this.perfilesEmpleadoList.FormattingEnabled = true;
-            this.perfilesEmpleadoList.Location = new System.Drawing.Point(598, 118);
-            this.perfilesEmpleadoList.Name = "perfilesEmpleadoList";
-            this.perfilesEmpleadoList.Size = new System.Drawing.Size(121, 21);
-            this.perfilesEmpleadoList.TabIndex = 11;
-            this.perfilesEmpleadoList.ValueMember = "idPerfil";
-            // 
-            // tareaBindingSource
-            // 
-            this.tareaBindingSource.DataSource = typeof(EscritorioGestionProyectosLiquidaciones.Models.Tarea);
-            // 
             // idtareaDataGridViewTextBoxColumn
             // 
             this.idtareaDataGridViewTextBoxColumn.DataPropertyName = "Idtarea";
@@ -268,23 +284,19 @@
             this.horasTrabajadasDataGridViewTextBoxColumn.Name = "horasTrabajadasDataGridViewTextBoxColumn";
             this.horasTrabajadasDataGridViewTextBoxColumn.Width = 112;
             // 
-            // Editar
+            // tareaBindingSource
             // 
-            this.Editar.FillWeight = 70F;
-            this.Editar.HeaderText = "";
-            this.Editar.Name = "Editar";
-            this.Editar.Text = "Editar";
-            this.Editar.UseColumnTextForButtonValue = true;
-            this.Editar.Width = 70;
+            this.tareaBindingSource.DataSource = typeof(EscritorioGestionProyectosLiquidaciones.Models.Tarea);
             // 
-            // Eliminar
+            // tareasFinalizadasBtn
             // 
-            this.Eliminar.FillWeight = 70F;
-            this.Eliminar.HeaderText = "";
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.Text = "Eliminar";
-            this.Eliminar.UseColumnTextForButtonValue = true;
-            this.Eliminar.Width = 70;
+            this.tareasFinalizadasBtn.Location = new System.Drawing.Point(186, 150);
+            this.tareasFinalizadasBtn.Name = "tareasFinalizadasBtn";
+            this.tareasFinalizadasBtn.Size = new System.Drawing.Size(118, 23);
+            this.tareasFinalizadasBtn.TabIndex = 12;
+            this.tareasFinalizadasBtn.Text = "Ver tareas finalizadas";
+            this.tareasFinalizadasBtn.UseVisualStyleBackColor = true;
+            this.tareasFinalizadasBtn.Click += new System.EventHandler(this.tareasFinalizadasBtn_Click);
             // 
             // crearModificarTareaForm
             // 
@@ -333,5 +345,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn horasTrabajadasDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn Editar;
         private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
+        private System.Windows.Forms.Button tareasFinalizadasBtn;
     }
 }
