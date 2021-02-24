@@ -55,7 +55,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
 
                 foreach (var item in horas)
                 {
-                    item.EstadoHoraTrabajada = "PAGADAS";
+                    item.EstadoHoraTrabajada = EstadoHoras.PAGADAS.ToString();
                 }
 
                 // Si el empleado realizo más de 8 horas en un día, esas horas se tomar como horas extra y se abona un 50% más
@@ -80,7 +80,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
                     }
                     else
                     {
-                        importe = importe + (double)(liquidacion.ImporteLiquidacion * (antiguedad / 100));
+                        importe = importe + (double)(liquidacion.ImporteLiquidacion * (dbContext.EscalaAntiguedad.Find(1).PorcentajeAumentoAnt / 100));
                         liquidacion.IdescalaAntiguedad = 1;
                     }
 
@@ -91,18 +91,18 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
 
                 if (cantHoras >= 200)
                 {
-                    importe = importe + (double)liquidacion.ImporteLiquidacion * dbContext.EscalaHoras.Find(4).PorcentajeAumentoHoras / 100;
-                    liquidacion.IdescalaHoras = dbContext.EscalaHoras.Find(4).IdescalaHoras;
+                    importe = importe + (double)liquidacion.ImporteLiquidacion * dbContext.EscalaHoras.Find(2).PorcentajeAumentoHoras / 100;
+                    liquidacion.IdescalaHoras = 2;
                 }
                 else if (cantHoras >= 150)
                 {
-                    importe = importe + (double)liquidacion.ImporteLiquidacion * dbContext.EscalaHoras.Find(3).PorcentajeAumentoHoras / 100;
-                    liquidacion.IdescalaHoras = dbContext.EscalaHoras.Find(3).IdescalaHoras;
+                    importe = importe + (double)liquidacion.ImporteLiquidacion * dbContext.EscalaHoras.Find(1).PorcentajeAumentoHoras / 100;
+                    liquidacion.IdescalaHoras = 1;
                 }
 
                 liquidacion.ImporteLiquidacion = liquidacion.ImporteLiquidacion + importe;
                 liquidacion.FechaLiquidacion = DateTime.Today;
-                liquidacion.Estado = "EMITIDA";
+                liquidacion.Estado = EstadoLiquidacion.EMITIDA.ToString();
 
                 dbContext.Liquidacion.Add(liquidacion);
 
