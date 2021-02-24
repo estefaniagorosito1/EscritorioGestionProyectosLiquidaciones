@@ -79,7 +79,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Clientes
                 }
 
             }
-            catch (InvalidCastException ex)
+            catch (Exception)
             {
                 // Cuando el usuario haga click en una celda que no es un botón
             }

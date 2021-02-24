@@ -20,8 +20,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
         private int _horasOverbudget;
 
         private Proyecto proyecto;
-
-        List<HorasReportBody> body;
+        private List<HorasReportBody> body;
 
         private HoraTrabajadaService _horaTrabajadaService;
         private ProyectoService _proyectoService;
@@ -35,6 +34,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
             _horasOverbudget = 0;
 
             proyecto = new Proyecto();
+            body = new List<HorasReportBody>();
 
             _horaTrabajadaService = new HoraTrabajadaService();
             _proyectoService = new ProyectoService();

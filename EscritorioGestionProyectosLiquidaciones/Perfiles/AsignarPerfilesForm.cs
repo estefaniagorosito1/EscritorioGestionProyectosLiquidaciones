@@ -137,6 +137,7 @@ namespace EscritorioGestionProyectosLiquidaciones
 
                 _perfilEmpleadoService.AsignarPerfilesEmpleado(perfilesEmpleado);
                 MessageBox.Show("Cambios guardados correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Close();
 
             }
 

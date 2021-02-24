@@ -47,14 +47,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
                 tareasDataGrid.DataSource = tareas;
 
                 // Traigo solo a los empleados que están asociados pero no tienen tareas sin terminar del proyecto
-                List<Empleado> empleados = GetEmpleados(_idProyecto);
-
-                if(empleados.Count == 1)
-                {
-                    empleadosList.Enabled = false;
-                }
-
-                empleadosList.DataSource = empleados;
+                SetListEmpleados();
             }
         }
 
@@ -95,6 +88,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
                 MessageBox.Show("Tarea guardada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 label1.Text = "Crear tarea";
                 Clean();
+                SetListEmpleados();
                 tareasDataGrid.DataSource = _tareaService.FindTareasSinFinalizarProyecto(_idProyecto);
             }
             else
@@ -127,8 +121,18 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
                     cantHoras.Enabled = false;
 
                     var tarea = _tareaService.FindTarea(_idTarea);
-                    empleadosList.DataSource = _empleadoProyectoService.FindEmpleadosProyecto(_idProyecto);
+
+                    var empleados = GetEmpleados(_idProyecto);
+                    empleados.Add(_empleadoService.FindEmpleado(tarea.Idempleado));
+
+                    if (empleados.Count > 2)
+                    {
+                        empleados.RemoveAt(0);
+                    }
+
+                    empleadosList.DataSource = empleados;
                     empleadosList.SelectedValue = tarea.Idempleado;
+                    empleadosList.Enabled = true;
 
                     perfilesEmpleadoList.DataSource = GetPerfilesEmpleado(tarea.Idempleado);
                     perfilesEmpleadoList.SelectedValue = tarea.Idperfil;
@@ -175,7 +179,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
                 };
 
                 empleados.Add(noEmpleado);
-                
+
             }
             else
             {
@@ -235,6 +239,18 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
             }
 
             return valid;
+        }
+
+        private void SetListEmpleados()
+        {
+            List<Empleado> empleados = GetEmpleados(_idProyecto);
+
+            if (empleados.Count == 1)
+            {
+                empleadosList.Enabled = false;
+            }
+
+            empleadosList.DataSource = empleados;
         }
 
 

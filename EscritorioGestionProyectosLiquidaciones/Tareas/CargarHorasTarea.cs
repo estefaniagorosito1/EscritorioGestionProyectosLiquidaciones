@@ -98,7 +98,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
         {
             tarea.HorasTrabajadas = tarea.HorasTrabajadas + horas;
             _tareaService.Guardar(tarea);
-            MessageBox.Show("Horas cargadas correctamente");
+            MessageBox.Show("Horas cargadas correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             ((ListaTareasEmpleadoForm)this.Owner).LoadTareasEmpleado(_idEmpleado);
             Close();
         }

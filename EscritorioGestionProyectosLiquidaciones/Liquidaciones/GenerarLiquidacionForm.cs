@@ -55,7 +55,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Liquidaciones
 
         private void generarLiqBtn_Click(object sender, EventArgs e)
         {
-            if (_idEmpleado == 0 || _mesLiquidado == 0)
+            if (_idEmpleado == 0 || _mesLiquidado == 0 || _idEmpleado == 0 && _mesLiquidado == 0)
             {
                 MessageBox.Show("Debe seleccionar una fecha y un empleado", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -71,6 +71,12 @@ namespace EscritorioGestionProyectosLiquidaciones.Liquidaciones
                 {
                     _liquidacionService.CrearLiquidacion(liquidacion);
                     MessageBox.Show("Liquidación generada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Limpio todos los valores
+                    _idEmpleado = 0;
+                    _mesLiquidado = 0;
+                    fechaLiquidacion.Value = DateTime.Today;
+                    empleadosList.SelectedValue = 0;
                 }
                 catch (Exception ex)
                 {
@@ -78,7 +84,6 @@ namespace EscritorioGestionProyectosLiquidaciones.Liquidaciones
                 }
 
             }
-            
         }
 
         private void empleadosList_SelectionChangeCommitted(object sender, EventArgs e)
@@ -94,19 +99,29 @@ namespace EscritorioGestionProyectosLiquidaciones.Liquidaciones
         private void empleadosConLiqList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             int idempleado = (int)empleadosConLiqList.SelectedValue;
-            _idEmpleado = idempleado;
 
-            var empleado = _empleadoService.FindEmpleado(idempleado);
-            buscarLiqLabel.Text = "Liquidaciones del empleado " + empleado.NombreEmpleado + " " + empleado.ApellidoEmpleado;
-
-            liquidacionesDataGrid.DataSource = _liquidacionService.GetLiquidacionesEmpleado(idempleado);
-
-            foreach (DataGridViewRow row in liquidacionesDataGrid.Rows)
+            if (idempleado != 0)
             {
-                var codLiq = (int)liquidacionesDataGrid.Rows[row.Index].Cells[0].Value;
-                var liquidacion = _liquidacionService.GetLiquidacion(codLiq);
+                _idEmpleado = idempleado;
 
-                liquidacionesDataGrid.Rows[row.Index].Cells[2].Value = DateTimeFormatInfo.CurrentInfo.GetMonthName(liquidacion.MesLiquidado.Value).ToUpper();
+                var empleado = _empleadoService.FindEmpleado(idempleado);
+                buscarLiqLabel.Text = "Liquidaciones del empleado " + empleado.NombreEmpleado + " " + empleado.ApellidoEmpleado;
+
+                liquidacionesDataGrid.DataSource = _liquidacionService.GetLiquidacionesEmpleado(idempleado);
+
+                foreach (DataGridViewRow row in liquidacionesDataGrid.Rows)
+                {
+                    var codLiq = (int)liquidacionesDataGrid.Rows[row.Index].Cells[0].Value;
+                    var liquidacion = _liquidacionService.GetLiquidacion(codLiq);
+
+                    liquidacionesDataGrid.Rows[row.Index].Cells[2].Value = DateTimeFormatInfo.CurrentInfo.GetMonthName(liquidacion.MesLiquidado.Value).ToUpper();
+                }
+
+            }
+            else
+            {
+                buscarLiqLabel.Text = "Buscar liquidaciones";
+                liquidacionesDataGrid.DataSource = new List<Liquidacion>();
             }
         }
 
@@ -127,16 +142,22 @@ namespace EscritorioGestionProyectosLiquidaciones.Liquidaciones
 
         private void liquidacionesDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewButtonCell buttonCell = (DataGridViewButtonCell)liquidacionesDataGrid.Rows[e.RowIndex].Cells[e.ColumnIndex];
-
-            if (buttonCell.Value.ToString() == "Imprimir liquidación")
+            try
             {
-                ReporteLiquidacionForm reporteLiquidacionForm = new ReporteLiquidacionForm();
-                reporteLiquidacionForm.GetDatosLiquidacion(_idEmpleado, (int)liquidacionesDataGrid.Rows[e.RowIndex].Cells[0].Value);
-                reporteLiquidacionForm.Show();
+                DataGridViewButtonCell buttonCell = (DataGridViewButtonCell)liquidacionesDataGrid.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
-                // MessageBox.Show("Funcionalidad sin implementar");
+                if (buttonCell.Value.ToString() == "Imprimir liquidación")
+                {
+                    ReporteLiquidacionForm reporteLiquidacionForm = new ReporteLiquidacionForm();
+                    reporteLiquidacionForm.GetDatosLiquidacion(_idEmpleado, (int)liquidacionesDataGrid.Rows[e.RowIndex].Cells[0].Value);
+                    reporteLiquidacionForm.Show();
+                }
             }
+            catch (Exception)
+            {
+
+            }
+
         }
     }
 }

@@ -50,8 +50,11 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
                     var horasEstimadas = int.Parse(tareasEmpleadoDataGrid.Rows[e.RowIndex].Cells[2].Value.ToString());
                     var horasTrabajadas = int.Parse(tareasEmpleadoDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString());
 
+                    var tareaSeleccionada = _tareaService.FindTarea(idTarea);
+                    var nombreProyecto = _proyectoService.FindProyecto(tareaSeleccionada.Idproyecto).NombreProyecto;
+
                     CargarHorasTarea cargarHorasTareaForm = new CargarHorasTarea();
-                    cargarHorasTareaForm.Text = cargarHorasTareaForm.Text + " - Tarea n°" + idTarea;
+                    cargarHorasTareaForm.Text = nombreProyecto + " - Tarea n°" + idTarea;
                     cargarHorasTareaForm.LoadHorasTarea(horasEstimadas, horasTrabajadas, idTarea, _idEmpleado);
                     cargarHorasTareaForm.ShowDialog(this);
 
@@ -60,21 +63,30 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
                 {
                     var idTarea = int.Parse(tareasEmpleadoDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
                     Tarea tarea = _tareaService.FindTarea(idTarea);
-                    DialogResult result = MessageBox.Show("¿Desea marcar esta tarea como finalizada?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    switch (result)
+                    if (tarea.HorasTrabajadas != 0)
                     {
-                        case DialogResult.Yes:
-                            MessageBox.Show("Tarea n°" + idTarea + " finalizada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            tarea.finalizada = "true";
-                            _tareaService.Guardar(tarea);
-                            LoadTareasEmpleado(_idEmpleado);
-                            break;
-                        case DialogResult.No:
-                            break;
-                        default:
-                            break;
+                        DialogResult result = MessageBox.Show("¿Desea marcar esta tarea como finalizada?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        switch (result)
+                        {
+                            case DialogResult.Yes:
+                                MessageBox.Show("Tarea n°" + idTarea + " finalizada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                tarea.finalizada = "true";
+                                _tareaService.Guardar(tarea);
+                                LoadTareasEmpleado(_idEmpleado);
+                                break;
+                            case DialogResult.No:
+                                break;
+                            default:
+                                break;
+                        }
+
+                    } else
+                    {
+                        MessageBox.Show("No hay horas cargadas en la tarea seleccionada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+
                 }
             }
             catch (Exception)

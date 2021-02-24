@@ -85,7 +85,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
                     {
                         case DialogResult.OK:
                             _proyectoService.Eliminar(int.Parse(proyectosDataView.Rows[e.RowIndex].Cells[0].Value.ToString()));
-                            MessageBox.Show("Proyecto eliminado", "Éxito", MessageBoxButtons.OK);
+                            MessageBox.Show("Proyecto eliminado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             LoadProyectos();
                             break;
                         case DialogResult.Cancel:
@@ -111,7 +111,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
                     informeHorasProyecto.Show();
                 }
             }
-            catch (InvalidCastException ex)
+            catch (Exception)
             {
                 // Cuando el usuario haga click en una celda que no es un botón
             }
@@ -136,7 +136,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
 
                 }
             }
-            catch (InvalidCastException ex)
+            catch (InvalidCastException)
             {
 
             }
