@@ -159,6 +159,9 @@
     <Compile Include="Liquidaciones\ReporteLiquidacionForm.Designer.cs">
       <DependentUpon>ReporteLiquidacionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\EstadoHoras.cs" />
+    <Compile Include="Models\EstadoLiquidacion.cs" />
+    <Compile Include="Models\EstadoProyecto.cs" />
     <Compile Include="Models\HorasReportBody.cs" />
     <Compile Include="Perfiles\AsignarPerfilesForm.cs">
       <SubType>Form</SubType>

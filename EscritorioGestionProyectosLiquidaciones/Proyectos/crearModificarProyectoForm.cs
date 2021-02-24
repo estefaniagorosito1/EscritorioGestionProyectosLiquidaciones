@@ -33,12 +33,11 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
 
             proyecto = _proyectoService.FindProyecto(proyecto.Idproyecto);
 
-            // CREAR ENUM DE ESTADOS
             List<string> estados = new List<string>();
             estados.Add("Seleccione un estado");
-            estados.Add("En Proceso");
-            estados.Add("Finalizado");
-            estados.Add("Cancelado");
+            estados.Add(EstadoProyecto.En_Proceso.ToString().Replace("_", " "));
+            estados.Add(EstadoProyecto.Finalizado.ToString());
+            estados.Add(EstadoProyecto.Pausado.ToString());
 
             estadosProyecto.DataSource = estados;
 
@@ -81,7 +80,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
                     proyecto.EstadoProyecto = estadosProyecto.SelectedValue.ToString();
                     proyecto.Idcliente = (int)clientes.SelectedValue;
 
-                    if(proyecto.EstadoProyecto == "Finalizado")
+                    if(proyecto.EstadoProyecto == EstadoProyecto.Finalizado.ToString())
                     {
                         proyecto.FechaFinProyecto = DateTime.Today; 
                     }
@@ -124,12 +123,11 @@ namespace EscritorioGestionProyectosLiquidaciones.Proyectos
                     NombreCliente = "Seleccione un cliente"
                 };
 
-                // AGREGAR ENUM DE ESTADOS DEL PROYECTO
                 List<string> estados = new List<string>();
                 estados.Add("Seleccione un estado");
-                estados.Add("En Proceso");
-                estados.Add("Finalizado");
-                estados.Add("Cancelado");
+                estados.Add(EstadoProyecto.En_Proceso.ToString().Replace("_", " "));
+                estados.Add(EstadoProyecto.Finalizado.ToString());
+                estados.Add(EstadoProyecto.Pausado.ToString());
 
                 estadosProyecto.DataSource = estados;
 
