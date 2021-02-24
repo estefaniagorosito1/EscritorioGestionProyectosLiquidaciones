@@ -19,6 +19,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
         private TareaService _tareaService;
         private EmpleadoProyectoService _empleadoProyectoService;
         private PerfilEmpleadoService _perfilEmpleadoService;
+        private EmpleadoService _empleadoService;
 
         public crearModificarTareaForm()
         {
@@ -28,6 +29,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
             _tareaService = new TareaService();
             _empleadoProyectoService = new EmpleadoProyectoService();
             _perfilEmpleadoService = new PerfilEmpleadoService();
+            _empleadoService = new EmpleadoService();
         }
 
         public void SetProyecto(int idProyecto, string nombre)
@@ -47,18 +49,11 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
                 // Traigo solo a los empleados que están asociados pero no tienen tareas sin terminar del proyecto
                 List<Empleado> empleados = GetEmpleados(_idProyecto);
 
-                var empleadosOcupados = new List<Empleado>();
-
-                foreach (var emp in empleados)
+                if(empleados.Count == 1)
                 {
-                    var tareasEmpleado = _tareaService.FindTareasEmpleado(emp.Idempleado);
-                    if (tareasEmpleado.Any(x => x.Idproyecto == _idProyecto && x.finalizada == "false"))
-                    {
-                        empleadosOcupados.Add(emp);
-                    }
+                    empleadosList.Enabled = false;
                 }
 
-                empleados.RemoveAll(emp => empleadosOcupados.Contains(emp));
                 empleadosList.DataSource = empleados;
             }
         }
@@ -82,6 +77,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
                     tarea.Idempleado = (int)empleadosList.SelectedValue;
                     tarea.Idperfil = (int)perfilesEmpleadoList.SelectedValue;
                     tarea.finalizada = "false";
+                    tarea.HorasOverbudget = 0;
                 }
                 else
                 {
@@ -131,7 +127,7 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
                     cantHoras.Enabled = false;
 
                     var tarea = _tareaService.FindTarea(_idTarea);
-                    empleadosList.DataSource = GetEmpleados(_idProyecto);
+                    empleadosList.DataSource = _empleadoProyectoService.FindEmpleadosProyecto(_idProyecto);
                     empleadosList.SelectedValue = tarea.Idempleado;
 
                     perfilesEmpleadoList.DataSource = GetPerfilesEmpleado(tarea.Idempleado);
@@ -168,14 +164,31 @@ namespace EscritorioGestionProyectosLiquidaciones.Tareas
         {
             List<Empleado> empleados = new List<Empleado>();
 
-            var empleado = new Empleado
-            {
-                Idempleado = 0,
-                NombreEmpleado = "Seleccione un empleado"
-            };
+            var data = _empleadoService.FindEmpleadosSinTareas(idProyecto);
 
-            empleados.Add(empleado);
-            empleados.AddRange(_empleadoProyectoService.FindEmpleadosProyecto(idProyecto));
+            if (data.Count == 0)
+            {
+                var noEmpleado = new Empleado
+                {
+                    Idempleado = 0,
+                    NombreEmpleado = "No hay empleados disponibles"
+                };
+
+                empleados.Add(noEmpleado);
+                
+            }
+            else
+            {
+                var empleado = new Empleado
+                {
+                    Idempleado = 0,
+                    NombreEmpleado = "Seleccione un empleado"
+                };
+
+                empleados.Add(empleado);
+                empleados.AddRange(data);
+
+            }
 
             return empleados;
         }

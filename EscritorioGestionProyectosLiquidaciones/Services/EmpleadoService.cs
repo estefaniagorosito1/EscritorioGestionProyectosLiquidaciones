@@ -96,5 +96,39 @@ namespace EscritorioGestionProyectosLiquidaciones.Services
                 return empleadosFiltrados;
             }
         }
+
+        public List<Empleado> FindEmpleadosSinTareas(int idProyecto)
+        {
+            using (var dbContext = new TpSeminarioContext())
+            {
+                var empleados = dbContext.EmpleadoProyecto
+                                         .Where(ep => ep.Idproyecto.Equals(idProyecto))
+                                         .Select(ep => ep.IdempleadoNavigation).ToList();
+
+                var empleadosLibres = new List<Empleado>();
+
+                foreach (var emp in empleados)
+                {
+                    var tareasEmpleado = dbContext.Tarea.Where(t => t.Idempleado == emp.Idempleado && t.Idproyecto == idProyecto).ToList();
+
+                    if (tareasEmpleado.Count == 0)
+                    {
+                        empleadosLibres.Add(emp);
+                    }
+                    else
+                    {
+                        var tareaIncompleta = tareasEmpleado.Find((tarea) => tarea.finalizada == "false");
+
+                        if (tareaIncompleta == null)
+                        {
+                            empleadosLibres.Add(emp);
+                        }
+
+                    }
+                }
+
+                return empleadosLibres;
+            }
+        }
     }
 }
